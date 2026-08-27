@@ -40,7 +40,7 @@
   section:nth-of-type(even){background:var(--card);}
   h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;max-width:680px;}
   h3.section-h{font-size:1.25rem;margin-top:52px;margin-bottom:6px;}
-  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:620px;}
+  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 
   .grid{display:grid;gap:22px;}
   .grid.c2{grid-template-columns:1fr 1fr;}
@@ -66,7 +66,7 @@
   .note-card .sub-label{font-size:0.72rem;font-weight:700;color:var(--moss);text-transform:uppercase;margin:12px 0 4px;}
   .note-card p{margin:0;color:var(--plum);opacity:0.82;font-size:0.9rem;}
 
-  footer{background:var(--plum);color:var(--paper);padding:70px 8vw 40px;text-align:center;}
+  footer{background:var(--plum);color:var(--paper);padding:70px 8vw 40px;text-align:left;}
   footer p{color:rgba(251,244,234,0.7);margin:0;}
   footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;margin-top:24px;font-size:0.78rem;color:rgba(251,244,234,0.45);}
 </style>
@@ -79,24 +79,24 @@
     <a href="how-it-works.html">How it works</a>
     <a href="business.html">Business case</a>
     <a href="technical.html" class="current">Technical solution</a>
+    <a href="team.html">About</a>
   </div>
   <a href="index.html#footer-cta" class="cta-btn">Bring it to your community</a>
 </nav>
-
-<div class="breadcrumb"><a href="index.html">← Back to overview</a></div>
 
 <section>
   <div class="inner">
     <span class="topic-pill">Technical solution</span>
     <h2>Why TurtleBot3, and what we added</h2>
-    <p class="lead">Mobility is the justification, not the novelty. A resident who can't easily walk a note down the hall, and a staff team with no bandwidth to be a note-delivery service, is the actual gap this fills. TurtleBot3's LiDAR-based navigation stack handles that mobility problem directly, without needing to be reinvented.</p>
+    <p class="lead">For residents who can't easily walk a note down the hall, and staff teams with no bandwidth to be a note delivery service, TurtleBot3's LiDAR-based navigation stack handles that mobility problem directly.</p>
+    <img src="Robot_anatomy.png" alt="Diagram of TurtleBot3 with mail compartment, RFID reader, LED indicator, and speaker" width="600">
   </div>
 </section>
 
 <section>
   <div class="inner">
     <h2>Sensors</h2>
-    <p class="lead">Native sensors handle navigation, with additional compartment sensing and arrival signaling to support the delivery interaction.</p>
+    <p class="lead">Native sensors handle navigation with additional compartment sensing and arrival signaling to support the delivery interaction.</p>
     <table class="tech-table">
       <tr><th>Native sensors</th><th>Custom sensors</th></tr>
       <tr>
