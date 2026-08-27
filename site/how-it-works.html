@@ -145,7 +145,7 @@ p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 
 /* Phase headers */
 .jm-table thead th{background:var(--blush-2);font-family:'Fraunces',serif;font-size:0.85rem;font-weight:700;text-align:left;color:var(--plum);}
-.jm-table thead th.row-head{background:var(--blush);width:88px;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
+.jm-table thead th.row-head{background:var(--blush);width:120px;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
 
 /* Row label */
 .jm-row-label{background:var(--blush)!important;font-family:'Fraunces',serif;font-weight:700;font-size:0.8rem;text-align:right;color:var(--plum);white-space:nowrap;padding-right:18px!important;}
@@ -160,10 +160,9 @@ p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 .jm-table p{margin:0 0 6px;line-height:1.4;}
 .jm-table p:last-child{margin-bottom:0;}
 
-/* Emotion cell */
-.jm-emotion-label{font-weight:700;font-size:0.8rem;text-align:center;margin-bottom:8px;}
-.emotion-arc-wrap{padding:0 4px;}
-.emotion-arc-wrap svg{display:block;width:100%;height:auto;}
+/* Emotion cells */
+.jm-emotion-cell{text-align:center;font-size:0.82rem;font-weight:700;color:rgba(91,63,66,0.75);line-height:1.4;vertical-align:middle !important;}
+.jm-emotion-cell .em{font-size:1.4rem;display:block;margin-bottom:5px;}
 
 /* Pain points row */
 tr.jm-pain td{background:rgba(190,90,62,0.04);}
@@ -177,9 +176,12 @@ tr.jm-pain .jm-row-label{background:rgba(190,90,62,0.08)!important;}
 .card p{margin:0;opacity:0.82;font-size:0.93rem;}
 
 /* Footer */
-footer{background:var(--plum);color:var(--paper);padding:70px 8vw 40px;text-align:left;}
-footer p{color:rgba(251,244,234,0.7);margin:0;}
-footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;margin-top:24px;font-size:0.78rem;color:rgba(251,244,234,0.45);}
+footer{background:var(--plum);color:var(--paper);padding:24px 8vw;}
+footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
+
+#back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:0 4px 14px rgba(91,63,66,0.28);font-family:'Karla',sans-serif;}
+#back-top.visible{opacity:1;pointer-events:auto;}
+#back-top:hover{transform:translateY(-3px);}
 </style>
 </head>
 <body>
@@ -197,7 +199,7 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
       <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
       <button class="lang-btn" data-lang="ja" aria-pressed="false">JP</button>
     </div>
-    <a href="index.html#footer-cta" class="cta-btn" data-en="Bring it to your community" data-ja="コミュニティに届ける">Bring it to your community</a>
+    <a href="index.html#footer-cta" class="cta-btn" data-en="Contact us" data-ja="コミュニティに届ける">Contact us</a>
   </div>
 </nav>
 
@@ -205,7 +207,7 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <section id="hiw-hero">
   <div class="inner">
     <span class="topic-pill" data-en="How it works" data-ja="仕組み">How it works</span>
-    <h2 data-en="A route, from sender to receiver." data-ja="送り手から受け手へのルート。">A route, from sender to receiver.</h2>
+    <h2 data-en="A route, from sender to receiver" data-ja="送り手から受け手へのルート">A route, from sender to receiver</h2>
     <p class="lead" data-en="A resident activates the courier, records or writes their message, and watches it leave. The robot signals its state the entire time, no guessing required." data-ja="入居者がクーリエを起動し、メッセージを録音または書き込み、それが届けられるのを見守ります。ロボットは常にその状態を知らせるため、推測は不要です。">A resident activates the courier, records or writes their message, and watches it leave. The robot signals its state the entire time, no guessing required.</p>
   </div>
 </section>
@@ -214,7 +216,7 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <section id="robot-photo">
   <div class="inner">
     <span class="topic-pill" data-en="The robot" data-ja="ロボット">The robot</span>
-    <h2 data-en="TurtleBot3, outfitted for delivery." data-ja="TurtleBot3、配達仕様。">TurtleBot3, outfitted for delivery.</h2>
+    <h2 data-en="TurtleBot3, outfitted for delivery" data-ja="TurtleBot3、配達仕様">TurtleBot3, outfitted for delivery</h2>
     <p class="lead" data-en="A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals." data-ja="カスタムメールコンパートメント、RFIDリーダー、LEDインジケーター、到着信号用スピーカーを装備したTurtleBot3 Burgerです。">A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals.</p>
     <div class="photo-slot" role="img" aria-label="Placeholder — robot photo goes here">
       <span class="slot-icon" aria-hidden="true">📷</span>
@@ -227,7 +229,7 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <section id="modalities">
   <div class="inner">
     <span class="topic-pill" data-en="Message types" data-ja="メッセージの種類">Message types</span>
-    <h2 data-en="Two ways to say something." data-ja="伝え方は二通り。">Two ways to say something.</h2>
+    <h2 data-en="Two ways to say something" data-ja="伝え方は二通り">Two ways to say something</h2>
     <p class="lead" data-en="Users pick whatever feels natural: a handwritten note or a recorded voice message." data-ja="利用者は自分に合った方法を選べます。手書きのメモか、録音した音声メッセージかです。">Users pick whatever feels natural: a handwritten note or a recorded voice message.</p>
     <div class="mod-row" role="list">
       <div class="mod-card" role="listitem">
@@ -275,7 +277,7 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
   <div class="inner">
     <span class="topic-pill" data-en="User journey map" data-ja="ユーザージャーニーマップ">User journey map</span>
     <h2 data-en="The emotional arc, phase by phase" data-ja="フェーズごとの感情の変化">The emotional arc, phase by phase</h2>
-    <p class="lead" data-en="Goals, actions, thoughts, and pain points across all six stages — from the moment a resident decides to reach out, to the reply that keeps the connection going." data-ja="入居者が連絡を取ろうと決めた瞬間から、つながりを維持する返信まで、6つのすべてのフェーズにわたる目標・行動・思い・課題。">Goals, actions, thoughts, and pain points across all six stages — from the moment a resident decides to reach out, to the reply that keeps the connection going.</p>
+    <p class="lead" data-en="Goals, actions, thoughts, and pain points across all six stages, from the moment a resident decides to reach out, to the reply that keeps the connection going." data-ja="入居者が連絡を取ろうと決めた瞬間から、つながりを維持する返信まで、6つのすべてのフェーズにわたる目標・行動・思い・課題。">Goals, actions, thoughts, and pain points across all six stages, from the moment a resident decides to reach out, to the reply that keeps the connection going.</p>
 
     <div class="jm-scroll" role="region" aria-label="User journey map table — scroll horizontally to see all phases">
       <table class="jm-table">
@@ -331,63 +333,37 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
             <td data-en="&lt;ul&gt;&lt;li&gt;Confusion if the arrival signal is unclear&lt;/li&gt;&lt;li&gt;Missed delivery if resident is asleep, out, or doesn't notice the robot (hard of hearing, low vision)&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;到着信号が不明瞭な場合の混乱&lt;/li&gt;&lt;li&gt;入居者が眠っている・外出中・気づかない場合（難聴、低視力）の不在配達&lt;/li&gt;&lt;/ul&gt;"><ul><li>Confusion if the arrival signal is unclear</li><li>Missed delivery if resident is asleep, out, or doesn't notice the robot (hard of hearing, low vision)</li></ul></td>
             <td data-en="&lt;ul&gt;&lt;li&gt;Pressure or obligation to reciprocate&lt;/li&gt;&lt;li&gt;Uncertainty about etiquette (how soon to reply, whether silence is rude)&lt;/li&gt;&lt;li&gt;Risk of one-sided exchange if unanswered&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;お返しをしなければというプレッシャーや義務感&lt;/li&gt;&lt;li&gt;礼儀についての不安（どれくらいで返信すべきか、沈黙は失礼か）&lt;/li&gt;&lt;li&gt;返信がない場合の一方通行なやりとりのリスク&lt;/li&gt;&lt;/ul&gt;"><ul><li>Pressure or obligation to reciprocate</li><li>Uncertainty about etiquette (how soon to reply, whether silence is rude)</li><li>Risk of one-sided exchange if unanswered</li></ul></td>
           </tr>
-          <!-- Emotions — combined label + emoji + arc in one SVG row -->
+          <!-- Emotions: label + emoji row -->
           <tr>
             <td class="jm-row-label" scope="row" data-en="Emotions" data-ja="感情">Emotions</td>
-            <td colspan="6" style="padding:0;">
-              <!-- SVG viewBox=1020×170 matches 6 columns × 170px each.
-                   Phase centers: 85, 255, 425, 595, 765, 935.
-                   Y grid: very positive=80, positive=112, neutral=140. -->
-              <svg viewBox="0 0 1020 170" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;" role="img" aria-label="Emotion arc: Hopeful (neutral) → Creative engagement (positive) → Excited anticipation (positive) → Cautiously optimistic (neutral) → Delighted, touched (very positive) → Warm, socially motivated (positive)">
-
-                <!-- Subtle alternating column tints -->
-                <rect x="170" y="0" width="170" height="170" fill="rgba(91,63,66,0.018)"/>
-                <rect x="510" y="0" width="170" height="170" fill="rgba(91,63,66,0.018)"/>
-                <rect x="850" y="0" width="170" height="170" fill="rgba(91,63,66,0.018)"/>
-
-                <!-- Emotion labels -->
-                <text x="85"  y="18" text-anchor="middle" font-size="11" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">Hopeful</text>
-                <text x="255" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">Creative</text>
-                <text x="255" y="25" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">engagement</text>
-                <text x="425" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">Excited</text>
-                <text x="425" y="25" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">anticipation</text>
-                <text x="595" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">Cautiously</text>
-                <text x="595" y="25" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">optimistic</text>
-                <text x="765" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">Delighted,</text>
-                <text x="765" y="25" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">touched</text>
-                <text x="935" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">Warm, socially</text>
-                <text x="935" y="25" text-anchor="middle" font-size="10" font-weight="700" fill="rgba(91,63,66,0.72)" font-family="Fraunces,serif">motivated</text>
-
-                <!-- Emoji icons at each phase -->
-                <text x="85"  y="57" text-anchor="middle" font-size="22">😐</text>
-                <text x="255" y="57" text-anchor="middle" font-size="22">😊</text>
-                <text x="425" y="57" text-anchor="middle" font-size="22">😊</text>
-                <text x="595" y="57" text-anchor="middle" font-size="22">😐</text>
-                <text x="765" y="57" text-anchor="middle" font-size="26">😄</text>
-                <text x="935" y="57" text-anchor="middle" font-size="22">😊</text>
-
-                <!-- Y-axis labels (fit within leftmost ~68px, safely before first dot at x=85) -->
-                <text x="3" y="78"  font-size="7.5" fill="rgba(91,63,66,0.38)" font-family="Karla,sans-serif">Very positive</text>
-                <text x="3" y="110" font-size="7.5" fill="rgba(91,63,66,0.38)" font-family="Karla,sans-serif">Positive</text>
-                <text x="3" y="138" font-size="7.5" fill="rgba(91,63,66,0.38)" font-family="Karla,sans-serif">Neutral</text>
-
-                <!-- Grid lines -->
-                <line x1="0" y1="76"  x2="1020" y2="76"  stroke="rgba(91,63,66,0.07)" stroke-width="1"/>
-                <line x1="0" y1="108" x2="1020" y2="108" stroke="rgba(91,63,66,0.07)" stroke-width="1"/>
-                <line x1="0" y1="136" x2="1020" y2="136" stroke="rgba(91,63,66,0.07)" stroke-width="1"/>
-
-                <!-- Arc line: neutral→positive→positive→neutral→very positive→positive -->
-                <polyline points="85,136 255,108 425,108 595,136 765,76 935,108"
+            <td class="jm-emotion-cell" data-en='<span class="em">😐</span>Hopeful' data-ja='<span class="em">😐</span>希望'><span class="em">😐</span>Hopeful</td>
+            <td class="jm-emotion-cell" data-en='<span class="em">😊</span>Creative engagement' data-ja='<span class="em">😊</span>創造的関与'><span class="em">😊</span>Creative engagement</td>
+            <td class="jm-emotion-cell" data-en='<span class="em">😊</span>Excited anticipation' data-ja='<span class="em">😊</span>期待と興奮'><span class="em">😊</span>Excited anticipation</td>
+            <td class="jm-emotion-cell" data-en='<span class="em">😐</span>Cautiously optimistic' data-ja='<span class="em">😐</span>慎重な楽観'><span class="em">😐</span>Cautiously optimistic</td>
+            <td class="jm-emotion-cell" data-en='<span class="em">😄</span>Delighted, touched' data-ja='<span class="em">😄</span>感激、感動'><span class="em">😄</span>Delighted, touched</td>
+            <td class="jm-emotion-cell" data-en='<span class="em">😊</span>Warm, socially motivated' data-ja='<span class="em">😊</span>温かく社会的な意欲'><span class="em">😊</span>Warm, socially motivated</td>
+          </tr>
+          <!-- Emotions: arc chart row -->
+          <tr aria-hidden="true">
+            <td style="background:var(--blush);border-bottom:1px solid var(--line);"></td>
+            <td colspan="6" style="padding:4px 10px 10px;">
+              <!-- viewBox 1020×72. Phase centers: 85,255,425,595,765,935. Y: very positive=8, positive=36, neutral=60 -->
+              <svg viewBox="0 0 1020 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+                <text x="3" y="11"  font-size="7" fill="rgba(91,63,66,0.38)" font-family="Karla,sans-serif">Very positive</text>
+                <text x="3" y="39"  font-size="7" fill="rgba(91,63,66,0.38)" font-family="Karla,sans-serif">Positive</text>
+                <text x="3" y="63"  font-size="7" fill="rgba(91,63,66,0.38)" font-family="Karla,sans-serif">Neutral</text>
+                <line x1="0" y1="9"  x2="1020" y2="9"  stroke="rgba(91,63,66,0.07)" stroke-width="1"/>
+                <line x1="0" y1="37" x2="1020" y2="37" stroke="rgba(91,63,66,0.07)" stroke-width="1"/>
+                <line x1="0" y1="61" x2="1020" y2="61" stroke="rgba(91,63,66,0.07)" stroke-width="1"/>
+                <polyline points="85,61 255,37 425,37 595,61 765,9 935,37"
                           stroke="#BE5A3E" stroke-width="2.5"
                           stroke-linejoin="round" stroke-linecap="round" fill="none"/>
-
-                <!-- Dots -->
-                <circle cx="85"  cy="136" r="5"   fill="#BE5A3E"/>
-                <circle cx="255" cy="108" r="5"   fill="#BE5A3E"/>
-                <circle cx="425" cy="108" r="5"   fill="#BE5A3E"/>
-                <circle cx="595" cy="136" r="5"   fill="#BE5A3E"/>
-                <circle cx="765" cy="76"  r="6.5" fill="#BE5A3E"/>
-                <circle cx="935" cy="108" r="5"   fill="#BE5A3E"/>
+                <circle cx="85"  cy="61" r="4.5" fill="#BE5A3E"/>
+                <circle cx="255" cy="37" r="4.5" fill="#BE5A3E"/>
+                <circle cx="425" cy="37" r="4.5" fill="#BE5A3E"/>
+                <circle cx="595" cy="61" r="4.5" fill="#BE5A3E"/>
+                <circle cx="765" cy="9"  r="6"   fill="#BE5A3E"/>
+                <circle cx="935" cy="37" r="4.5" fill="#BE5A3E"/>
               </svg>
             </td>
           </tr>
@@ -411,7 +387,7 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <section id="feedback">
   <div class="inner">
     <span class="topic-pill" data-en="Design feedback" data-ja="デザインフィードバック">Design feedback</span>
-    <h2 data-en="What we learned, and what changed." data-ja="学んだこと、変わったこと。">What we learned, and what changed.</h2>
+    <h2 data-en="What we learned, and what changed" data-ja="学んだこと、変わったこと">What we learned, and what changed</h2>
     <div class="card-grid">
       <div class="card">
         <h3 data-en="Peer feedback" data-ja="仲間からのフィードバック">Peer feedback</h3>
@@ -425,10 +401,11 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
   </div>
 </section>
 
+
 <footer>
-  <p data-en="Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project." data-ja="コミュニティ・メッセージ・クーリエは、UWxSIT ヒューマン・ロボット・インタラクション・サマープロジェクトのために制作されたコンセプトプロトタイプです。">Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
-  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
+  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3</div>
 </footer>
+
 
 <script>
 function applyLang(lang){
@@ -448,6 +425,14 @@ document.querySelectorAll('.lang-btn').forEach(btn=>{
 });
 // Restore saved preference on load
 applyLang(localStorage.getItem('preferredLang')||'en');
+</script>
+<button id="back-top" aria-label="Back to top">↑</button>
+<script>
+(function(){
+  var b=document.getElementById('back-top');
+  window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400);});
+  b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
 </script>
 </body>
 </html>
