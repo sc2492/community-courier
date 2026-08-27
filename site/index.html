@@ -20,7 +20,7 @@
   a{color:inherit;text-decoration:none;}
   .script{font-family:'Caveat',cursive;}
 
-  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:rgb(254, 254, 254);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:#ffffff;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
   .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;}
   .brand .dot-pair{display:flex;gap:3px;}
   .brand .dot-pair span{width:9px;height:9px;border-radius:50%;background:var(--rose);}
@@ -48,7 +48,7 @@
   .inner.narrow{max-width:720px;}
   section:nth-of-type(even):not(#hero){background:var(--blush);}
   .eyebrow{font-size:0.95rem;font-weight:700;color:var(--moss);margin-bottom:6px;display:block;}
-  h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;max-width:680px;}
+  h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;}
   p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 
   #hero{padding:80px 8vw 60px;background:radial-gradient(circle at 15% 25%, rgba(190,90,62,0.10), transparent 45%),radial-gradient(circle at 85% 70%, rgba(92,110,78,0.12), transparent 45%),var(--paper);text-align:center;}
@@ -66,8 +66,8 @@
   .postcard .name{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--plum);}
   .path-wrap{flex:1;position:relative;height:2px;margin:0 -10px;z-index:1;}
   .path-wrap svg{width:100%;height:60px;position:absolute;top:-30px;left:0;}
-  .courier-dot{width:22px;height:22px;border-radius:50%;background:var(--rose);position:absolute;top:-11px;left:0;animation:travel 3.2s ease-in-out infinite;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--paper);}
-  @keyframes travel{0%{left:0%; top:-11px;}45%{left:calc(100% - 22px); top:-24px;}50%{left:calc(100% - 22px); top:-24px;}95%{left:0%; top:-11px;}100%{left:0%; top:-11px;}}
+  .courier-dot{width:46px;height:36px;border-radius:5px;background:var(--rose);position:absolute;top:-18px;left:0;animation:travel 3.2s ease-in-out infinite;display:flex;align-items:center;justify-content:center;font-size:2.8rem;line-height:1;overflow:hidden;color:var(--paper);box-shadow:0 3px 10px rgba(91,63,66,0.2);}
+  @keyframes travel{0%{left:0%; top:-18px;}45%{left:calc(100% - 46px); top:-30px;}50%{left:calc(100% - 46px); top:-30px;}95%{left:0%; top:-18px;}100%{left:0%; top:-18px;}}
   @media (max-width:700px){.connection-scene{flex-direction:column;gap:28px;}.path-wrap{width:2px;height:70px;margin:0;}.path-wrap svg{display:none;}.courier-dot{animation:none; top:auto; left:50%; transform:translateX(-50%); position:relative;}}
   .meta-row{margin-top:30px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-size:0.78rem;color:var(--plum);opacity:0.5;}
 
@@ -137,8 +137,8 @@
 
 <section id="hero">
   <span class="topic-pill" data-en="Overview" data-ja="概要">Overview</span>
-  <h1 data-en='Some things still mean more <span class="script">handwritten</span>' data-ja='やっぱり、<span class="script">手書き</span>が伝わる。'>Some things still mean more <span class="script">handwritten</span></h1>
-  <p class="sub" data-en="Community Message Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first." data-ja="コミュニティ・メッセージ・クーリエは、介護施設内の入居者同士の間で手紙や絵、音声ポストカードをお届けします。つながりは、廊下を歩く元気がある人だけのものではありません。">Community Message Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first.</p>
+  <h1 data-en='Crossing paths <span class="script">through kinder connection</span>' data-ja='やっぱり、<span class="script">手書き</span>が伝わる。'>Some things still mean more <span class="script">handwritten</span></h1>
+  <p class="sub" data-en="Community Message Courier carries notes and gifts between neighbors in assisted living so residents can focus on growing relationships. The connection is always theirs." data-ja="コミュニティ・メッセージ・クーリエは、介護施設内の入居者同士の間で手紙や絵、音声ポストカードをお届けします。つながりは、廊下を歩く元気がある人だけのものではありません。">Community Message Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first.</p>
   <div class="cta-row">
     <a href="#demo" class="cta-btn" data-en="Watch the demo ▸" data-ja="デモを見る ▸">Watch the demo ▸</a>
     <a href="how-it-works.html" class="cta-btn ghost" data-en="See how it works" data-ja="仕組みを見る">See how it works</a>
@@ -158,41 +158,28 @@
   </div>
 </section>
 
-<section id="problem">
-  <div class="inner">
-    <span class="topic-pill" data-en="Problem space" data-ja="課題の背景">Problem space</span>
-    <h2 data-en="Isolation needs a neighbor, not more screens" data-ja="孤立に必要なのは、もう一つの画面ではなく——隣人です">Isolation needs a neighbor, not more screens</h2>
-    <p class="lead" data-en="One in four adults 65+ is socially isolated. Staff, already stretched thin, rarely have bandwidth to facilitate connection between residents who'd otherwise never write to each other." data-ja="65歳以上の4人に1人が社会的孤立を経験しています。すでに多忙なスタッフには、普段交流のない入居者同士のつながりを促す余裕はほとんどありません。">One in four adults 65+ is socially isolated. Staff, already stretched thin, rarely have bandwidth to facilitate connection between residents who'd otherwise never write to each other.</p>
-  </div>
-</section>
+
 
 <section id="users">
   <div class="inner">
     <span class="topic-pill" data-en="Target users" data-ja="対象ユーザー">Target users</span>
     <h2 data-en="Who is this for?" data-ja="これは誰のためのものか？">Who is this for?</h2>
-    <p class="lead" data-en="Who pays for it and who actually uses it are different groups." data-ja="購入者と実際の利用者は異なるグループです。">Who pays for it and who actually uses it are different groups.</p>
+    <p class="lead" data-en="One in four adults 65+ is socially isolated. Staff, already stretched thin, rarely have bandwidth to facilitate connection between residents who'd otherwise never write to each other." data-ja="購入者と実際の利用者は異なるグループです。">Who pays for it and who actually uses it are different groups.</p>
     <div class="role-split">
       <div class="role buyer">
-        <span class="script" data-en="buys it" data-ja="購入する">buys it</span>
+        <span class="script" data-en="Buyers" data-ja="購入する">buys it</span>
         <h3 data-en="Assisted living facilities" data-ja="介護施設">Assisted living facilities</h3>
-        <p data-en="Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations/activities level." data-ja="顧客は施設です。介護施設はすでにエンゲージメント技術やコンパニオン技術に投資しており、購入の意思決定は運営・活動担当レベルで行われます。">Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations/activities level.</p>
+        <p data-en="Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations or activities level." data-ja="顧客は施設です。介護施設はすでにエンゲージメント技術やコンパニオン技術に投資しており、購入の意思決定は運営・活動担当レベルで行われます。">Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations/activities level.</p>
       </div>
       <div class="role user">
-        <span class="script" data-en="uses it" data-ja="使う">uses it</span>
+        <span class="script" data-en="End users" data-ja="使う">uses it</span>
         <h3 data-en="Residents" data-ja="入居者">Residents</h3>
-        <p data-en="Direct users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first." data-ja="直接の利用者は、廊下の向こうの隣人とつながりたいけれど、移動に制限があったり、気力がなかったり、自分から声をかけるきっかけがない入居者です。">Direct users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first.</p>
+        <p data-en="Our end users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first." data-ja="直接の利用者は、廊下の向こうの隣人とつながりたいけれど、移動に制限があったり、気力がなかったり、自分から声をかけるきっかけがない入居者です。">Direct users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="solution">
-  <div class="inner">
-    <span class="topic-pill" data-en="Proposed solution" data-ja="提案するソリューション">Proposed solution</span>
-    <h2 data-en="Infrastructure for a relationship, not a replacement for one" data-ja="人間関係のインフラ、その代替ではない">Infrastructure for a relationship, not a replacement for one</h2>
-    <p class="lead script" style="font-size:1.3rem; opacity:1;" data-en='For nursing home residents with difficulty socializing, we developed a penpal mail carrier robot that delivers notes between residents to facilitate meaningful connection in the community.' data-ja='「社会化に困難を抱える介護施設の入居者のために、私たちは入居者間で手紙を届けるペンパル・メールキャリアロボットを開発しました。コミュニティ内でのつながりを促進することを目的としています。私たちのロボットは、人間関係を代替するのではなく、そのインフラとして機能します。AIベースの関係における信頼の誤りのリスクを排除するという点で、他のコンパニオンロボットとは一線を画しています。」'>"For nursing home residents with difficulty socializing, we developed a penpal mail carrier robot that delivers notes between residents to facilitate meaningful connection in the community. Our robot acts as infrastructure for interpersonal relationships instead of replacing them, setting us apart from other companion robots because it eliminates the risk of misplaced trust in AI-based relationships."</p>
-  </div>
-</section>
 
 <section id="demo">
   <div class="inner">
