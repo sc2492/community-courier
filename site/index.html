@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Community Courier: a note from your neighbor</title>
+<link rel="icon" type="image/svg+xml" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -62,7 +63,7 @@
   .postcard{width:160px;height:120px;background:var(--card);border-radius:14px;border:1.5px solid var(--line);box-shadow:0 6px 16px rgba(91,63,66,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;position:relative;z-index:2;}
   .postcard.left{transform:rotate(-4deg);}
   .postcard.right{transform:rotate(4deg);}
-  .postcard .avatar{width:38px;height:38px;border-radius:50%;background:var(--blush-2);}
+  .postcard .avatar{width:44px;height:44px;border-radius:50%;background:var(--blush-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}.postcard .avatar svg{width:44px;height:44px;flex-shrink:0;}
   .postcard .name{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--plum);}
   .path-wrap{flex:1;position:relative;height:2px;margin:0 -10px;z-index:1;}
   .path-wrap svg{width:100%;height:60px;position:absolute;top:-30px;left:0;}
@@ -119,7 +120,7 @@
 <body>
 
 <nav id="topnav"></nav>
-<script src="nav.js"></script>
+<script src="nav.js?v=4"></script>
 
 <section id="hero">
   <span class="topic-pill" data-en="Overview" data-ja="概要">Overview</span>
@@ -131,12 +132,12 @@
   </div>
 
   <div class="connection-scene">
-    <div class="postcard left"><div class="avatar"></div><div class="name">Grace</div></div>
+    <div class="postcard left"><div class="avatar"><img src="grace.png" alt="Grace" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="name">Grace</div></div>
     <div class="path-wrap">
       <svg viewBox="0 0 300 60" preserveAspectRatio="none"><path d="M0,30 Q150,-10 300,30" stroke="var(--line)" stroke-width="2" fill="none" stroke-dasharray="6 8"/></svg>
       <div class="courier-dot">✉</div>
     </div>
-    <div class="postcard right"><div class="avatar"></div><div class="name">Walter</div></div>
+    <div class="postcard right"><div class="avatar"><img src="walter.png" alt="Walter" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="name">Walter</div></div>
   </div>
 
   <div class="meta-row">

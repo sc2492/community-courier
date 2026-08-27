@@ -16,7 +16,7 @@
 
   document.getElementById('topnav').innerHTML =
     '<a href="index.html" class="brand">' +
-      '<span class="dot-pair"><span></span><span></span></span>' +
+      '<img src="logo.png" alt="Community Courier" height="32" style="flex-shrink:0;">' +
       'Community Courier' +
     '</a>' +
     '<div class="links">' + links + '</div>' +
