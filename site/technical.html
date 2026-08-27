@@ -143,7 +143,7 @@
       </div>
       <div class="spec-item">
         <span class="spec-label" data-en="Onboard computer" data-ja="オンボードコンピュータ">Onboard computer</span>
-        <div class="spec-value">Raspberry Pi 3B+</div>
+        <div class="spec-value">Raspberry Pi 4B</div>
       </div>
       <div class="spec-item">
         <span class="spec-label" data-en="LiDAR" data-ja="LiDAR">LiDAR</span>
@@ -158,12 +158,14 @@
         </div>
       </div>
       <div class="spec-item">
-        <span class="spec-label" data-en="Custom: identification" data-ja="カスタム：識別">Custom: identification</span>
-        <div class="spec-value" data-en="RFID / NFC reader" data-ja="RFID / NFC リーダー">RFID / NFC reader</div>
+        <span class="spec-label" data-en="Actuation" data-ja="アクチュエーション">Actuation</span>
+        <div class="spec-value">Arduino Uno R3 (microcontroller)
+          <span style="display:block;" data-en="MicroServo SG90 × 2 (compartment)" data-ja="MicroServo SG90 × 2（コンパートメント）">MicroServo SG90 × 2 (compartment)</span>
+        </div>
       </div>
       <div class="spec-item">
-        <span class="spec-label" data-en="Custom: arrival signal" data-ja="カスタム：到着信号">Custom: arrival signal</span>
-        <div class="spec-value" data-en="Speaker + LED indicator" data-ja="スピーカー + LED インジケーター">Speaker + LED indicator</div>
+        <span class="spec-label" data-en="Audio I/O" data-ja="音声入出力">Audio I/O</span>
+        <div class="spec-value" data-en="USB microphone + speaker" data-ja="USBマイク + スピーカー">USB microphone + speaker</div>
       </div>
     </div><!-- end spec-grid -->
     </div><!-- end spec-layout -->
@@ -190,9 +192,9 @@
         </td>
         <td>
           <ul>
-            <li data-en="&lt;strong&gt;Compartment sensor&lt;/strong&gt; (limit switch): confirms note is loaded/removed" data-ja="&lt;strong&gt;コンパートメントセンサー&lt;/strong&gt;（リミットスイッチ）：メモの積み込み・取り出しを確認"><strong>Compartment sensor</strong> (limit switch): confirms note is loaded/removed</li>
-            <li data-en="&lt;strong&gt;Speaker + LED indicator:&lt;/strong&gt; sends/produces the robot's arrival signal" data-ja="&lt;strong&gt;スピーカー＋LEDインジケーター：&lt;/strong&gt; ロボットの到着信号を送出・生成"><strong>Speaker + LED indicator:</strong> sends/produces the robot's arrival signal</li>
-            <li data-en="&lt;strong&gt;RFID/NFC reader:&lt;/strong&gt; addresses a specific resident without a vision pipeline" data-ja="&lt;strong&gt;RFID/NFCリーダー：&lt;/strong&gt; ビジョンパイプラインなしで特定の入居者を識別"><strong>RFID/NFC reader:</strong> addresses a specific resident without a vision pipeline</li>
+            <li data-en="&lt;strong&gt;Arduino Uno R3&lt;/strong&gt; (microcontroller): drives compartment actuation and audio I/O" data-ja="&lt;strong&gt;Arduino Uno R3&lt;/strong&gt;（マイコン）：コンパートメント駆動と音声入出力を制御"><strong>Arduino Uno R3</strong> (microcontroller): drives compartment actuation and audio I/O</li>
+            <li data-en="&lt;strong&gt;MicroServo SG90 × 2:&lt;/strong&gt; opens and closes the mail compartment" data-ja="&lt;strong&gt;MicroServo SG90 × 2：&lt;/strong&gt; メールコンパートメントを開閉"><strong>MicroServo SG90 × 2:</strong> opens and closes the mail compartment</li>
+            <li data-en="&lt;strong&gt;USB microphone + speaker:&lt;/strong&gt; records voice messages and signals arrival" data-ja="&lt;strong&gt;USBマイク＋スピーカー：&lt;/strong&gt; 音声メッセージを録音し、到着を知らせる"><strong>USB microphone + speaker:</strong> records voice messages and signals arrival</li>
           </ul>
         </td>
       </tr>
