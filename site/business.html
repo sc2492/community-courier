@@ -28,6 +28,11 @@
   #topnav .links a.current{opacity:1;color:var(--rose);font-weight:700;}
   .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;display:inline-block;}
   @media (max-width:820px){ #topnav .links{display:none;} }
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .lang-toggle{display:flex;gap:2px;background:rgba(91,63,66,0.09);border-radius:20px;padding:3px;}
+  .lang-btn{background:transparent;border:none;padding:5px 12px;border-radius:16px;font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.45;transition:all .15s;font-family:'Karla',sans-serif;line-height:1;}
+  .lang-btn.active{background:var(--card);opacity:1;box-shadow:0 1px 3px rgba(91,63,66,0.14);}
+  .lang-btn:hover:not(.active){opacity:0.7;}
 
   .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blush);color:var(--rose-deep);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
   .topic-pill::before{content:"✎";font-size:0.85rem;}
@@ -65,37 +70,43 @@
 <nav id="topnav">
   <a href="index.html" class="brand"><span class="dot-pair"><span></span><span></span></span>Community Message Courier</a>
   <div class="links">
-    <a href="how-it-works.html">How it works</a>
-    <a href="business.html" class="current">Business case</a>
-    <a href="technical.html">Technical solution</a>
-    <a href="team.html">About</a>
+    <a href="how-it-works.html" data-en="How it works" data-ja="仕組み">How it works</a>
+    <a href="business.html" class="current" data-en="Business case" data-ja="ビジネスケース">Business case</a>
+    <a href="technical.html" data-en="Technical solution" data-ja="技術的ソリューション">Technical solution</a>
+    <a href="team.html" data-en="About" data-ja="チーム">About</a>
   </div>
-  <a href="index.html#footer-cta" class="cta-btn">Bring it to your community</a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang-btn" data-lang="ja" aria-pressed="false">JP</button>
+    </div>
+    <a href="index.html#footer-cta" class="cta-btn" data-en="Bring it to your community" data-ja="コミュニティに届ける">Bring it to your community</a>
+  </div>
 </nav>
 
 <section>
   <div class="inner">
-    <span class="topic-pill">Business case (optional)</span>
-    <h2>Sizing the opportunity: US vs. Japan</h2>
-    <p class="lead">For anyone who wants the market context.</p>
+    <span class="topic-pill" data-en="Business case (optional)" data-ja="ビジネスケース（任意）">Business case (optional)</span>
+    <h2 data-en="Sizing the opportunity: US vs. Japan." data-ja="機会の規模：米国 vs. 日本。">Sizing the opportunity: US vs. Japan.</h2>
+    <p class="lead" data-en="For anyone who wants the market context." data-ja="市場の背景を知りたい方のために。">For anyone who wants the market context.</p>
 
     <div class="grid c2" style="margin-top:36px;">
       <div class="card">
-        <h3>Product landscape</h3>
-        <p style="margin-bottom:10px; opacity:0.8; font-size:0.95rem;">Individual pieces of our solution exist with no direct competitor combining them:</p>
+        <h3 data-en="Product landscape" data-ja="プロダクト・ランドスケープ">Product landscape</h3>
+        <p style="margin-bottom:10px; opacity:0.8; font-size:0.95rem;" data-en="Individual pieces of our solution exist with no direct competitor combining them:" data-ja="私たちのソリューションの個々の要素は存在しますが、それらを組み合わせた直接競合はいません：">Individual pieces of our solution exist with no direct competitor combining them:</p>
         <ul>
-          <li>Robots that run group activities (e.g., trivia sessions)</li>
-          <li>Companion robots in pet-like roles</li>
-          <li>Robots that write letters for businesses, with AI-assisted composition</li>
-          <li>Caregiving dynamics between staff and residents, not resident to resident</li>
+          <li data-en="Robots that run group activities (e.g., trivia sessions)" data-ja="グループアクティビティを実施するロボット（例：トリビアセッション）">Robots that run group activities (e.g., trivia sessions)</li>
+          <li data-en="Companion robots in pet-like roles" data-ja="ペット的役割のコンパニオンロボット">Companion robots in pet-like roles</li>
+          <li data-en="Robots that write letters for businesses, with AI-assisted composition" data-ja="AI支援作文で企業向けの手紙を書くロボット">Robots that write letters for businesses, with AI-assisted composition</li>
+          <li data-en="Caregiving dynamics between staff and residents, not resident to resident" data-ja="スタッフと入居者の間のケア関係（入居者同士ではない）">Caregiving dynamics between staff and residents, not resident to resident</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Market viability</h3>
+        <h3 data-en="Market viability" data-ja="市場の実行可能性">Market viability</h3>
         <ul>
-          <li>Extensive documentation of the social isolation problem in elder care</li>
-          <li>Facilities already spend on companion/engagement robots</li>
-          <li>Real appetite for "snail mail" and human-composed creations over app notifications</li>
+          <li data-en="Extensive documentation of the social isolation problem in elder care" data-ja="高齢者ケアにおける社会的孤立問題に関する広範な文献">Extensive documentation of the social isolation problem in elder care</li>
+          <li data-en="Facilities already spend on companion/engagement robots" data-ja="施設はすでにコンパニオン・エンゲージメントロボットに予算を投じている">Facilities already spend on companion/engagement robots</li>
+          <li data-en='Real appetite for "snail mail" and human-composed creations over app notifications' data-ja='アプリ通知よりも「手紙」や人間が作ったものへの本物の需要'>Real appetite for "snail mail" and human-composed creations over app notifications</li>
         </ul>
       </div>
     </div>
@@ -104,24 +115,28 @@
 
 <section>
   <div class="inner">
-    <h2>Market sizing</h2>
-    <p class="lead" style="margin-top:24px;">Japan's TAM/SAM run larger on sheer facility count and cultural openness to social robotics, but purchasing often routes through public long-term-care insurance instead of discretionary spend as in the U.S. This a real barrier the raw market size doesn't capture.</p>
+    <h2 data-en="TAM, SAM, and SOM" data-ja="TAM、SAM、SOM">TAM, SAM, and SOM</h2>
+    <p class="lead" style="margin-top:24px;" data-en="Japan's TAM/SAM run larger on sheer facility count and cultural openness to social robotics, but purchasing often routes through public long-term-care insurance instead of discretionary spend as in the U.S. This a real barrier the raw market size doesn't capture." data-ja="日本のTAM/SAMは施設数の多さとソーシャルロボティクスへの文化的な開放性から大きくなりますが、購入は米国のような裁量支出ではなく、公的介護保険を通じることが多いです。これは単純な市場規模には反映されない現実の障壁です。">Japan's TAM/SAM run larger on sheer facility count and cultural openness to social robotics, but purchasing often routes through public long-term-care insurance instead of discretionary spend as in the U.S. This a real barrier the raw market size doesn't capture.</p>
     <table class="biz-table">
-      <tr><th></th><th>US</th><th>Japan</th></tr>
       <tr>
-        <td><strong>TAM</strong>All facilities × ~$18K/facility</td>
-        <td>~30K facilities → <span class="fig">~$540M</span></td>
-        <td>~70K facilities → <span class="fig">~$1.26B</span></td>
+        <th></th>
+        <th data-en="US" data-ja="米国">US</th>
+        <th data-en="Japan" data-ja="日本">Japan</th>
       </tr>
       <tr>
-        <td><strong>SAM</strong>Tech-forward, privately paid</td>
-        <td>~15–20% → 5.5K facilities → <span class="fig">~$99M</span></td>
-        <td>~25–30% → ~20K facilities → <span class="fig">~$360M</span></td>
+        <td><strong>TAM</strong><span data-en="All facilities × ~$18K/facility" data-ja="全施設 × 約1施設18,000ドル">All facilities × ~$18K/facility</span></td>
+        <td data-en="~30K facilities → <span class='fig'>~$540M</span>" data-ja="約30,000施設 → <span class='fig'>約5億4,000万ドル</span>">~30K facilities → <span class="fig">~$540M</span></td>
+        <td data-en="~70K facilities → <span class='fig'>~$1.26B</span>" data-ja="約70,000施設 → <span class='fig'>約12億6,000万ドル</span>">~70K facilities → <span class="fig">~$1.26B</span></td>
       </tr>
       <tr>
-        <td><strong>SOM</strong>Realistic early pilot</td>
-        <td>50 facilities → <span class="fig">~$900K</span></td>
-        <td>75–100 facilities → <span class="fig">~$1.4–1.8M</span></td>
+        <td><strong>SAM</strong><span data-en="Tech-forward, privately paid" data-ja="テクノロジー先進型・自費払い施設">Tech-forward, privately paid</span></td>
+        <td data-en="~15–20% → 5.5K facilities → <span class='fig'>~$99M</span>" data-ja="約15〜20% → 5,500施設 → <span class='fig'>約9,900万ドル</span>">~15–20% → 5.5K facilities → <span class="fig">~$99M</span></td>
+        <td data-en="~25–30% → ~20K facilities → <span class='fig'>~$360M</span>" data-ja="約25〜30% → 約20,000施設 → <span class='fig'>約3億6,000万ドル</span>">~25–30% → ~20K facilities → <span class="fig">~$360M</span></td>
+      </tr>
+      <tr>
+        <td><strong>SOM</strong><span data-en="Realistic early pilot" data-ja="現実的な初期パイロット">Realistic early pilot</span></td>
+        <td data-en="50 facilities → <span class='fig'>~$900K</span>" data-ja="50施設 → <span class='fig'>約90万ドル</span>">50 facilities → <span class="fig">~$900K</span></td>
+        <td data-en="75–100 facilities → <span class='fig'>~$1.4–1.8M</span>" data-ja="75〜100施設 → <span class='fig'>約140万〜180万ドル</span>">75–100 facilities → <span class="fig">~$1.4–1.8M</span></td>
       </tr>
     </table>
 
@@ -129,9 +144,28 @@
 </section>
 
 <footer>
-  <p>Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
-  <div class="fine-print">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
+  <p data-en="Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project." data-ja="コミュニティ・メッセージ・クーリエは、UWxSIT ヒューマン・ロボット・インタラクション・サマープロジェクトのために制作されたコンセプトプロトタイプです。">Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
+  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
 </footer>
 
+<script>
+function applyLang(lang){
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.innerHTML = lang==='ja' ? el.dataset.ja : el.dataset.en;
+  });
+  document.documentElement.lang = lang==='ja' ? 'ja' : 'en-US';
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    const active = b.dataset.lang===lang;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-pressed',active?'true':'false');
+  });
+  localStorage.setItem('preferredLang',lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
+});
+// Restore saved preference on load
+applyLang(localStorage.getItem('preferredLang')||'en');
+</script>
 </body>
 </html>

@@ -34,6 +34,11 @@
   .cta-btn.ghost{background:transparent;border:1.5px solid var(--plum);color:var(--plum);}
   .cta-btn.ghost:hover{background:rgba(91,63,66,0.06);}
   @media (max-width:820px){ #topnav .links{display:none;} }
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .lang-toggle{display:flex;gap:2px;background:rgba(91,63,66,0.09);border-radius:20px;padding:3px;}
+  .lang-btn{background:transparent;border:none;padding:5px 12px;border-radius:16px;font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.45;transition:all .15s;font-family:'Karla',sans-serif;line-height:1;}
+  .lang-btn.active{background:var(--card);opacity:1;box-shadow:0 1px 3px rgba(91,63,66,0.14);}
+  .lang-btn:hover:not(.active){opacity:0.7;}
 
   .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--rose-deep);color:var(--blush);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
   .topic-pill::before{content:"✎";font-size:0.85rem;}
@@ -83,7 +88,7 @@
   .role p{margin:0;opacity:0.82;font-size:0.94rem;}
   @media (max-width:700px){ .role-split{flex-direction:column;} }
 
-  .video-slot{border:2px dashed var(--line);border-radius:18px;background:var(--card);min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--plum);text-align:center;padding:30px;}
+  .video-slot{border:2px dashed var(--line);border-radius:18px;background:var(--card);min-height:340px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;color:var(--plum);text-align:left;padding:30px;}
   .video-slot .play{width:60px;height:60px;border-radius:50%;background:var(--rose);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:6px;}
   .video-slot code{background:var(--blush);padding:3px 8px;border-radius:6px;font-size:0.82rem;}
 
@@ -116,21 +121,27 @@
 <nav id="topnav">
   <a href="index.html" class="brand"><span class="dot-pair"><span></span><span></span></span>Community Message Courier</a>
   <div class="links">
-    <a href="how-it-works.html">How it works</a>
-    <a href="business.html">Business case</a>
-    <a href="technical.html">Technical solution</a>
-    <a href="team.html">About</a>
+    <a href="how-it-works.html" data-en="How it works" data-ja="仕組み">How it works</a>
+    <a href="business.html" data-en="Business case" data-ja="ビジネスケース">Business case</a>
+    <a href="technical.html" data-en="Technical solution" data-ja="技術的ソリューション">Technical solution</a>
+    <a href="team.html" data-en="About" data-ja="チーム">About</a>
   </div>
-  <a href="#footer-cta" class="cta-btn">Bring it to your community</a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang-btn" data-lang="ja" aria-pressed="false">JP</button>
+    </div>
+    <a href="#footer-cta" class="cta-btn" data-en="Bring it to your community" data-ja="コミュニティに届ける">Bring it to your community</a>
+  </div>
 </nav>
 
 <section id="hero">
-  <span class="topic-pill">Overview</span>
-  <h1>Some things still mean more <span class="script">handwritten.</span></h1>
-  <p class="sub">Community Message Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first.</p>
+  <span class="topic-pill" data-en="Overview" data-ja="概要">Overview</span>
+  <h1 data-en='Some things still mean more <span class="script">handwritten.</span>' data-ja='やっぱり、<span class="script">手書き</span>が伝わる。'>Some things still mean more <span class="script">handwritten.</span></h1>
+  <p class="sub" data-en="Community Message Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first." data-ja="コミュニティ・メッセージ・クーリエは、介護施設内の入居者同士の間で手紙や絵、音声ポストカードをお届けします。つながりは、廊下を歩く元気がある人だけのものではありません。">Community Message Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first.</p>
   <div class="cta-row">
-    <a href="#demo" class="cta-btn">Watch the demo ▸</a>
-    <a href="how-it-works.html" class="cta-btn ghost">See how it works</a>
+    <a href="#demo" class="cta-btn" data-en="Watch the demo ▸" data-ja="デモを見る ▸">Watch the demo ▸</a>
+    <a href="how-it-works.html" class="cta-btn ghost" data-en="See how it works" data-ja="仕組みを見る">See how it works</a>
   </div>
 
   <div class="connection-scene">
@@ -143,80 +154,80 @@
   </div>
 
   <div class="meta-row">
-    <span>UWxSIT HRI summer project</span><span>·</span><span>TurtleBot3 platform</span><span>·</span><span>Concept prototype, 2026</span>
+    <span data-en="UWxSIT HRI summer project" data-ja="UWxSIT HRI サマープロジェクト">UWxSIT HRI summer project</span><span>·</span><span data-en="TurtleBot3 platform" data-ja="TurtleBot3 プラットフォーム">TurtleBot3 platform</span><span>·</span><span data-en="Concept prototype, 2026" data-ja="コンセプトプロトタイプ、2026年">Concept prototype, 2026</span>
   </div>
 </section>
 
 <section id="problem">
   <div class="inner">
-    <span class="topic-pill">Problem space</span>
-    <h2>Isolation doesn't need another screen. It needs a neighbor.</h2>
-    <p class="lead">One in four adults 65+ is socially isolated. Staff, already stretched thin, rarely have bandwidth to facilitate connection between residents who'd otherwise never write to each other.</p>
+    <span class="topic-pill" data-en="Problem, defined" data-ja="課題の定義">Problem, defined</span>
+    <h2 data-en="Isolation doesn't need another screen. It needs a neighbor." data-ja="孤立に必要なのは、もう一つの画面ではありません。隣人です。">Isolation doesn't need another screen. It needs a neighbor.</h2>
+    <p class="lead" data-en="One in four adults 65+ is socially isolated, and staff, already stretched thin, rarely have bandwidth to broker connection between residents who'd otherwise never write to each other." data-ja="65歳以上の4人に1人が社会的孤立を経験しています。すでに多忙なスタッフには、普段交流のない入居者同士をつなぐ余裕はほとんどありません。">One in four adults 65+ is socially isolated, and staff, already stretched thin, rarely have bandwidth to broker connection between residents who'd otherwise never write to each other.</p>
   </div>
 </section>
 
 <section id="users">
   <div class="inner">
-    <span class="topic-pill">Target users</span>
-    <h2>Who is this for?</h2>
-    <p class="lead">Who pays for it and who actually uses it are different groups.</p>
+    <span class="topic-pill" data-en="Target users" data-ja="対象ユーザー">Target users</span>
+    <h2 data-en="Two people, two roles." data-ja="二人、二つの役割。">Two people, two roles.</h2>
+    <p class="lead" data-en="Who pays for it and who actually uses it aren't the same person, which is worth being clear about." data-ja="購入者と実際の利用者は同じ人物ではありません。この区別を明確にしておくことが重要です。">Who pays for it and who actually uses it aren't the same person, which is worth being clear about.</p>
     <div class="role-split">
       <div class="role buyer">
-        <span class="script">buys it</span>
-        <h3>Assisted living facilities</h3>
-        <p>Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations/activities level.</p>
+        <span class="script" data-en="buys it" data-ja="購入する">buys it</span>
+        <h3 data-en="The assisted living facility" data-ja="介護施設">The assisted living facility</h3>
+        <p data-en="The customer. Facilities already invest in engagement and companion technology, and this is a purchase decision made at the operations/activities level, not by an individual resident." data-ja="顧客は施設です。介護施設はすでにエンゲージメント技術やコンパニオン技術に投資しており、購入の意思決定は個々の入居者ではなく、運営・活動担当レベルで行われます。">The customer. Facilities already invest in engagement and companion technology, and this is a purchase decision made at the operations/activities level, not by an individual resident.</p>
       </div>
       <div class="role user">
-        <span class="script">uses it</span>
-        <h3>Residents</h3>
-        <p>Direct users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first.</p>
+        <span class="script" data-en="uses it" data-ja="使う">uses it</span>
+        <h3 data-en="The resident" data-ja="入居者">The resident</h3>
+        <p data-en="Someone who wants to connect with a neighbor down the hall, but faces mobility limits, low energy, or simply no natural occasion to reach out first." data-ja="廊下の向こうの隣人とつながりたいけれど、移動に制限があったり、気力がなかったり、自分から声をかけるきっかけがない方です。">Someone who wants to connect with a neighbor down the hall, but faces mobility limits, low energy, or simply no natural occasion to reach out first.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section id="solution">
-  <div class="inner narrow">
-    <span class="topic-pill">Proposed solution</span>
-    <h2>Infrastructure for a relationship, not a replacement for one</h2>
-    <p class="lead script" style="font-size:1.3rem; opacity:1;">"For nursing home residents with difficulty socializing, we developed a penpal mail carrier robot that delivers notes between residents to facilitate meaningful connection in the community. Our robot acts as infrastructure for interpersonal relationships instead of replacing them, setting us apart from other companion robots because it eliminates the risk of misplaced trust in AI-based relationships."</p>
+  <div class="inner">
+    <span class="topic-pill" data-en="Proposed solution" data-ja="提案するソリューション">Proposed solution</span>
+    <h2 data-en="Infrastructure for a relationship, not a replacement for one." data-ja="人間関係のインフラ、その代替ではない。">Infrastructure for a relationship, not a replacement for one.</h2>
+    <p class="lead script" style="font-size:1.3rem; opacity:1;" data-en='"For nursing home residents with difficulty socializing, we developed a penpal mail carrier robot that delivers notes between residents to facilitate meaningful connection in the community. Our robot acts as infrastructure for interpersonal relationships instead of replacing them, setting us apart from other companion robots because it eliminates the risk of misplaced trust in AI-based relationships."' data-ja='「社会化に困難を抱える介護施設の入居者のために、私たちは入居者間で手紙を届けるペンパル・メールキャリアロボットを開発しました。コミュニティ内でのつながりを促進することを目的としています。私たちのロボットは、人間関係を代替するのではなく、そのインフラとして機能します。AIベースの関係における信頼の誤りのリスクを排除するという点で、他のコンパニオンロボットとは一線を画しています。」'>"For nursing home residents with difficulty socializing, we developed a penpal mail carrier robot that delivers notes between residents to facilitate meaningful connection in the community. Our robot acts as infrastructure for interpersonal relationships instead of replacing them, setting us apart from other companion robots because it eliminates the risk of misplaced trust in AI-based relationships."</p>
   </div>
 </section>
 
 <section id="demo">
-  <div class="inner narrow">
-    <span class="topic-pill">Demo video</span>
-    <h2>See it in action</h2>
+  <div class="inner">
+    <span class="topic-pill" data-en="Demo (2 minutes)" data-ja="デモ（2分）">Demo (2 minutes)</span>
+    <h2 data-en="See it in action." data-ja="実際に動く様子を見る。">See it in action.</h2>
     <div class="video-slot">
       <div class="play">▶</div>
-      <p><strong>Embed your demo video here.</strong></p>
-      <p>Replace this block with an <code>&lt;iframe&gt;</code> (YouTube/Vimeo) or a local <code>&lt;video&gt;</code> tag pointing at your file.</p>
+      <p><strong data-en="Embed your demo video here." data-ja="デモ動画をここに埋め込む。">Embed your demo video here.</strong></p>
+      <p data-en='Replace this block with an <code>&lt;iframe&gt;</code> (YouTube/Vimeo) or a local <code>&lt;video&gt;</code> tag pointing at your file.' data-ja='このブロックを <code>&lt;iframe&gt;</code>（YouTube/Vimeo）またはローカルの <code>&lt;video&gt;</code> タグに置き換えてください。'>Replace this block with an <code>&lt;iframe&gt;</code> (YouTube/Vimeo) or a local <code>&lt;video&gt;</code> tag pointing at your file.</p>
     </div>
   </div>
 </section>
 
 <section id="explore">
   <div class="inner">
-    <span class="topic-pill">Go deeper</span>
-    <h2>Explore what's under the hood</h2>
+    <span class="topic-pill" data-en="Go deeper" data-ja="さらに詳しく">Go deeper</span>
+    <h2 data-en="Explore how it works, the market, and what's under the hood." data-ja="仕組み、市場、技術の詳細を探る。">Explore how it works, the market, and what's under the hood.</h2>
     <div class="grid c3" style="margin-top:30px;">
       <a href="how-it-works.html" class="explore-card">
-        <span class="tag">How it works</span>
-        <h3>Interaction and feedback</h3>
-        <p>Modalities we tested, why we chose them, and real feedback that changed the design</p>
-        <span class="go">Review the interaction flow →</span>
+        <span class="tag" data-en="How it works" data-ja="仕組み">How it works</span>
+        <h3 data-en="Interaction &amp; feedback" data-ja="インタラクションとフィードバック">Interaction &amp; feedback</h3>
+        <p data-en="Modalities we tested, why we chose them, and real feedback that changed the design." data-ja="テストした手法、その選定理由、そしてデザインを変えた実際のフィードバック。">Modalities we tested, why we chose them, and real feedback that changed the design.</p>
+        <span class="go" data-en="Read the interaction flow →" data-ja="インタラクションフローを見る →">Read the interaction flow →</span>
       </a>
       <a href="business.html" class="explore-card">
-        <span class="tag">Business case</span>
-        <h3>Market and validation</h3>
-        <p>Whether this already exists, whether there's a real market, and sizing the opportunity in the US and Japan</p>
-        <span class="go">See the numbers →</span>
+        <span class="tag" data-en="Business case" data-ja="ビジネスケース">Business case</span>
+        <h3 data-en="Market &amp; validation" data-ja="市場と検証">Market &amp; validation</h3>
+        <p data-en="Whether this already exists, whether there's a real market, and sizing the opportunity in the US and Japan." data-ja="類似製品の有無、実際の市場の有無、米国と日本における機会の規模。">Whether this already exists, whether there's a real market, and sizing the opportunity in the US and Japan.</p>
+        <span class="go" data-en="See the numbers →" data-ja="数字を見る →">See the numbers →</span>
       </a>
       <a href="technical.html" class="explore-card">
-        <span class="tag">Technical solution</span>
-        <h3>Platform and engineering</h3>
-        <p>Why TurtleBot3, the sensors involved, navigation challenges we hit, and barriers ahead</p>
-        <span class="go">See how it's built →</span>
+        <span class="tag" data-en="Technical solution" data-ja="技術的ソリューション">Technical solution</span>
+        <h3 data-en="Platform &amp; engineering" data-ja="プラットフォームとエンジニアリング">Platform &amp; engineering</h3>
+        <p data-en="Why TurtleBot3, the sensors involved, navigation challenges we hit, and barriers ahead." data-ja="TurtleBot3を選んだ理由、使用センサー、直面したナビゲーション課題、今後の障壁。">Why TurtleBot3, the sensors involved, navigation challenges we hit, and barriers ahead.</p>
+        <span class="go" data-en="See how it's built →" data-ja="技術的な詳細を見る →">See how it's built →</span>
       </a>
     </div>
   </div>
@@ -224,40 +235,59 @@
 
 <section id="roadmap">
   <div class="inner">
-    <span class="topic-pill">What's next</span>
-    <h2>Where the route goes from here</h2>
+    <span class="topic-pill" data-en="What's next" data-ja="今後の展開">What's next</span>
+    <h2 data-en="Where the route goes from here." data-ja="これからのルート。">Where the route goes from here.</h2>
     <div class="roadmap">
       <div class="rm-stop">
-        <span class="rm-label">Now</span>
-        <h3>Talk to real users</h3>
-        <p>Interviews and direct observation with assisted-living residents and staff, in both Japan and the US</p>
+        <span class="rm-label" data-en="Now" data-ja="現在">Now</span>
+        <h3 data-en="Talk to real users" data-ja="実際のユーザーと対話する">Talk to real users</h3>
+        <p data-en="Interviews and direct observation with assisted-living residents and staff, in both Japan and the US." data-ja="日米両国の介護施設入居者とスタッフへのインタビューおよび直接観察。">Interviews and direct observation with assisted-living residents and staff, in both Japan and the US.</p>
       </div>
       <div class="rm-stop">
-        <span class="rm-label">Next</span>
-        <h3>New modalities</h3>
-        <p>Different content types, like small gifts or food, and scheduled deliveries tied to seasonal moments</p>
+        <span class="rm-label" data-en="Next" data-ja="次のステップ">Next</span>
+        <h3 data-en="New modalities" data-ja="新しいモダリティ">New modalities</h3>
+        <p data-en="Different content types, like small gifts or food, and scheduled deliveries tied to seasonal moments." data-ja="小さな贈り物や食べ物など異なるコンテンツ種別、および季節のイベントに合わせた配達スケジュール。">Different content types, like small gifts or food, and scheduled deliveries tied to seasonal moments.</p>
       </div>
       <div class="rm-stop">
-        <span class="rm-label">Later</span>
-        <h3>New cost models</h3>
-        <p>Expanded modalities as cost tiers within facility payments, possibly a non-monetary social currency or gamification system</p>
+        <span class="rm-label" data-en="Later" data-ja="将来">Later</span>
+        <h3 data-en="New cost models" data-ja="新しいコストモデル">New cost models</h3>
+        <p data-en="Expanded modalities as cost tiers within facility payments, possibly a non-monetary social currency or gamification system." data-ja="施設料金内のコスト段階としての機能拡張、あるいは非金銭的なソーシャルポイントやゲーミフィケーションの仕組み。">Expanded modalities as cost tiers within facility payments, possibly a non-monetary social currency or gamification system.</p>
       </div>
     </div>
   </div>
 </section>
 
 <footer id="footer-cta">
-  <span class="topic-pill" style="background:rgba(251,244,234,0.15); color:var(--gold);">Get involved</span>
-  <h2>Ready to bring the route to your community?</h2>
-  <p>Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
+  <span class="topic-pill" style="background:rgba(251,244,234,0.15); color:var(--gold);" data-en="Get involved" data-ja="参加する">Get involved</span>
+  <h2 data-en="Ready to bring the route to your community?" data-ja="コミュニティにルートを届ける準備はできましたか？">Ready to bring the route to your community?</h2>
+  <p data-en="Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project." data-ja="コミュニティ・メッセージ・クーリエは、UWxSIT ヒューマン・ロボット・インタラクション・サマープロジェクトのために制作されたコンセプトプロトタイプです。">Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
   <div class="cta-row">
-    <a href="#demo" class="cta-btn">Watch the demo</a>
-    <a href="#" class="cta-btn ghost">Contact the team</a>
+    <a href="#demo" class="cta-btn" data-en="Watch the demo" data-ja="デモを見る">Watch the demo</a>
+    <a href="#" class="cta-btn ghost" data-en="Contact the team" data-ja="チームに連絡する">Contact the team</a>
   </div>
-  <div class="fine-print">
+  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3 · This site is our presentation artifact; final slides and demo video accompany this submission." data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年 · TurtleBot3 使用 · このサイトは発表資料です。最終スライドとデモ動画はこの提出物に添付されています。">
     UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3 · This site is our presentation artifact; final slides and demo video accompany this submission.
   </div>
 </footer>
 
+<script>
+function applyLang(lang){
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.innerHTML = lang==='ja' ? el.dataset.ja : el.dataset.en;
+  });
+  document.documentElement.lang = lang==='ja' ? 'ja' : 'en-US';
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    const active = b.dataset.lang===lang;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-pressed',active?'true':'false');
+  });
+  localStorage.setItem('preferredLang',lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
+});
+// Restore saved preference on load
+applyLang(localStorage.getItem('preferredLang')||'en');
+</script>
 </body>
 </html>

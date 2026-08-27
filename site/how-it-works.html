@@ -34,6 +34,11 @@ a{color:inherit;text-decoration:none;}
 .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;transition:background .15s,transform .15s;display:inline-block;}
 .cta-btn:hover{background:var(--rose-deep);transform:translateY(-1px);}
 @media(max-width:820px){#topnav .links{display:none;}}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.lang-toggle{display:flex;gap:2px;background:rgba(91,63,66,0.09);border-radius:20px;padding:3px;}
+.lang-btn{background:transparent;border:none;padding:5px 12px;border-radius:16px;font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.45;transition:all .15s;font-family:'Karla',sans-serif;line-height:1;}
+.lang-btn.active{background:var(--card);opacity:1;box-shadow:0 1px 3px rgba(91,63,66,0.14);}
+.lang-btn:hover:not(.active){opacity:0.7;}
 
 /* ── Page layout ── */
 .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--rose-deep);color:var(--blush);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
@@ -125,7 +130,7 @@ p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 .fc-edge-title{font-size:0.64rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#8B6914;margin-bottom:10px;display:block;}
 
 /* Flow diagram images */
-.flow-img-wrap{margin-top:30px;overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:white;}
+.flow-img-wrap{margin:30px 0 0;overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:white;}
 .flow-img-wrap img{display:block;max-width:none;height:auto;}
 
 /* ══════════════════════════════
@@ -133,15 +138,14 @@ p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 ══════════════════════════════ */
 #journey-map{background:var(--paper);}
 .jm-scroll{overflow-x:auto;margin-top:32px;border-radius:18px;border:1px solid var(--line);}
-.jm-table{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;background:var(--card);border-radius:18px;overflow:hidden;font-size:0.84rem;}
-.jm-table th,.jm-table td{padding:14px 16px;vertical-align:top;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.jm-table{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;background:var(--card);border-radius:18px;overflow:hidden;font-size:0.82rem;}
+.jm-table th,.jm-table td{padding:12px 14px;vertical-align:top;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
 .jm-table th:last-child,.jm-table td:last-child{border-right:none;}
 .jm-table tr:last-child td{border-bottom:none;}
 
 /* Phase headers */
-.jm-table thead th{background:var(--blush-2);font-family:'Fraunces',serif;font-size:0.88rem;font-weight:700;text-align:center;color:var(--plum);}
-.jm-table thead th.row-head{background:var(--blush);width:90px;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;}
-.jm-phase-col{width:170px;}
+.jm-table thead th{background:var(--blush-2);font-family:'Fraunces',serif;font-size:0.85rem;font-weight:700;text-align:left;color:var(--plum);}
+.jm-table thead th.row-head{background:var(--blush);width:88px;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
 
 /* Row label */
 .jm-row-label{background:var(--blush)!important;font-family:'Fraunces',serif;font-weight:700;font-size:0.8rem;text-align:right;color:var(--plum);white-space:nowrap;padding-right:18px!important;}
@@ -183,32 +187,38 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <nav id="topnav">
   <a href="index.html" class="brand"><span class="dot-pair"><span></span><span></span></span>Community Message Courier</a>
   <div class="links">
-    <a href="how-it-works.html" class="current">How it works</a>
-    <a href="business.html">Business case</a>
-    <a href="technical.html">Technical solution</a>
-    <a href="team.html">About</a>
+    <a href="how-it-works.html" class="current" data-en="How it works" data-ja="仕組み">How it works</a>
+    <a href="business.html" data-en="Business case" data-ja="ビジネスケース">Business case</a>
+    <a href="technical.html" data-en="Technical solution" data-ja="技術的ソリューション">Technical solution</a>
+    <a href="team.html" data-en="About" data-ja="チーム">About</a>
   </div>
-  <a href="index.html#footer-cta" class="cta-btn">Bring it to your community</a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang-btn" data-lang="ja" aria-pressed="false">JP</button>
+    </div>
+    <a href="index.html#footer-cta" class="cta-btn" data-en="Bring it to your community" data-ja="コミュニティに届ける">Bring it to your community</a>
+  </div>
 </nav>
 
 <!-- Hero -->
 <section id="hiw-hero">
   <div class="inner">
-    <span class="topic-pill">How it works</span>
-    <h2>A route, from sender to receiver.</h2>
-    <p class="lead">A resident activates the courier, records or writes their message, and watches it leave. The robot signals its state the entire time, no guessing required.</p>
+    <span class="topic-pill" data-en="How it works" data-ja="仕組み">How it works</span>
+    <h2 data-en="A route, from sender to receiver." data-ja="送り手から受け手へのルート。">A route, from sender to receiver.</h2>
+    <p class="lead" data-en="A resident activates the courier, records or writes their message, and watches it leave. The robot signals its state the entire time, no guessing required." data-ja="入居者がクーリエを起動し、メッセージを録音または書き込み、それが届けられるのを見守ります。ロボットは常にその状態を知らせるため、推測は不要です。">A resident activates the courier, records or writes their message, and watches it leave. The robot signals its state the entire time, no guessing required.</p>
   </div>
 </section>
 
 <!-- Robot photo -->
 <section id="robot-photo">
   <div class="inner">
-    <span class="topic-pill">Robot specs</span>
-    <h2>TurtleBot3, outfitted for delivery.</h2>
-    <p class="lead">A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals.</p>
+    <span class="topic-pill" data-en="The robot" data-ja="ロボット">The robot</span>
+    <h2 data-en="TurtleBot3, outfitted for delivery." data-ja="TurtleBot3、配達仕様。">TurtleBot3, outfitted for delivery.</h2>
+    <p class="lead" data-en="A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals." data-ja="カスタムメールコンパートメント、RFIDリーダー、LEDインジケーター、到着信号用スピーカーを装備したTurtleBot3 Burgerです。">A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals.</p>
     <div class="photo-slot" role="img" aria-label="Placeholder — robot photo goes here">
       <span class="slot-icon" aria-hidden="true">📷</span>
-      <p><strong>Robot photo goes here</strong>Replace with an image of TurtleBot3 with the mail compartment attached.</p>
+      <p><strong data-en="Robot photo goes here" data-ja="ロボットの写真をここに挿入">Robot photo goes here</strong><span data-en="Replace with an image of TurtleBot3 with the mail compartment attached." data-ja="メールコンパートメントを装着したTurtleBot3の画像に差し替えてください。">Replace with an image of TurtleBot3 with the mail compartment attached.</span></p>
     </div>
   </div>
 </section>
@@ -216,19 +226,19 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <!-- Modalities -->
 <section id="modalities">
   <div class="inner">
-    <span class="topic-pill">Message types</span>
-    <h2>Two ways to say something.</h2>
-    <p class="lead">Users pick whatever feels natural: a handwritten note or a recorded voice message.</p>
+    <span class="topic-pill" data-en="Message types" data-ja="メッセージの種類">Message types</span>
+    <h2 data-en="Two ways to say something." data-ja="伝え方は二通り。">Two ways to say something.</h2>
+    <p class="lead" data-en="Users pick whatever feels natural: a handwritten note or a recorded voice message." data-ja="利用者は自分に合った方法を選べます。手書きのメモか、録音した音声メッセージかです。">Users pick whatever feels natural: a handwritten note or a recorded voice message.</p>
     <div class="mod-row" role="list">
       <div class="mod-card" role="listitem">
         <span class="mod-icon" aria-hidden="true">✉</span>
-        <h3>Physical note</h3>
-        <p>Write by hand, place it in the compartment, and watch the robot carry it down the hall. This feature is paired with voice messages for residents with dexterity limits.</p>
+        <h3 data-en="Physical note" data-ja="手書きのメモ">Physical note</h3>
+        <p data-en="Write by hand, place it in the compartment, and watch the robot carry it down the hall. This feature is paired with voice messages for residents with dexterity limits." data-ja="手で書いてコンパートメントに入れ、ロボットが廊下を運ぶのを見守ります。手の不自由な入居者のために、音声メッセージと組み合わせて使用できます。">Write by hand, place it in the compartment, and watch the robot carry it down the hall. This feature is paired with voice messages for residents with dexterity limits.</p>
       </div>
       <div class="mod-card" role="listitem">
         <span class="mod-icon" aria-hidden="true">🎙</span>
-        <h3>Voice postcard</h3>
-        <p>Record a brief, confidential audio message. Skip the blank-page pressure, and just speak and send.</p>
+        <h3 data-en="Voice postcard" data-ja="音声ポストカード">Voice postcard</h3>
+        <p data-en="Record a brief, confidential audio message. Skip the blank-page pressure, and just speak and send." data-ja="短い音声メッセージを秘密裏に録音します。白紙へのプレッシャーなく、ただ話して送るだけです。">Record a brief, confidential audio message. Skip the blank-page pressure, and just speak and send.</p>
       </div>
     </div>
   </div>
@@ -237,9 +247,9 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <!-- Flow 1: Physical note -->
 <section id="flow-physical">
   <div class="inner">
-    <span class="topic-pill">Interaction flow</span>
-    <h2>Sending a physical note</h2>
-    <p class="lead">From the moment a resident decides to write, to the moment the receiver holds the note.</p>
+    <span class="topic-pill" data-en="Interaction flow" data-ja="インタラクションフロー">Interaction flow</span>
+    <h2 data-en="Sending a physical note" data-ja="手書きのメモを送る">Sending a physical note</h2>
+    <p class="lead" data-en="From the moment a resident decides to write, to the moment the receiver holds the note." data-ja="入居者がメモを書こうと決めた瞬間から、受け取り手がそれを手にする瞬間まで。">From the moment a resident decides to write, to the moment the receiver holds the note.</p>
 
     <figure class="flow-img-wrap">
       <img src="task-physical-note.png" alt="Task flow: Send and receive a physical note. Start → Sender writes a note → TurtleBot opens compartment → Sender places note inside → TurtleBot closes compartment → TurtleBot leaves sender's room and travels to receiver's room → TurtleBot makes a sound to announce arrival → Receiver opens compartment and reads note → Decision: send a reply? Yes: Would you like a topic suggestion? Yes: TurtleBot suggests a topic based on the note or VLM (loop: give me another topic, or confirm). No: write directly. No, not now: TurtleBot returns to home dock. Edge case — no response from receiver: TurtleBot waits up to 10 minutes, then returns to sender's room or home dock." width="1600">
@@ -250,9 +260,9 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <!-- Flow 2: Voice note -->
 <section id="flow-voice">
   <div class="inner">
-    <span class="topic-pill">Interaction flow</span>
-    <h2>Sending a voice postcard</h2>
-    <p class="lead">Record a short message, no writing required. The robot carries the audio and plays it on arrival.</p>
+    <span class="topic-pill" data-en="Interaction flow" data-ja="インタラクションフロー">Interaction flow</span>
+    <h2 data-en="Sending a voice postcard" data-ja="音声ポストカードを送る">Sending a voice postcard</h2>
+    <p class="lead" data-en="Record a short message, no writing required. The robot carries the audio and plays it on arrival." data-ja="短いメッセージを録音するだけで、書く必要はありません。ロボットが音声を運び、到着時に再生します。">Record a short message, no writing required. The robot carries the audio and plays it on arrival.</p>
 
     <figure class="flow-img-wrap">
       <img src="task-voice-note.png" alt="Task flow: Send and receive a voice note. Start → Sender requests to record a voice message → TurtleBot displays audio recording interface → Sender presses Start, speaks, presses Stop → TurtleBot confirms message recorded, travels to receiver's room → TurtleBot makes a sound to announce arrival → Voice command: receiver says 'Play the message for me' or presses the Play button → Decision: send a reply? Yes: Would you like a topic suggestion? Yes: TurtleBot suggests a topic based on the message or VLM (loop: give me another topic, or confirm to record reply). No: record reply directly. No, not now: TurtleBot returns to sender's room or home dock. Edge case — no response: TurtleBot waits up to 10 minutes, then returns to sender's room or home dock." width="1600">
@@ -263,67 +273,67 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <!-- Journey map -->
 <section id="journey-map">
   <div class="inner">
-    <span class="topic-pill">User journey map</span>
-    <h2>The emotional arc, phase by phase</h2>
-    <p class="lead">Goals, actions, thoughts, and pain points across all six stages — from the moment a resident decides to reach out, to the reply that keeps the connection going.</p>
+    <span class="topic-pill" data-en="User journey map" data-ja="ユーザージャーニーマップ">User journey map</span>
+    <h2 data-en="The emotional arc, phase by phase" data-ja="フェーズごとの感情の変化">The emotional arc, phase by phase</h2>
+    <p class="lead" data-en="Goals, actions, thoughts, and pain points across all six stages — from the moment a resident decides to reach out, to the reply that keeps the connection going." data-ja="入居者が連絡を取ろうと決めた瞬間から、つながりを維持する返信まで、6つのすべてのフェーズにわたる目標・行動・思い・課題。">Goals, actions, thoughts, and pain points across all six stages — from the moment a resident decides to reach out, to the reply that keeps the connection going.</p>
 
     <div class="jm-scroll" role="region" aria-label="User journey map table — scroll horizontally to see all phases">
       <table class="jm-table">
         <thead>
           <tr>
             <th class="row-head" scope="col"></th>
-            <th class="jm-phase-col" scope="col">Initiate interaction</th>
-            <th class="jm-phase-col" scope="col">Create new message</th>
-            <th class="jm-phase-col" scope="col">Load message</th>
-            <th class="jm-phase-col" scope="col">Deliver message</th>
-            <th class="jm-phase-col" scope="col">Receive message</th>
-            <th class="jm-phase-col" scope="col">Reply to message</th>
+            <th class="jm-phase-col" scope="col" data-en="Initiate interaction" data-ja="インタラクションの開始">Initiate interaction</th>
+            <th class="jm-phase-col" scope="col" data-en="Create new message" data-ja="メッセージの作成">Create new message</th>
+            <th class="jm-phase-col" scope="col" data-en="Load message" data-ja="メッセージの積み込み">Load message</th>
+            <th class="jm-phase-col" scope="col" data-en="Deliver message" data-ja="メッセージの配達">Deliver message</th>
+            <th class="jm-phase-col" scope="col" data-en="Receive message" data-ja="メッセージの受け取り">Receive message</th>
+            <th class="jm-phase-col" scope="col" data-en="Reply to message" data-ja="返信">Reply to message</th>
           </tr>
         </thead>
         <tbody>
           <!-- Goals -->
           <tr>
-            <td class="jm-row-label" scope="row">Goals</td>
-            <td>Reach out to a neighbor without the effort or risk of walking over or calling</td>
-            <td>Express something meaningful without needing to be a skilled writer</td>
-            <td>Successfully hand off the message to the robot for delivery</td>
-            <td>Trust the delivery process executed by the robot</td>
-            <td><p>Be delighted or pleasantly surprised by an unexpected connection</p><p>Successfully access the message</p></td>
-            <td>Continue or deepen the connection</td>
+            <td class="jm-row-label" scope="row" data-en="Goals" data-ja="目標">Goals</td>
+            <td data-en="Reach out to a neighbor without the effort or risk of walking over or calling" data-ja="歩いて行ったり電話したりする手間やリスクなしに、隣人に連絡する">Reach out to a neighbor without the effort or risk of walking over or calling</td>
+            <td data-en="Express something meaningful without needing to be a skilled writer" data-ja="文章が得意でなくても、意味のあることを伝える">Express something meaningful without needing to be a skilled writer</td>
+            <td data-en="Successfully hand off the message to the robot for delivery" data-ja="ロボットへのメッセージの引き渡しを成功させる">Successfully hand off the message to the robot for delivery</td>
+            <td data-en="Trust the delivery process executed by the robot" data-ja="ロボットが実行する配達プロセスを信頼する">Trust the delivery process executed by the robot</td>
+            <td data-en="&lt;p&gt;Be delighted or pleasantly surprised by an unexpected connection&lt;/p&gt;&lt;p&gt;Successfully access the message&lt;/p&gt;" data-ja="&lt;p&gt;予期しないつながりに喜び、嬉しい驚きを感じる&lt;/p&gt;&lt;p&gt;メッセージに正常にアクセスする&lt;/p&gt;"><p>Be delighted or pleasantly surprised by an unexpected connection</p><p>Successfully access the message</p></td>
+            <td data-en="Continue or deepen the connection" data-ja="つながりを継続または深める">Continue or deepen the connection</td>
           </tr>
           <!-- Actions -->
           <tr>
-            <td class="jm-row-label" scope="row">Actions</td>
-            <td><ul><li>Approach robot or activate it (button, voice, app)</li><li>Select or designate a recipient</li></ul></td>
-            <td><ul><li>Write a physical note</li><li>Draw on paper</li><li>Dictate a voice note</li></ul></td>
-            <td><ul><li>Place the note or object in the robot's designated compartment</li><li>Hand the item to staff for help with loading</li><li>Save the voice note</li></ul></td>
-            <td><ul><li>Wait for a response</li><li>Check delivery status in the app</li></ul></td>
-            <td><ul><li>Notice robot arrival</li><li>Open compartment</li><li>Read or review or listen to the message</li></ul></td>
-            <td><ul><li>Decide whether or how to respond</li><li>Start the cycle over by creating a new message</li><li>Ask the robot for topic suggestions</li></ul></td>
+            <td class="jm-row-label" scope="row" data-en="Actions" data-ja="行動">Actions</td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Approach robot or activate it (button, voice, app)&lt;/li&gt;&lt;li&gt;Select or designate a recipient&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;ロボットに近づくか起動する（ボタン、音声、アプリ）&lt;/li&gt;&lt;li&gt;受取人を選択または指定する&lt;/li&gt;&lt;/ul&gt;"><ul><li>Approach robot or activate it (button, voice, app)</li><li>Select or designate a recipient</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Write a physical note&lt;/li&gt;&lt;li&gt;Draw on paper&lt;/li&gt;&lt;li&gt;Dictate a voice note&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;手書きのメモを書く&lt;/li&gt;&lt;li&gt;紙に絵を描く&lt;/li&gt;&lt;li&gt;音声メモを口述する&lt;/li&gt;&lt;/ul&gt;"><ul><li>Write a physical note</li><li>Draw on paper</li><li>Dictate a voice note</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Place the note or object in the robot's designated compartment&lt;/li&gt;&lt;li&gt;Hand the item to staff for help with loading&lt;/li&gt;&lt;li&gt;Save the voice note&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;メモまたは物をロボットの指定コンパートメントに入れる&lt;/li&gt;&lt;li&gt;積み込みをスタッフに手伝ってもらう&lt;/li&gt;&lt;li&gt;音声メモを保存する&lt;/li&gt;&lt;/ul&gt;"><ul><li>Place the note or object in the robot's designated compartment</li><li>Hand the item to staff for help with loading</li><li>Save the voice note</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Wait for a response&lt;/li&gt;&lt;li&gt;Check delivery status in the app&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;返事を待つ&lt;/li&gt;&lt;li&gt;アプリで配達状況を確認する&lt;/li&gt;&lt;/ul&gt;"><ul><li>Wait for a response</li><li>Check delivery status in the app</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Notice robot arrival&lt;/li&gt;&lt;li&gt;Open compartment&lt;/li&gt;&lt;li&gt;Read or review or listen to the message&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;ロボットの到着に気づく&lt;/li&gt;&lt;li&gt;コンパートメントを開ける&lt;/li&gt;&lt;li&gt;メッセージを読む・確認する・聞く&lt;/li&gt;&lt;/ul&gt;"><ul><li>Notice robot arrival</li><li>Open compartment</li><li>Read or review or listen to the message</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Decide whether or how to respond&lt;/li&gt;&lt;li&gt;Start the cycle over by creating a new message&lt;/li&gt;&lt;li&gt;Ask the robot for topic suggestions&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;返信するかどうか、どのように返信するかを決める&lt;/li&gt;&lt;li&gt;新しいメッセージを作成してサイクルを再開する&lt;/li&gt;&lt;li&gt;ロボットにトピックの提案を求める&lt;/li&gt;&lt;/ul&gt;"><ul><li>Decide whether or how to respond</li><li>Start the cycle over by creating a new message</li><li>Ask the robot for topic suggestions</li></ul></td>
           </tr>
           <!-- Thoughts -->
           <tr>
-            <td class="jm-row-label" scope="row">Thoughts</td>
-            <td><q>I want to tell [Neighbor] about my grandkids' visit, but I don't want to bother her if she's resting.</q></td>
-            <td><q>What do I even say? I hope this doesn't sound silly.</q><q>I wish I could just talk instead of write, my hands aren't what they used to be.</q></td>
-            <td><q>Did that go in right? Will it actually get there?</q></td>
-            <td><q>I wonder if [Neighbor] will like it.</q><q>I hope it gets there before dinner.</q></td>
-            <td><q>Oh, someone thought of me!</q><q>I wasn't expecting this today.</q></td>
-            <td><q>I should write back.</q><q>I don't know what to add, but I don't want this to end here.</q></td>
+            <td class="jm-row-label" scope="row" data-en="Thoughts" data-ja="心の声">Thoughts</td>
+            <td data-en='&lt;q&gt;I want to tell [Neighbor] about my grandkids&apos; visit, but I don&apos;t want to bother her if she&apos;s resting.&lt;/q&gt;' data-ja='&lt;q&gt;[隣人]に孫の訪問のことを伝えたいけれど、休んでいたら迷惑かも。&lt;/q&gt;'><q>I want to tell [Neighbor] about my grandkids' visit, but I don't want to bother her if she's resting.</q></td>
+            <td data-en='&lt;q&gt;What do I even say? I hope this doesn&apos;t sound silly.&lt;/q&gt;&lt;q&gt;I wish I could just talk instead of write, my hands aren&apos;t what they used to be.&lt;/q&gt;' data-ja='&lt;q&gt;何を言えばいいのかな？変に聞こえないといいけど。&lt;/q&gt;&lt;q&gt;書くより話せたらいいのに、手が昔みたいに動かないから。&lt;/q&gt;'><q>What do I even say? I hope this doesn't sound silly.</q><q>I wish I could just talk instead of write, my hands aren't what they used to be.</q></td>
+            <td data-en='&lt;q&gt;Did that go in right? Will it actually get there?&lt;/q&gt;' data-ja='&lt;q&gt;ちゃんと入ったかな？本当に届くかな？&lt;/q&gt;'><q>Did that go in right? Will it actually get there?</q></td>
+            <td data-en='&lt;q&gt;I wonder if [Neighbor] will like it.&lt;/q&gt;&lt;q&gt;I hope it gets there before dinner.&lt;/q&gt;' data-ja='&lt;q&gt;[隣人]は気に入ってくれるかな。&lt;/q&gt;&lt;q&gt;夕食前に届くといいけど。&lt;/q&gt;'><q>I wonder if [Neighbor] will like it.</q><q>I hope it gets there before dinner.</q></td>
+            <td data-en='&lt;q&gt;Oh, someone thought of me!&lt;/q&gt;&lt;q&gt;I wasn&apos;t expecting this today.&lt;/q&gt;' data-ja='&lt;q&gt;あら、私のことを思ってくれていたんだ！&lt;/q&gt;&lt;q&gt;今日こんなことがあるとは思っていなかった。&lt;/q&gt;'><q>Oh, someone thought of me!</q><q>I wasn't expecting this today.</q></td>
+            <td data-en='&lt;q&gt;I should write back.&lt;/q&gt;&lt;q&gt;I don&apos;t know what to add, but I don&apos;t want this to end here.&lt;/q&gt;' data-ja='&lt;q&gt;返事を書かなきゃ。&lt;/q&gt;&lt;q&gt;何を付け加えればいいか分からないけど、ここで終わりにしたくない。&lt;/q&gt;'><q>I should write back.</q><q>I don't know what to add, but I don't want this to end here.</q></td>
           </tr>
           <!-- Pain points -->
           <tr class="jm-pain">
-            <td class="jm-row-label" scope="row">Pain points</td>
-            <td><ul><li>Uncertainty about whether it's a good time to reach the recipient</li><li>May not know how to select someone if the interface isn't intuitive</li></ul></td>
-            <td><ul><li>Physical difficulty writing (arthritis, tremor)</li><li>Blank page anxiety</li><li>Uncertainty about tone or what's appropriate to share</li></ul></td>
-            <td><ul><li>Unclear confirmation that loading succeeded</li><li>Physical difficulty opening/closing compartment</li><li>Dependency on staff if limited mobility</li></ul></td>
-            <td><ul><li>No visibility into delivery status or timing</li><li>Anxiety builds with silence</li></ul></td>
-            <td><ul><li>Confusion if the arrival signal is unclear</li><li>Missed delivery if resident is asleep, out, or doesn't notice the robot (hard of hearing, low vision)</li></ul></td>
-            <td><ul><li>Pressure or obligation to reciprocate</li><li>Uncertainty about etiquette (how soon to reply, whether silence is rude)</li><li>Risk of one-sided exchange if unanswered</li></ul></td>
+            <td class="jm-row-label" scope="row" data-en="Pain points" data-ja="課題・不安">Pain points</td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Uncertainty about whether it's a good time to reach the recipient&lt;/li&gt;&lt;li&gt;May not know how to select someone if the interface isn't intuitive&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;受取人に連絡するタイミングが良いか不確か&lt;/li&gt;&lt;li&gt;インターフェースが直感的でない場合、相手の選び方が分からないかも&lt;/li&gt;&lt;/ul&gt;"><ul><li>Uncertainty about whether it's a good time to reach the recipient</li><li>May not know how to select someone if the interface isn't intuitive</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Physical difficulty writing (arthritis, tremor)&lt;/li&gt;&lt;li&gt;Blank page anxiety&lt;/li&gt;&lt;li&gt;Uncertainty about tone or what's appropriate to share&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;書くことへの身体的困難（関節炎、震え）&lt;/li&gt;&lt;li&gt;白紙の不安&lt;/li&gt;&lt;li&gt;どんな口調で、何を共有するのが適切か分からない&lt;/li&gt;&lt;/ul&gt;"><ul><li>Physical difficulty writing (arthritis, tremor)</li><li>Blank page anxiety</li><li>Uncertainty about tone or what's appropriate to share</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Unclear confirmation that loading succeeded&lt;/li&gt;&lt;li&gt;Physical difficulty opening/closing compartment&lt;/li&gt;&lt;li&gt;Dependency on staff if limited mobility&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;積み込みが成功したか分かりにくい&lt;/li&gt;&lt;li&gt;コンパートメントの開閉が体的に難しい&lt;/li&gt;&lt;li&gt;移動制限がある場合はスタッフへの依存&lt;/li&gt;&lt;/ul&gt;"><ul><li>Unclear confirmation that loading succeeded</li><li>Physical difficulty opening/closing compartment</li><li>Dependency on staff if limited mobility</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;No visibility into delivery status or timing&lt;/li&gt;&lt;li&gt;Anxiety builds with silence&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;配達状況やタイミングが見えない&lt;/li&gt;&lt;li&gt;沈黙とともに不安が高まる&lt;/li&gt;&lt;/ul&gt;"><ul><li>No visibility into delivery status or timing</li><li>Anxiety builds with silence</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Confusion if the arrival signal is unclear&lt;/li&gt;&lt;li&gt;Missed delivery if resident is asleep, out, or doesn't notice the robot (hard of hearing, low vision)&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;到着信号が不明瞭な場合の混乱&lt;/li&gt;&lt;li&gt;入居者が眠っている・外出中・気づかない場合（難聴、低視力）の不在配達&lt;/li&gt;&lt;/ul&gt;"><ul><li>Confusion if the arrival signal is unclear</li><li>Missed delivery if resident is asleep, out, or doesn't notice the robot (hard of hearing, low vision)</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Pressure or obligation to reciprocate&lt;/li&gt;&lt;li&gt;Uncertainty about etiquette (how soon to reply, whether silence is rude)&lt;/li&gt;&lt;li&gt;Risk of one-sided exchange if unanswered&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;お返しをしなければというプレッシャーや義務感&lt;/li&gt;&lt;li&gt;礼儀についての不安（どれくらいで返信すべきか、沈黙は失礼か）&lt;/li&gt;&lt;li&gt;返信がない場合の一方通行なやりとりのリスク&lt;/li&gt;&lt;/ul&gt;"><ul><li>Pressure or obligation to reciprocate</li><li>Uncertainty about etiquette (how soon to reply, whether silence is rude)</li><li>Risk of one-sided exchange if unanswered</li></ul></td>
           </tr>
           <!-- Emotions — combined label + emoji + arc in one SVG row -->
           <tr>
-            <td class="jm-row-label" scope="row">Emotions</td>
+            <td class="jm-row-label" scope="row" data-en="Emotions" data-ja="感情">Emotions</td>
             <td colspan="6" style="padding:0;">
               <!-- SVG viewBox=1020×170 matches 6 columns × 170px each.
                    Phase centers: 85, 255, 425, 595, 765, 935.
@@ -383,13 +393,13 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
           </tr>
           <!-- Touchpoints -->
           <tr>
-            <td class="jm-row-label" scope="row">Touchpoints</td>
-            <td><ul><li>TurtleBot screen interface</li><li>VUI for voice command</li></ul></td>
-            <td><ul><li>Paper and pen</li><li>VUI for audio recording</li><li>Prompt / topic suggestion feature</li></ul></td>
-            <td><ul><li>Robot's physical compartment or lid</li><li>Confirmation light / sound / flag</li><li>Resident–staff interaction if help is needed</li></ul></td>
-            <td><ul><li>Robot's navigation software</li><li>Robot's status indicator (light, flag, sound)</li></ul></td>
-            <td><ul><li>Robot's arrival signal (sound, flag, light, notification)</li><li>Physical delivery compartment</li><li>VUI to play/replay message</li></ul></td>
-            <td><ul><li>TurtleBot screen interface</li><li>VUI for voice command</li></ul></td>
+            <td class="jm-row-label" scope="row" data-en="Touchpoints" data-ja="タッチポイント">Touchpoints</td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;TurtleBot screen interface&lt;/li&gt;&lt;li&gt;VUI for voice command&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;TurtleBot 画面インターフェース&lt;/li&gt;&lt;li&gt;音声コマンド用 VUI&lt;/li&gt;&lt;/ul&gt;"><ul><li>TurtleBot screen interface</li><li>VUI for voice command</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Paper and pen&lt;/li&gt;&lt;li&gt;VUI for audio recording&lt;/li&gt;&lt;li&gt;Prompt / topic suggestion feature&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;紙とペン&lt;/li&gt;&lt;li&gt;音声録音用 VUI&lt;/li&gt;&lt;li&gt;プロンプト／トピック提案機能&lt;/li&gt;&lt;/ul&gt;"><ul><li>Paper and pen</li><li>VUI for audio recording</li><li>Prompt / topic suggestion feature</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Robot's physical compartment or lid&lt;/li&gt;&lt;li&gt;Confirmation light / sound / flag&lt;/li&gt;&lt;li&gt;Resident–staff interaction if help is needed&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;ロボットの物理コンパートメントまたは蓋&lt;/li&gt;&lt;li&gt;確認ライト／音／フラグ&lt;/li&gt;&lt;li&gt;必要な場合の入居者とスタッフのやりとり&lt;/li&gt;&lt;/ul&gt;"><ul><li>Robot's physical compartment or lid</li><li>Confirmation light / sound / flag</li><li>Resident–staff interaction if help is needed</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Robot's navigation software&lt;/li&gt;&lt;li&gt;Robot's status indicator (light, flag, sound)&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;ロボットのナビゲーションソフトウェア&lt;/li&gt;&lt;li&gt;ロボットの状態インジケーター（ライト、フラグ、音）&lt;/li&gt;&lt;/ul&gt;"><ul><li>Robot's navigation software</li><li>Robot's status indicator (light, flag, sound)</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;Robot's arrival signal (sound, flag, light, notification)&lt;/li&gt;&lt;li&gt;Physical delivery compartment&lt;/li&gt;&lt;li&gt;VUI to play/replay message&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;ロボットの到着信号（音、フラグ、ライト、通知）&lt;/li&gt;&lt;li&gt;物理配達コンパートメント&lt;/li&gt;&lt;li&gt;メッセージ再生用 VUI&lt;/li&gt;&lt;/ul&gt;"><ul><li>Robot's arrival signal (sound, flag, light, notification)</li><li>Physical delivery compartment</li><li>VUI to play/replay message</li></ul></td>
+            <td data-en="&lt;ul&gt;&lt;li&gt;TurtleBot screen interface&lt;/li&gt;&lt;li&gt;VUI for voice command&lt;/li&gt;&lt;/ul&gt;" data-ja="&lt;ul&gt;&lt;li&gt;TurtleBot 画面インターフェース&lt;/li&gt;&lt;li&gt;音声コマンド用 VUI&lt;/li&gt;&lt;/ul&gt;"><ul><li>TurtleBot screen interface</li><li>VUI for voice command</li></ul></td>
           </tr>
         </tbody>
       </table>
@@ -400,25 +410,44 @@ footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;
 <!-- Feedback -->
 <section id="feedback">
   <div class="inner">
-    <span class="topic-pill">Design feedback</span>
-    <h2>Learnings</h2>
+    <span class="topic-pill" data-en="Design feedback" data-ja="デザインフィードバック">Design feedback</span>
+    <h2 data-en="What we learned, and what changed." data-ja="学んだこと、変わったこと。">What we learned, and what changed.</h2>
     <div class="card-grid">
       <div class="card">
-        <h3>Peer feedback</h3>
-        <p>Feedback came from instructors and other students throughout the PBL program. Given the project timeline, our next step would be to conduct direct resident interviews.</p>
+        <h3 data-en="Peer feedback" data-ja="仲間からのフィードバック">Peer feedback</h3>
+        <p data-en="Feedback came from instructors and other students throughout the PBL program. Given the project timeline, our next step would be to conduct direct resident interviews." data-ja="フィードバックはPBLプログラム全体を通じて、講師や他の学生から得られました。プロジェクトのスケジュールを考慮すると、次のステップは入居者への直接インタビューの実施です。">Feedback came from instructors and other students throughout the PBL program. Given the project timeline, our next step would be to conduct direct resident interviews.</p>
       </div>
       <div class="card">
-        <h3>Outcomes</h3>
-        <p>Suggestions and questions led us to consider edge cases such as what happens if the recipient isn't present, what stops unauthorized access to the compartment, or how to handle unsolicited deliveries.</p>
+        <h3 data-en="Outcomes" data-ja="成果">Outcomes</h3>
+        <p data-en="Suggestions and questions led us to consider edge cases such as what happens if the recipient isn't present, what stops unauthorized access to the compartment, or how to handle unsolicited deliveries." data-ja="提案や質問を受けて、受取人が不在の場合の対応、コンパートメントへの不正アクセスの防止策、または一方的な配達の取り扱いといったエッジケースを検討するようになりました。">Suggestions and questions led us to consider edge cases such as what happens if the recipient isn't present, what stops unauthorized access to the compartment, or how to handle unsolicited deliveries.</p>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
-  <div class="fine-print">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
+  <p data-en="Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project." data-ja="コミュニティ・メッセージ・クーリエは、UWxSIT ヒューマン・ロボット・インタラクション・サマープロジェクトのために制作されたコンセプトプロトタイプです。">Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
+  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
 </footer>
 
+<script>
+function applyLang(lang){
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.innerHTML = lang==='ja' ? el.dataset.ja : el.dataset.en;
+  });
+  document.documentElement.lang = lang==='ja' ? 'ja' : 'en-US';
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    const active = b.dataset.lang===lang;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-pressed',active?'true':'false');
+  });
+  localStorage.setItem('preferredLang',lang);
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
+});
+// Restore saved preference on load
+applyLang(localStorage.getItem('preferredLang')||'en');
+</script>
 </body>
 </html>
