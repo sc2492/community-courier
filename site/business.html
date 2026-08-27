@@ -58,6 +58,17 @@
   footer{background:var(--plum);color:#fff9f5;padding:28px 8vw;}
   footer .fine-print{font-size:0.82rem;color:rgba(255,249,245,0.65);}
 
+
+  /* Citations */
+  sup.cite{font-size:0.65rem;line-height:0;margin-left:1px;vertical-align:super;}
+  sup.cite a{color:var(--rose-deep);font-weight:700;text-decoration:none;}
+  sup.cite a:hover{text-decoration:underline;}
+  .fn-note{font-style:italic;opacity:0.65;font-size:0.88em;}
+  .footnotes{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);}
+  .footnotes ol{margin:0;padding-left:20px;font-size:0.78rem;color:var(--plum);opacity:0.55;font-family:'Karla',sans-serif;line-height:1.75;}
+  .footnotes li{margin-bottom:3px;}
+  .footnotes a{color:var(--rose-deep);text-decoration:underline;text-decoration-color:rgba(158,69,48,0.3);}
+  .footnotes a:hover{text-decoration-color:var(--rose-deep);}
   #back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:#ffffff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:var(--shadow-float);font-family:var(--font-sans);}
   #back-top.visible{opacity:1;pointer-events:auto;}
   #back-top:hover{transform:translateY(-3px);background:var(--coral);}
@@ -87,7 +98,7 @@
       </div>
       <div class="stat-counter-card">
         <div class="stat-number" data-counter="4" data-prefix="1 in " data-suffix="" data-decimals="0">1 in 4</div>
-        <div class="stat-label" data-en="Seniors Experiencing Social Isolation" data-ja="社会的孤立を感じている高齢者の割合">Seniors Experiencing Social Isolation</div>
+        <div class="stat-label" data-en="Seniors Experiencing Social Isolation &lt;sup class='cite'&gt;&lt;a href='#fn4'&gt;[4]&lt;/a&gt;&lt;a href='#fn5'&gt;[5]&lt;/a&gt;&lt;/sup&gt;" data-ja="社会的孤立を感じている高齢者の割合 &lt;sup class='cite'&gt;&lt;a href='#fn4'&gt;[4]&lt;/a&gt;&lt;a href='#fn5'&gt;[5]&lt;/a&gt;&lt;/sup&gt;">Seniors Experiencing Social Isolation <sup class="cite"><a href="#fn4">[4]</a><a href="#fn5">[5]</a></sup></div>
       </div>
     </div>
 
@@ -96,10 +107,10 @@
         <h3 data-en="Current Competitive Landscape" data-ja="既存ロボットのランドスケープ">Current Competitive Landscape</h3>
         <p style="margin-bottom:12px; color:var(--text-muted); font-size:0.95rem;" data-en="Existing solutions target different touchpoints:" data-ja="既存のロボットは目的が異なります：">Existing solutions target different touchpoints:</p>
         <ul>
-          <li data-en="&lt;strong&gt;Group Activity Robots:&lt;/strong&gt; Lead trivia or bingo, but do not foster intimate 1-on-1 peer bonds." data-ja="&lt;strong&gt;集団レク用ロボット：&lt;/strong&gt; クイズや体操を主導するが、個別の入居者同士の親密な絆は生まない。"><strong>Group Activity Robots:</strong> Lead trivia, but lack 1-on-1 peer bonding.</li>
-          <li data-en="&lt;strong&gt;Companion Pet Robots (e.g. Paro):&lt;/strong&gt; Offer comfort from an artificial pet, not human-to-human friendship." data-ja="&lt;strong&gt;ペット型ロボット（パロ等）：&lt;/strong&gt; 癒しを提供するが、人と人との社会的な関係構築には至らない。"><strong>Companion Pet Robots:</strong> Comfort from an object, not human connection.</li>
-          <li data-en="&lt;strong&gt;Automated Mail Scribes:&lt;/strong&gt; Commercial AI writing for marketing, not empathetic elder interaction." data-ja="&lt;strong&gt;自動手紙代筆マシン：&lt;/strong&gt; 商業・企業向けで、高齢者の対話支援には不適合。"><strong>Commercial Scribes:</strong> B2B enterprise letters, not eldercare.</li>
-          <li data-en="&lt;strong&gt;Caregiver-to-Resident Devices:&lt;/strong&gt; Focus on medical alarms, missing horizontal neighbor bonds." data-ja="&lt;strong&gt;介護者と入居者の連絡機器：&lt;/strong&gt; 医療アラーム中心で、隣人同士の横のつながりを作らない。"><strong>Staff-to-Resident Tools:</strong> Medical workflows, missing neighbor joy.</li>
+          <li data-en="&lt;strong&gt;Group Activity Robots:&lt;/strong&gt; Lead trivia or bingo, but do not foster intimate 1-on-1 peer bonds. &lt;sup class='cite'&gt;&lt;a href='#fn1'&gt;[1]&lt;/a&gt;&lt;/sup&gt;" data-ja="&lt;strong&gt;集団レク用ロボット：&lt;/strong&gt; クイズや体操を主導するが、個別の入居者同士の親密な絆は生まない。 &lt;sup class='cite'&gt;&lt;a href='#fn1'&gt;[1]&lt;/a&gt;&lt;/sup&gt;"><strong>Group Activity Robots:</strong> Lead trivia, but lack 1-on-1 peer bonding. <sup class="cite"><a href="#fn1">[1]</a></sup></li>
+          <li data-en="&lt;strong&gt;Companion Pet Robots (e.g. Paro):&lt;/strong&gt; Offer comfort from an artificial pet, not human-to-human friendship. &lt;sup class='cite'&gt;&lt;a href='#fn2'&gt;[2]&lt;/a&gt;&lt;/sup&gt;" data-ja="&lt;strong&gt;ペット型ロボット（パロ等）：&lt;/strong&gt; 癒しを提供するが、人と人との社会的な関係構築には至らない。 &lt;sup class='cite'&gt;&lt;a href='#fn2'&gt;[2]&lt;/a&gt;&lt;/sup&gt;"><strong>Companion Pet Robots:</strong> Comfort from an object, not human connection. <sup class="cite"><a href="#fn2">[2]</a></sup></li>
+          <li data-en="&lt;strong&gt;Automated Mail Scribes:&lt;/strong&gt; Commercial AI writing for marketing, not empathetic elder interaction. &lt;sup class='cite'&gt;&lt;a href='#fn3'&gt;[3]&lt;/a&gt;&lt;/sup&gt;" data-ja="&lt;strong&gt;自動手紙代筆マシン：&lt;/strong&gt; 商業・企業向けで、高齢者の対話支援には不適合。 &lt;sup class='cite'&gt;&lt;a href='#fn3'&gt;[3]&lt;/a&gt;&lt;/sup&gt;"><strong>Commercial Scribes:</strong> B2B enterprise letters, not eldercare. <sup class="cite"><a href="#fn3">[3]</a></sup></li>
+          <li data-en="&lt;strong&gt;Caregiver-to-Resident Devices:&lt;/strong&gt; Focus on medical alarms, missing horizontal neighbor bonds. &lt;span class='fn-note'&gt;(team analysis, not independently sourced)&lt;/span&gt;" data-ja="&lt;strong&gt;介護者と入居者の連絡機器：&lt;/strong&gt; 医療アラーム中心で、隣人同士の横のつながりを作らない。 &lt;span class='fn-note'&gt;（チーム分析、独自出典なし）&lt;/span&gt;"><strong>Staff-to-Resident Tools:</strong> Medical workflows, missing neighbor joy. <span class="fn-note">(team analysis, not independently sourced)</span></li>
         </ul>
       </div>
 
@@ -107,10 +118,20 @@
         <h3 data-en="Market Viability & Demand Validation" data-ja="市場の実行可能性と需要の裏付け">Market Viability & Demand Validation</h3>
         <ul>
           <li data-en="&lt;strong&gt;High Staff Willingness:&lt;/strong&gt; Frees care staff from acting as manual message couriers, saving valuable care hours." data-ja="&lt;strong&gt;スタッフ負担の軽減：&lt;/strong&gt; 職員が手紙の配達員をする必要がなくなり、本来の介護業務に専念可能。"><strong>Staff Efficiency:</strong> Saves manual transit hours for activity staff.</li>
-          <li data-en="&lt;strong&gt;Appetite for Snail Mail:&lt;/strong&gt; Tangible handwritten letters carry deep nostalgia and emotional resonance compared to sterile screen notifications." data-ja="&lt;strong&gt;手書き文化の愛好：&lt;/strong&gt; 画面の通知よりも、手書きのぬくもりや絵はがきに対する強い愛着。"><strong>Nostalgic Resonance:</strong> Real physical artifacts beat sterile app alerts.</li>
-          <li data-en="&lt;strong&gt;Precedent Budget Allocations:&lt;/strong&gt; Facilities already allocate significant capital for activity engagement technologies." data-ja="&lt;strong&gt;既存予算枠の存在：&lt;/strong&gt; 施設はすでにアクティビティ・エンゲージメント機器に一定の予算を確保。"><strong>Existing Budgets:</strong> Facilities already budget for resident engagement tech.</li>
+          <li data-en="&lt;strong&gt;Appetite for Snail Mail:&lt;/strong&gt; Tangible handwritten letters carry deep nostalgia and emotional resonance compared to sterile screen notifications. &lt;sup class='cite'&gt;&lt;a href='#fn3'&gt;[3]&lt;/a&gt;&lt;/sup&gt; &lt;span class='fn-note'&gt;(general consumer signal; not resident-specific)&lt;/span&gt;" data-ja="&lt;strong&gt;手書き文化の愛好：&lt;/strong&gt; 画面の通知よりも、手書きのぬくもりや絵はがきに対する強い愛着。 &lt;sup class='cite'&gt;&lt;a href='#fn3'&gt;[3]&lt;/a&gt;&lt;/sup&gt; &lt;span class='fn-note'&gt;（一般消費者の傾向；入居者特有のデータではない）&lt;/span&gt;"><strong>Nostalgic Resonance:</strong> Real physical artifacts beat sterile app alerts. <sup class="cite"><a href="#fn3">[3]</a></sup> <span class="fn-note">(general consumer signal; not resident-specific)</span></li>
+          <li data-en="&lt;strong&gt;Precedent Budget Allocations:&lt;/strong&gt; Facilities already allocate significant capital for activity engagement technologies. &lt;span class='fn-note'&gt;(inferred from existing deployments, see [1][2])&lt;/span&gt;" data-ja="&lt;strong&gt;既存予算枠の存在：&lt;/strong&gt; 施設はすでにアクティビティ・エンゲージメント機器に一定の予算を確保。 &lt;span class='fn-note'&gt;（既存の導入実績から推定、[1][2]参照）&lt;/span&gt;"><strong>Existing Budgets:</strong> Facilities already budget for resident engagement tech. <span class="fn-note">(inferred from existing deployments, see [1][2])</span></li>
         </ul>
       </div>
+
+    <aside class="footnotes" aria-label="Citations">
+      <ol>
+        <li id="fn1">Group activity robots in elder care settings: <a href="https://academic.oup.com/innovateage/article/9/Supplement_2/igaf122.4312/8412968" target="_blank" rel="noopener">Innovation in Aging, Oxford Academic (2025)</a></li>
+        <li id="fn2">Companion and pet robots in assisted living communities: <a href="https://eldercarealliance.org/blog/robots-in-assisted-living-communities/" target="_blank" rel="noopener">Elder Care Alliance</a></li>
+        <li id="fn3">Commercial handwriting robots and consumer appetite for physical mail: <a href="https://www.fastcompany.com/90801044/inside-the-weirdly-competitive-industry-of-robots-writing-letters-in-human-handwriting" target="_blank" rel="noopener">Fast Company — Handwrytten</a>. Source covers B2C/commercial scale; not specific to assisted living residents.</li>
+        <li id="fn4">Social isolation and loneliness in older adults: <a href="https://nap.nationalacademies.org/catalog/25663/social-isolation-and-loneliness-in-older-adults-opportunities-for-the" target="_blank" rel="noopener">National Academies of Sciences, Engineering, and Medicine</a></li>
+        <li id="fn5">Social determinants of health and older adults: <a href="https://odphp.health.gov/our-work/national-health-initiatives/healthy-aging/social-determinants-health-and-older-adults" target="_blank" rel="noopener">U.S. Office of Disease Prevention and Health Promotion</a></li>
+      </ol>
+    </aside>
     </div>
   </div>
 </section>
@@ -133,8 +154,8 @@
           <strong>TAM (Total Addressable)</strong>
           <span data-en="All assisted living facilities × ~$18K fleet cost" data-ja="全介護施設 × 約18,000ドル/フリート">All facilities × ~$18K/facility</span>
         </td>
-        <td data-en="~30,000 facilities → <span class='fig'>~$540 Million</span>" data-ja="約30,000施設 → <span class='fig'>約5億4,000万ドル</span>">~30,000 facilities → <span class="fig">~$540 Million</span></td>
-        <td data-en="~70,000 facilities → <span class='fig'>~$1.26 Billion</span>" data-ja="約70,000施設 → <span class='fig'>約12億6,000万ドル</span>">~70,000 facilities → <span class="fig">~$1.26 Billion</span></td>
+        <td data-en="~30,000 facilities &lt;sup class='cite'&gt;&lt;a href='#fn6'&gt;[6]&lt;/a&gt;&lt;a href='#fn7'&gt;[7]&lt;/a&gt;&lt;/sup&gt; → &lt;span class='fig'&gt;~$540 Million&lt;/span&gt;" data-ja="約30,000施設 &lt;sup class='cite'&gt;&lt;a href='#fn6'&gt;[6]&lt;/a&gt;&lt;a href='#fn7'&gt;[7]&lt;/a&gt;&lt;/sup&gt; → &lt;span class='fig'&gt;約5億4,000万ドル&lt;/span&gt;">~30,000 facilities <sup class="cite"><a href="#fn6">[6]</a><a href="#fn7">[7]</a></sup> → <span class="fig">~$540 Million</span></td>
+        <td data-en="~70,000 facilities &lt;sup class='cite'&gt;&lt;a href='#fn8'&gt;[8]&lt;/a&gt;&lt;/sup&gt; → &lt;span class='fig'&gt;~$1.26 Billion&lt;/span&gt;" data-ja="約70,000施設 &lt;sup class='cite'&gt;&lt;a href='#fn8'&gt;[8]&lt;/a&gt;&lt;/sup&gt; → &lt;span class='fig'&gt;約12億6,000万ドル&lt;/span&gt;">~70,000 facilities <sup class="cite"><a href="#fn8">[8]</a></sup> → <span class="fig">~$1.26 Billion</span></td>
       </tr>
       <tr>
         <td>
@@ -153,6 +174,17 @@
         <td data-en="75–100 pilot facilities → <span class='fig'>~$1.4–1.8 Million</span>" data-ja="75〜100施設導入 → <span class='fig'>約140万〜180万ドル</span>">75–100 pilot facilities → <span class="fig">~$1.4–1.8 Million</span></td>
       </tr>
     </table>
+    <p class="fn-note" style="margin-top:18px;font-size:0.82rem;font-style:italic;opacity:0.6;font-family:'Karla',sans-serif;line-height:1.6;">
+      <strong style="font-style:normal;">Team estimates:</strong> Per-facility cost (~$18K), SAM capture percentages (15–20% US, 25–30% Japan), and SOM projections (50 facilities US, 75–100 Japan) are our team's own estimates based on comparable robot deployment patterns, not drawn from published pricing or market-penetration data.
+    </p>
+
+    <aside class="footnotes" aria-label="Market sizing citations">
+      <ol start="6">
+        <li id="fn6">US assisted living facility count: <a href="https://www.forbes.com/health/senior-living/assisted-living-statistics/" target="_blank" rel="noopener">Forbes Health</a> — approximately 30,600 communities nationally.</li>
+        <li id="fn7">US assisted living facility count (cross-reference): <a href="https://www.grandviewresearch.com/industry-analysis/us-assisted-living-facility-market" target="_blank" rel="noopener">Grand View Research</a>, citing AHCA data — 32,231 licensed communities.</li>
+        <li id="fn8">Japan facility count (~70,000) derived by aggregating multiple official care facility categories from the Ministry of Health, Labour and Welfare (MHLW) Annual Survey of Long-term Care Service Facilities and Establishments. Japan does not have a single "assisted living" category equivalent to the US. The four largest surveyed categories alone total approximately 46,097: special nursing homes (Tokuyo: 8,621), healthcare facilities for the elderly (Roken: 4,214), community-based day services (18,921), and dementia group homes (14,341). The ~70,000 figure includes these four categories plus additional in-home and community service types from the same survey, aggregated by the team. Source: <a href="https://www.mhlw.go.jp/toukei/saikin/hw/kaigo/service24/index.html" target="_blank" rel="noopener">MHLW 2024 Annual Survey of Long-term Care Services (厚生労働省・令和6年介護サービス施設・事業所調査)</a>.</li>
+      </ol>
+    </aside>
   </div>
 </section>
 
