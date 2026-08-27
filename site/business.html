@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business case: Community Message Courier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF4EA; --blush:#F3DFCC; --blush-2:#EFD3C3;
+    --rose:#BE5A3E; --rose-deep:#9E4530; --moss:#5C6E4E; --plum:#5B3F42;
+    --gold:#CE9E52; --card:#FFFBF2; --line:rgba(91,63,66,0.15);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--plum);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65;}
+  h1,h2,h3{font-family:'Fraunces',serif;margin:0;color:var(--plum);}
+  a{color:inherit;text-decoration:none;}
+
+  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:rgba(251,244,234,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;}
+  .brand .dot-pair{display:flex;gap:3px;}
+  .brand .dot-pair span{width:9px;height:9px;border-radius:50%;background:var(--rose);}
+  .brand .dot-pair span:last-child{background:var(--moss);}
+  #topnav .links{display:flex;gap:26px;font-size:0.85rem;font-weight:500;}
+  #topnav .links a{opacity:0.65;transition:opacity .15s;}
+  #topnav .links a:hover{opacity:1;color:var(--rose);}
+  #topnav .links a.current{opacity:1;color:var(--rose);font-weight:700;}
+  .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;display:inline-block;}
+  @media (max-width:820px){ #topnav .links{display:none;} }
+
+  .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blush);color:var(--rose-deep);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
+  .topic-pill::before{content:"✎";font-size:0.85rem;}
+
+  .breadcrumb{padding:26px 8vw 0;font-size:0.85rem;opacity:0.6;}
+  .breadcrumb a{color:var(--rose-deep);font-weight:700;}
+
+  section{padding:56px 8vw 96px;}
+  .inner{max-width:1080px;margin:0 auto;}
+  section:nth-of-type(even){background:var(--blush);}
+  h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;max-width:680px;}
+  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:620px;}
+
+  .grid{display:grid;gap:22px;}
+  .grid.c2{grid-template-columns:1fr 1fr;}
+  @media (max-width:820px){ .grid.c2{grid-template-columns:1fr;} }
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;}
+  .card h3{font-size:1.08rem;margin-bottom:10px;}
+  .card ul{margin:0; padding-left:18px; opacity:0.82; font-size:0.92rem;}
+  .card ul li{margin-bottom:6px;}
+
+  .biz-table{width:100%;border-collapse:collapse;margin-top:24px;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line);}
+  .biz-table th,.biz-table td{padding:16px 20px;border:1px solid var(--line);text-align:left;font-size:0.9rem;}
+  .biz-table th{background:var(--rose);color:var(--paper);font-family:'Fraunces',serif;font-weight:600;}
+  .biz-table td strong{display:block;font-family:'Fraunces',serif;font-size:1.02rem;margin-bottom:3px;}
+  .biz-table .fig{font-family:'Karla',sans-serif;font-size:0.9rem;font-weight:700;}
+
+  footer{background:var(--plum);color:var(--paper);padding:70px 8vw 40px;text-align:center;}
+  footer p{color:rgba(251,244,234,0.7);margin:0;}
+  footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;margin-top:24px;font-size:0.78rem;color:rgba(251,244,234,0.45);}
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <a href="index.html" class="brand"><span class="dot-pair"><span></span><span></span></span>Community Message Courier</a>
+  <div class="links">
+    <a href="how-it-works.html">How it works</a>
+    <a href="business.html" class="current">Business case</a>
+    <a href="technical.html">Technical solution</a>
+  </div>
+  <a href="index.html#footer-cta" class="cta-btn">Bring it to your community</a>
+</nav>
+
+<div class="breadcrumb"><a href="index.html">← Back to overview</a></div>
+
+<section>
+  <div class="inner">
+    <span class="topic-pill">Business case (optional)</span>
+    <h2>Sizing the opportunity: US vs. Japan</h2>
+    <p class="lead">For anyone who wants the market context.</p>
+
+    <div class="grid c2" style="margin-top:36px;">
+      <div class="card">
+        <h3>Product landscape</h3>
+        <p style="margin-bottom:10px; opacity:0.8; font-size:0.95rem;">Individual pieces of our solution exist with no direct competitor combining them:</p>
+        <ul>
+          <li>Robots that run group activities (e.g., trivia sessions)</li>
+          <li>Companion robots in pet-like roles</li>
+          <li>Robots that write letters for businesses, with AI-assisted composition</li>
+          <li>Caregiving dynamics between staff and residents, not resident to resident</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Market viability</h3>
+        <ul>
+          <li>Extensive documentation of the social isolation problem in elder care</li>
+          <li>Facilities already spend on companion/engagement robots</li>
+          <li>Real appetite for "snail mail" and human-composed creations over app notifications</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>Market sizing</h2>
+    <table class="biz-table">
+      <tr><th></th><th>US</th><th>Japan</th></tr>
+      <tr>
+        <td><strong>TAM</strong>All facilities × ~$18K/facility</td>
+        <td>~30K facilities → <span class="fig">~$540M</span></td>
+        <td>~70K facilities → <span class="fig">~$1.26B</span></td>
+      </tr>
+      <tr>
+        <td><strong>SAM</strong>Tech-forward, privately paid</td>
+        <td>~15–20% → 5.5K facilities → <span class="fig">~$99M</span></td>
+        <td>~25–30% → ~20K facilities → <span class="fig">~$360M</span></td>
+      </tr>
+      <tr>
+        <td><strong>SOM</strong>Realistic early pilot</td>
+        <td>50 facilities → <span class="fig">~$900K</span></td>
+        <td>75–100 facilities → <span class="fig">~$1.4–1.8M</span></td>
+      </tr>
+    </table>
+    <p class="lead" style="margin-top:24px;">Japan's TAM/SAM run larger on sheer facility count and cultural openness to social robotics, but purchasing often routes through public long-term-care insurance instead of discretionary spend as in the U.S. This a real barrier the raw market size doesn't capture.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
+  <div class="fine-print">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical solution: Community Message Courier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF4EA; --blush:#F3DFCC; --blush-2:#EFD3C3;
+    --rose:#BE5A3E; --rose-deep:#9E4530; --moss:#5C6E4E; --plum:#5B3F42;
+    --gold:#CE9E52; --card:#FFFBF2; --line:rgba(91,63,66,0.15);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--plum);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65;}
+  h1,h2,h3{font-family:'Fraunces',serif;margin:0;color:var(--plum);}
+  a{color:inherit;text-decoration:none;}
+
+  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:rgba(251,244,234,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;}
+  .brand .dot-pair{display:flex;gap:3px;}
+  .brand .dot-pair span{width:9px;height:9px;border-radius:50%;background:var(--rose);}
+  .brand .dot-pair span:last-child{background:var(--moss);}
+  #topnav .links{display:flex;gap:26px;font-size:0.85rem;font-weight:500;}
+  #topnav .links a{opacity:0.65;transition:opacity .15s;}
+  #topnav .links a:hover{opacity:1;color:var(--rose);}
+  #topnav .links a.current{opacity:1;color:var(--rose);font-weight:700;}
+  .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;display:inline-block;}
+  @media (max-width:820px){ #topnav .links{display:none;} }
+
+  .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blush);color:var(--rose-deep);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
+  .topic-pill::before{content:"✎";font-size:0.85rem;}
+
+  .breadcrumb{padding:26px 8vw 0;font-size:0.85rem;opacity:0.6;}
+  .breadcrumb a{color:var(--rose-deep);font-weight:700;}
+
+  section{padding:56px 8vw 96px;}
+  .inner{max-width:1080px;margin:0 auto;}
+  section:nth-of-type(even){background:var(--card);}
+  h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;max-width:680px;}
+  h3.section-h{font-size:1.25rem;margin-top:52px;margin-bottom:6px;}
+  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:620px;}
+
+  .grid{display:grid;gap:22px;}
+  .grid.c2{grid-template-columns:1fr 1fr;}
+  .grid.c3{grid-template-columns:repeat(3,1fr);}
+  @media (max-width:820px){ .grid.c2,.grid.c3{grid-template-columns:1fr;} }
+  .card{background:var(--blush);border:1px solid var(--line);border-radius:16px;padding:28px;}
+  .card h3{font-size:1.08rem;margin-bottom:10px;}
+  .card p{margin:0;color:var(--plum);opacity:0.8;font-size:0.95rem;}
+
+  .tech-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--blush);}
+  .tech-table th, .tech-table td{padding:16px 20px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:0.92rem;}
+  .tech-table th{background:var(--blush-2);font-family:'Fraunces',serif;font-weight:600;font-size:1rem;}
+  .tech-table tr:last-child td{border-bottom:none;}
+  .tech-table ul{margin:0;padding-left:18px;}
+  .tech-table li{margin-bottom:8px;}
+
+  .editable-flag{background:var(--blush-2);border:1px dashed var(--gold);border-radius:12px;padding:14px 18px;font-size:0.86rem;color:var(--plum);margin-bottom:26px;}
+  .editable-flag b{color:var(--rose-deep);}
+
+  .note-card{background:var(--blush);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .note-card .flag{font-size:0.72rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;display:block;}
+  .note-card h3{font-size:1rem;margin-bottom:8px;}
+  .note-card .sub-label{font-size:0.72rem;font-weight:700;color:var(--moss);text-transform:uppercase;margin:12px 0 4px;}
+  .note-card p{margin:0;color:var(--plum);opacity:0.82;font-size:0.9rem;}
+
+  footer{background:var(--plum);color:var(--paper);padding:70px 8vw 40px;text-align:center;}
+  footer p{color:rgba(251,244,234,0.7);margin:0;}
+  footer .fine-print{border-top:1px solid rgba(251,244,234,0.15);padding-top:24px;margin-top:24px;font-size:0.78rem;color:rgba(251,244,234,0.45);}
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <a href="index.html" class="brand"><span class="dot-pair"><span></span><span></span></span>Community Message Courier</a>
+  <div class="links">
+    <a href="how-it-works.html">How it works</a>
+    <a href="business.html">Business case</a>
+    <a href="technical.html" class="current">Technical solution</a>
+  </div>
+  <a href="index.html#footer-cta" class="cta-btn">Bring it to your community</a>
+</nav>
+
+<div class="breadcrumb"><a href="index.html">← Back to overview</a></div>
+
+<section>
+  <div class="inner">
+    <span class="topic-pill">Technical solution</span>
+    <h2>Why TurtleBot3, and what we added</h2>
+    <p class="lead">Mobility is the justification, not the novelty. A resident who can't easily walk a note down the hall, and a staff team with no bandwidth to be a note-delivery service, is the actual gap this fills. TurtleBot3's LiDAR-based navigation stack handles that mobility problem directly, without needing to be reinvented.</p>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <h2>Sensors</h2>
+    <p class="lead">Native sensors handle navigation, with additional compartment sensing and arrival signaling to support the delivery interaction.</p>
+    <table class="tech-table">
+      <tr><th>Native sensors</th><th>Custom sensors</th></tr>
+      <tr>
+        <td>
+          <ul>
+            <li><strong>360° LiDAR:</strong> range scan of surroundings → mapping (SLAM) + real-time obstacle avoidance in shared hallways</li>
+            <li><strong>IMU</strong> (gyroscope, accelerometer, magnetometer): orientation and motion data for stable, predictable movement near residents</li>
+            <li><strong>Wheel encoders:</strong> odometry for precise stopping at delivery points</li>
+            <li><strong>Raspberry Pi camera:</strong> visual feed → optional delivery confirmation or person detection</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li><strong>Compartment sensor</strong> (limit switch): confirms note is loaded/removed</li>
+            <li><strong>Speaker + LED indicator:</strong> sends/produces the robot's arrival signal</li>
+            <li><strong>RFID/NFC reader:</strong> addresses a specific resident without a vision pipeline</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <h3 class="section-h">Navigation challenges</h3>
+    <div class="editable-flag" style="margin-top:16px;"><b>Team note:</b> these are representative TurtleBot3 Burger / LiDAR-SLAM challenges our team faced at the time of development.</div>
+    <div class="grid c3">
+      <div class="note-card">
+        <span class="flag">Challenge 1</span>
+        <h3>Tight turns in the mock corridor</h3>
+        <p>The miniature 3-room environment's doorways were narrow relative to the Burger's footprint, causing the local planner to stall or clip corners.</p>
+        <div class="sub-label">Resolved via</div>
+        <p>Tuned costmap inflation radius and footprint padding; slowed approach speed near doorway waypoints.</p>
+      </div>
+      <div class="note-card">
+        <span class="flag">Challenge 2</span>
+        <h3>Drift on returning home</h3>
+        <p>Odometry drift accumulated over repeated trips, causing misalignment when re-docking at the home base.</p>
+        <div class="sub-label">Resolved via</div>
+        <p>Added a fixed visual/IR marker at the dock for final-approach correction instead of relying on odometry alone.</p>
+      </div>
+      <div class="note-card">
+        <span class="flag">Challenge 3</span>
+        <h3>Static clutter vs. people</h3>
+        <p>Low-mounted LiDAR sometimes misread a passing person as static map clutter, or missed low obstacles.</p>
+        <div class="sub-label">Resolved via</div>
+        <p>Adjusted costmap obstacle layers; added a proximity-based "pause if close" safety behavior independent of path planning.</p>
+      </div>
+    </div>
+
+    <h3 class="section-h">Limitations and barriers</h3>
+    <div class="grid c2" style="margin-top:20px;">
+      <div class="card">
+        <h3>Legal / infrastructure</h3>
+        <p>Facility liability for autonomous movement near residents. In Japan, procurement may route through the public Kaigo Hoken system rather than discretionary budget in private facilities.</p>
+      </div>
+      <div class="card">
+        <h3>Deployment barriers</h3>
+        <p>Staff workload cost of loading/troubleshooting; recipient-not-present edge cases; unauthorized cargo access; non-reciprocity between residents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Community Message Courier is a concept prototype built for the UWxSIT Human-Robot Interaction Summer Project.</p>
+  <div class="fine-print">UWxSIT HRI basic robot development PBL, 2026 · Built on TurtleBot3</div>
+</footer>
+
+</body>
+</html>
