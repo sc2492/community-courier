@@ -6,249 +6,251 @@
 <title>Tech specs: Community Courier</title>
 <link rel="icon" type="image/svg+xml" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="presentation.css">
 <style>
   :root{
-    --paper:#FBF4EA; --blush:#F3DFCC; --blush-2:#EFD3C3;
-    --rose:#BE5A3E; --rose-deep:#9E4530; --moss:#5C6E4E; --plum:#5B3F42;
-    --gold:#CE9E52; --card:#FFFBF2; --line:rgba(91,63,66,0.15);
+    --paper:var(--bg-base); --blush:#e3d9cb; --blush-2:#d6cab8;
+    --rose:var(--coral); --rose-deep:var(--coral-deep); --moss:#556b46; --plum:#3d3032;
+    --gold:#c7923e; --card:#f8f4ec; --line:rgba(61,48,50,0.11);
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--plum);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65;}
-  h1,h2,h3{font-family:'Fraunces',serif;margin:0;color:var(--plum);}
+  html{scroll-behavior:smooth;background:var(--bg-base);}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+  body{margin:0;background:var(--bg-base);color:var(--plum);font-family:var(--font-sans);font-size:17px;line-height:1.65;}
+  h1,h2,h3,h4{font-family:var(--font-serif);margin:0;color:var(--plum);}
   a{color:inherit;text-decoration:none;}
 
-  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:#ffffff;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;}
-  .brand .dot-pair{display:flex;gap:3px;}
-  .brand .dot-pair span{width:9px;height:9px;border-radius:50%;background:var(--rose);}
-  .brand .dot-pair span:last-child{background:var(--moss);}
-  #topnav .links{display:flex;gap:26px;font-size:0.85rem;font-weight:500;}
-  #topnav .links a{opacity:0.65;transition:opacity .15s;}
-  #topnav .links a:hover{opacity:1;color:var(--rose);}
-  #topnav .links a.current{opacity:1;color:var(--rose);font-weight:700;}
-  .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;display:inline-block;}
+  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:rgba(248,244,236,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-serif);font-weight:700;font-size:1.15rem;color:var(--plum);}
+  #topnav .links{display:flex;gap:26px;font-size:0.88rem;font-weight:600;}
+  #topnav .links a{opacity:0.7;transition:opacity .15s, color .15s;}
+  #topnav .links a:hover{opacity:1;color:var(--coral);}
+  #topnav .links a.current{opacity:1;color:var(--coral);font-weight:700;}
   @media (max-width:820px){ #topnav .links{display:none;} }
   .nav-right{display:flex;align-items:center;gap:12px;}
-  .lang-toggle{display:flex;gap:2px;background:rgba(91,63,66,0.09);border-radius:20px;padding:3px;}
-  .lang-btn{background:transparent;border:none;padding:5px 12px;border-radius:16px;font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.45;transition:all .15s;font-family:'Karla',sans-serif;line-height:1;}
-  .lang-btn.active{background:var(--card);opacity:1;box-shadow:0 1px 3px rgba(91,63,66,0.14);}
-  .lang-btn:hover:not(.active){opacity:0.7;}
+  .lang-toggle{display:flex;gap:2px;background:rgba(61,48,50,0.08);border-radius:var(--radius-pill);padding:3px;}
+  .lang-btn{background:transparent;border:none;padding:6px 14px;border-radius:var(--radius-pill);font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.55;transition:all .15s;font-family:var(--font-sans);line-height:1;min-height:30px;}
+  .lang-btn.active{background:var(--card);opacity:1;box-shadow:var(--shadow-sm);}
+  .lang-btn:hover:not(.active){opacity:0.85;}
 
-  .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blush);color:var(--rose-deep);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
-  .topic-pill::before{content:"✎";font-size:0.85rem;}
-
-  .breadcrumb{padding:26px 8vw 0;font-size:0.85rem;opacity:0.6;}
-  .breadcrumb a{color:var(--rose-deep);font-weight:700;}
-
-  section{padding:56px 8vw 96px;}
+  section{padding:76px 8vw;position:relative;}
   .inner{max-width:1080px;margin:0 auto;}
-  section:nth-of-type(even){background:var(--card);}
-  h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;}
-  h3.section-h{font-size:1.25rem;margin-top:52px;margin-bottom:6px;}
-  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
+  section:nth-of-type(even){background:var(--blush);}
+  h2{font-size:2.35rem;font-weight:700;margin-bottom:20px;letter-spacing:-0.015em;}
+  h3.section-h{font-size:1.4rem;margin-top:54px;margin-bottom:12px;}
+  p.lead{font-size:1.15rem;color:var(--text-muted);max-width:1080px;}
 
-  .grid{display:grid;gap:22px;}
+  .grid{display:grid;gap:24px;}
   .grid.c2{grid-template-columns:1fr 1fr;}
   .grid.c3{grid-template-columns:repeat(3,1fr);}
   @media (max-width:820px){ .grid.c2,.grid.c3{grid-template-columns:1fr;} }
-  .card{background:var(--blush);border:1px solid var(--line);border-radius:16px;padding:28px;}
-  .card h3{font-size:1.08rem;margin-bottom:10px;}
-  .card p{margin:0;color:var(--plum);opacity:0.8;font-size:0.95rem;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md);}
+  .card h3{font-size:1.2rem;margin-bottom:10px;}
+  .card p{margin:0;color:var(--text-muted);font-size:0.96rem;}
 
-  .tech-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;margin-top:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#FFFBF1;}
-  .tech-table th, .tech-table td{width:50%;padding:16px 20px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:0.92rem;}
-  .tech-table th{background:var(--blush-2);font-family:'Fraunces',serif;font-weight:600;font-size:1rem;}
+  .tech-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;margin-top:24px;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:var(--card);box-shadow:var(--shadow-md);}
+  .tech-table th, .tech-table td{width:50%;padding:20px 24px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:0.94rem;}
+  .tech-table th{background:var(--blush-2);font-family:var(--font-serif);font-weight:700;font-size:1.1rem;}
   .tech-table tr:last-child td{border-bottom:none;}
   .tech-table ul{margin:0;padding-left:18px;}
-  .tech-table li{margin-bottom:8px;}
+  .tech-table li{margin-bottom:10px;line-height:1.45;}
 
-  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:40px;border-top:1px solid var(--line);}
+  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);}
   .spec-item{padding:16px 20px 16px 0;border-bottom:1px solid var(--line);}
   .spec-item:nth-child(even){padding-left:20px;padding-right:0;border-left:1px solid var(--line);}
-  .spec-label{font-size:0.74rem;font-weight:600;color:var(--plum);opacity:0.4;display:block;margin-bottom:6px;letter-spacing:0.02em;text-transform:uppercase;}
-  .spec-value{font-size:1rem;font-weight:700;color:var(--plum);line-height:1.5;}
-  .spec-sub{font-size:0.88rem;font-weight:400;opacity:0.55;display:block;}
+  .spec-label{font-size:0.75rem;font-weight:700;color:var(--coral-deep);display:block;margin-bottom:6px;letter-spacing:0.04em;text-transform:uppercase;}
+  .spec-value{font-size:1.05rem;font-weight:700;color:var(--plum);line-height:1.5;}
+  .spec-sub{font-size:0.86rem;font-weight:500;color:var(--text-muted);display:block;}
   @media(max-width:640px){.spec-grid{grid-template-columns:1fr;}.spec-item:nth-child(even){padding-left:0;border-left:none;}}
-  .spec-layout{display:flex;gap:48px;align-items:flex-start;margin-top:36px;}
-  .spec-img{flex:0 0 38%;}
-  .spec-img img{width:100%;height:auto;display:block;}
+  .spec-layout{display:flex;gap:48px;align-items:center;margin-top:36px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px;box-shadow:var(--shadow-lg);}
+  .spec-img{flex:0 0 40%;}
+  .spec-img img{width:100%;height:auto;display:block;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);}
   .spec-layout .spec-grid{flex:1;margin-top:0;min-width:0;}
   @media(max-width:900px){.spec-layout{flex-direction:column;}.spec-img{flex:none;width:100%;}}
 
-  .editable-flag{background:var(--blush-2);border:1px dashed var(--gold);border-radius:12px;padding:14px 18px;font-size:0.86rem;color:var(--plum);margin-bottom:26px;}
-  .editable-flag b{color:var(--rose-deep);}
+  .note-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-md);transition:transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;}
+  .note-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+  .note-card .flag{font-size:0.74rem;font-weight:800;color:var(--coral);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;display:block;}
+  .note-card h3{font-size:1.15rem;margin-bottom:8px;}
+  .note-card .sub-label{font-size:0.74rem;font-weight:800;color:var(--aqua-deep);text-transform:uppercase;margin:12px 0 4px;letter-spacing:0.04em;}
+  .note-card p{margin:0;color:var(--text-muted);font-size:0.94rem;line-height:1.45;}
 
-  .note-card{background:var(--blush);border:1px solid var(--line);border-radius:14px;padding:22px;}
-  .note-card .flag{font-size:0.72rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;display:block;}
-  .note-card h3{font-size:1rem;margin-bottom:8px;}
-  .note-card .sub-label{font-size:0.72rem;font-weight:700;color:var(--moss);text-transform:uppercase;margin:12px 0 4px;}
-  .note-card p{margin:0;color:var(--plum);opacity:0.82;font-size:0.9rem;}
+  footer{background:var(--plum);color:#fff9f5;padding:28px 8vw;}
+  footer .fine-print{font-size:0.82rem;color:rgba(255,249,245,0.65);}
 
-  footer{background:var(--plum);color:var(--paper);padding:24px 8vw;}
-    footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
-
-#back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:0 4px 14px rgba(91,63,66,0.28);font-family:'Karla',sans-serif;}
-#back-top.visible{opacity:1;pointer-events:auto;}
-#back-top:hover{transform:translateY(-3px);}
+  #back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:#ffffff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:var(--shadow-float);font-family:var(--font-sans);}
+  #back-top.visible{opacity:1;pointer-events:auto;}
+  #back-top:hover{transform:translateY(-3px);background:var(--coral);}
 </style>
 </head>
 <body>
 
 <nav id="topnav"></nav>
-<script src="nav.js?v=4"></script>
+<script src="nav.js?v=6"></script>
 
+<!-- Hardware Specs -->
 <section>
   <div class="inner">
     <span class="topic-pill" data-en="Tech specs" data-ja="技術仕様">Tech specs</span>
-    <h2 data-en="Why TurtleBot3, and what we added" data-ja="なぜTurtleBot3を選んだか、そして何を追加したか">Why TurtleBot3, and what we added</h2>
-    <p class="lead" data-en="For residents who can't easily walk a note down the hall, and staff teams with no bandwidth to be a note delivery service, TurtleBot3's LiDAR-based navigation stack handles that mobility problem directly." data-ja="廊下を歩いてメモを届けることが難しい入居者と、配達サービスをこなす余裕のないスタッフのために、TurtleBot3のLiDARベースのナビゲーションスタックがこのモビリティ問題に直接対応します。">For residents who can't easily walk a note down the hall, and staff teams with no bandwidth to be a note delivery service, TurtleBot3's LiDAR-based navigation stack handles that mobility problem directly.</p>
+    <h2 data-en="Platform & Hardware Specifications" data-ja="TurtleBot3 プラットフォームとハードウェア仕様">Platform & Hardware Specifications</h2>
+    <p class="lead" data-en="For residents who can't easily walk a note down the hall, and staff teams with no bandwidth to deliver messages manually, TurtleBot3's LiDAR-based Nav2 navigation stack solves mobility friction directly." data-ja="廊下を歩いて手紙を届けることが難しい入居者と、配達業務をこなす余裕のないスタッフのために、TurtleBot3のLiDARベースのNav2ナビゲーションスタックがモビリティ問題を直接解決します。">For residents who can't easily walk a note down the hall, and staff teams with no bandwidth to be a note delivery service, TurtleBot3's LiDAR-based navigation stack handles that mobility problem directly.</p>
+    
     <div class="spec-layout">
       <div class="spec-img">
         <img src="Robot_on_track.webp" alt="Image of TurtleBot3 robot in the mock corridor environment.">
       </div>
 
       <div class="spec-grid">
-      <div class="spec-item">
-        <span class="spec-label" data-en="Platform" data-ja="プラットフォーム">Platform</span>
-        <div class="spec-value" data-en="TurtleBot3 Burger" data-ja="TurtleBot3 Burger">TurtleBot3 Burger</div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Dimensions" data-ja="寸法">Dimensions</span>
-        <div class="spec-value">138 × 178 × 192 mm
-          <span class="spec-sub" data-en="(W × D × H)" data-ja="（幅 × 奥行き × 高さ）">(W × D × H)</span>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Base Platform" data-ja="基本プラットフォーム">Base Platform</span>
+          <div class="spec-value">TurtleBot3 Burger</div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Dimensions & Footprint" data-ja="寸法・フットプリント">Dimensions & Footprint</span>
+          <div class="spec-value">138 × 178 × 192 mm <span class="spec-sub">(W × D × H)</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Weight" data-ja="重量">Weight</span>
+          <div class="spec-value">~1.0 kg <span class="spec-sub" data-en="Lightweight & resident-safe" data-ja="軽量・入居者に安全">Resident-safe</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Max Operating Speed" data-ja="最高走行速度">Max Operating Speed</span>
+          <div class="spec-value">0.22 m/s <span class="spec-sub" data-en="Tuned for gentle corridor transit" data-ja="廊下走行用に速度制限調整">Gentle corridor pace</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Battery & Runtime" data-ja="バッテリー & 稼働時間">Battery & Runtime</span>
+          <div class="spec-value">11.1V 1,800mAh LiPo <span class="spec-sub">~2.5 h continuous duty</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Navigation & SLAM" data-ja="ナビゲーション & SLAM">Navigation & SLAM</span>
+          <div class="spec-value">LiDAR SLAM (Nav2 Stack) <span class="spec-sub">ROS2 Humble Architecture</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Edge Compute Brain" data-ja="車載エッジコンピュータ">Edge Compute Brain</span>
+          <div class="spec-value">Raspberry Pi 4B (4GB) <span class="spec-sub">Linux Ubuntu 22.04 LTS</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="LiDAR Sensor" data-ja="LiDAR センサー">LiDAR Sensor</span>
+          <div class="spec-value">360° HLS-LFCD2 <span class="spec-sub">120–3500 mm range</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Actuation & Sub-Controller" data-ja="アクチュエーション & マイコン">Actuation & Sub-Controller</span>
+          <div class="spec-value">Arduino Uno R3 <span class="spec-sub">Dual MicroServo SG90s</span></div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label" data-en="Audio & Speech Suite" data-ja="音声・対話システム">Audio & Speech Suite</span>
+          <div class="spec-value">USB Microphone + Speaker <span class="spec-sub">Curated TTS Audio Library (.wav)</span></div>
         </div>
       </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Weight" data-ja="重量">Weight</span>
-        <div class="spec-value" data-en="~1 kg" data-ja="約1 kg">~1 kg</div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Max speed" data-ja="最大速度">Max speed</span>
-        <div class="spec-value">0.22 m/s</div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Battery" data-ja="バッテリー">Battery</span>
-        <div class="spec-value">11.1V 1,800mAh LiPo</div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Operating time" data-ja="稼働時間">Operating time</span>
-        <div class="spec-value" data-en="~2.5 h" data-ja="約2.5時間">~2.5 h</div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Navigation" data-ja="ナビゲーション">Navigation</span>
-        <div class="spec-value">LiDAR SLAM
-          <span class="spec-sub">ROS2</span>
-        </div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Onboard computer" data-ja="オンボードコンピュータ">Onboard computer</span>
-        <div class="spec-value">Raspberry Pi 4B</div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="LiDAR" data-ja="LiDAR">LiDAR</span>
-        <div class="spec-value">360° laser scan
-          <span class="spec-sub" data-en="HLS-LFCD2, 1.8m–3.5m range" data-ja="HLS-LFCD2、1.8m〜3.5m範囲">HLS-LFCD2, 1.8m–3.5m range</span>
-        </div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="IMU" data-ja="IMU（慣性計測装置）">IMU</span>
-        <div class="spec-value">MPU-9250
-          <span class="spec-sub" data-en="Gyroscope, accelerometer, magnetometer" data-ja="ジャイロスコープ、加速度計、磁力計">Gyroscope, accelerometer, magnetometer</span>
-        </div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Actuation" data-ja="アクチュエーション">Actuation</span>
-        <div class="spec-value">Arduino Uno R3 (microcontroller)
-          <span style="display:block;" data-en="MicroServo SG90 × 2 (compartment)" data-ja="MicroServo SG90 × 2（コンパートメント）">MicroServo SG90 × 2 (compartment)</span>
-        </div>
-      </div>
-      <div class="spec-item">
-        <span class="spec-label" data-en="Audio I/O" data-ja="音声入出力">Audio I/O</span>
-        <div class="spec-value" data-en="USB microphone + speaker" data-ja="USBマイク + スピーカー">USB microphone + speaker</div>
-      </div>
-    </div><!-- end spec-grid -->
-    </div><!-- end spec-layout -->
+    </div>
   </div>
 </section>
 
-<section>
+<!-- Interactive ROS2 Architecture Graph -->
+<section id="ros-architecture">
   <div class="inner">
-    <h2 data-en="Sensors" data-ja="センサー">Sensors</h2>
-    <p class="lead" data-en="Native sensors handle navigation with additional compartment sensing and arrival signaling to support the delivery interaction." data-ja="標準センサーがナビゲーションを担い、コンパートメントセンシングと到着信号の追加センサーが配達インタラクションをサポートします。">Native sensors handle navigation with additional compartment sensing and arrival signaling to support the delivery interaction.</p>
-    <table class="tech-table">
-      <tr>
-        <th data-en="Native sensors" data-ja="標準センサー">Native sensors</th>
-        <th data-en="Custom sensors" data-ja="カスタムセンサー">Custom sensors</th>
-      </tr>
-      <tr>
-        <td>
-          <ul>
-            <li data-en="&lt;strong&gt;360° LiDAR:&lt;/strong&gt; range scan of surroundings → mapping (SLAM) + real-time obstacle avoidance in shared hallways" data-ja="&lt;strong&gt;360° LiDAR：&lt;/strong&gt; 周囲の距離スキャン → マッピング（SLAM）＋共用廊下でのリアルタイム障害物回避"><strong>360° LiDAR:</strong> range scan of surroundings → mapping (SLAM) + real-time obstacle avoidance in shared hallways</li>
-            <li data-en="&lt;strong&gt;IMU&lt;/strong&gt; (gyroscope, accelerometer, magnetometer): orientation and motion data for stable, predictable movement near residents" data-ja="&lt;strong&gt;IMU&lt;/strong&gt;（ジャイロスコープ、加速度計、磁力計）：入居者の近くでの安定した予測可能な動作のための姿勢・運動データ"><strong>IMU</strong> (gyroscope, accelerometer, magnetometer): orientation and motion data for stable, predictable movement near residents</li>
-            <li data-en="&lt;strong&gt;Wheel encoders:&lt;/strong&gt; odometry for precise stopping at delivery points" data-ja="&lt;strong&gt;ホイールエンコーダー：&lt;/strong&gt; 配達地点での精確な停止のためのオドメトリ"><strong>Wheel encoders:</strong> odometry for precise stopping at delivery points</li>
-            <li data-en="&lt;strong&gt;Raspberry Pi camera:&lt;/strong&gt; visual feed → optional delivery confirmation or person detection" data-ja="&lt;strong&gt;Raspberry Piカメラ：&lt;/strong&gt; 映像フィード → 任意の配達確認または人物検出"><strong>Raspberry Pi camera:</strong> visual feed → optional delivery confirmation or person detection</li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li data-en="&lt;strong&gt;Arduino Uno R3&lt;/strong&gt; (microcontroller): drives compartment actuation and audio I/O" data-ja="&lt;strong&gt;Arduino Uno R3&lt;/strong&gt;（マイコン）：コンパートメント駆動と音声入出力を制御"><strong>Arduino Uno R3</strong> (microcontroller): drives compartment actuation and audio I/O</li>
-            <li data-en="&lt;strong&gt;MicroServo SG90 × 2:&lt;/strong&gt; opens and closes the mail compartment" data-ja="&lt;strong&gt;MicroServo SG90 × 2：&lt;/strong&gt; メールコンパートメントを開閉"><strong>MicroServo SG90 × 2:</strong> opens and closes the mail compartment</li>
-            <li data-en="&lt;strong&gt;USB microphone + speaker:&lt;/strong&gt; records voice messages and signals arrival" data-ja="&lt;strong&gt;USBマイク＋スピーカー：&lt;/strong&gt; 音声メッセージを録音し、到着を知らせる"><strong>USB microphone + speaker:</strong> records voice messages and signals arrival</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
+    <span class="topic-pill" data-en="Software Architecture" data-ja="ソフトウェア・アーキテクチャ">Software Architecture</span>
+    <h2 data-en="ROS2 Node Graph & Topic Dataflow" data-ja="ROS2 ノードグラフとトピックデータフロー">ROS2 Node Graph & Topic Dataflow</h2>
+    <p class="lead" data-en="The system coordinates navigation, cargo actuation, audio recording, and pre-recorded TTS topic audio playback through a modular ROS2 topic architecture. Click any node below to inspect its schema and live payload." data-ja="ナビゲーション、カプセル開閉、音声録音、収録済みTTS音声トピック再生をモジュール化されたROS2トピック構成で連携。各ノードをクリックするとメッセージスキーマを確認できます。">The system coordinates navigation, cargo actuation, audio recording, and pre-recorded TTS topic audio playback through a modular ROS2 topic architecture.</p>
 
-    <h3 class="section-h" data-en="Navigation challenges" data-ja="三つのナビゲーション課題">Navigation challenges</h3>
-    <div class="editable-flag" style="margin-top:16px;"><b data-en="Team note:" data-ja="チームノート：">Team note:</b> <span data-en="these are representative TurtleBot3 Burger / LiDAR-SLAM challenges our team faced at the time of development." data-ja="これらは、開発時に私たちのチームが直面した、TurtleBot3 Burger / LiDAR-SLAMの代表的な課題です。">these are representative TurtleBot3 Burger / LiDAR-SLAM challenges our team faced at the time of development.</span></div>
-    <div class="grid c3">
-      <div class="note-card">
-        <span class="flag" data-en="Challenge 1" data-ja="課題 1">Challenge 1</span>
-        <h3 data-en="Tight turns in the mock corridor" data-ja="模擬廊下での狭い曲がり角">Tight turns in the mock corridor</h3>
-        <div class="sub-label" data-en="Problem" data-ja="問題">Problem</div>
-        <p data-en="The miniature 3-room environment's doorways were narrow relative to the Burger's footprint, causing the local planner to stall or clip corners." data-ja="3部屋の小型環境の出入口はBurgerのフットプリントに対して狭く、ローカルプランナーが停止したり角を削ったりする原因になりました。">The miniature 3-room environment's doorways were narrow relative to the Burger's footprint, causing the local planner to stall or clip corners.</p>
-        <div class="sub-label" data-en="Solution" data-ja="解決策">Solution</div>
-        <p data-en="Tuned costmap inflation radius and footprint padding; slowed approach speed near doorway waypoints." data-ja="コストマップのインフレーション半径とフットプリントパディングを調整し、ドアウェイウェイポイント付近のアプローチ速度を落としました。">Tuned costmap inflation radius and footprint padding; slowed approach speed near doorway waypoints.</p>
-      </div>
-      <div class="note-card">
-        <span class="flag" data-en="Challenge 2" data-ja="課題 2">Challenge 2</span>
-        <h3 data-en="Drift on returning home" data-ja="帰還時のドリフト">Drift on returning home</h3>
-        <div class="sub-label" data-en="Problem" data-ja="問題">Problem</div>
-        <p data-en="Odometry drift accumulated over repeated trips, causing misalignment when re-docking at the home base." data-ja="繰り返しの走行でオドメトリのドリフトが蓄積し、ホームベースへの再ドッキング時にズレが生じました。">Odometry drift accumulated over repeated trips, causing misalignment when re-docking at the home base.</p>
-        <div class="sub-label" data-en="Solution" data-ja="解決策">Solution</div>
-        <p data-en="Added a fixed visual/IR marker at the dock for final-approach correction instead of relying on odometry alone." data-ja="オドメトリだけに頼る代わりに、ドックに固定の視覚/IRマーカーを追加し、最終アプローチの補正に使用しました。">Added a fixed visual/IR marker at the dock for final-approach correction instead of relying on odometry alone.</p>
-      </div>
-      <div class="note-card">
-        <span class="flag" data-en="Challenge 3" data-ja="課題 3">Challenge 3</span>
-        <h3 data-en="Static clutter vs. people" data-ja="静止した障害物と人の区別">Static clutter vs. people</h3>
-        <div class="sub-label" data-en="Problem" data-ja="問題">Problem</div>
-        <p data-en="Low-mounted LiDAR sometimes misread a passing person as static map clutter, or missed low obstacles." data-ja="低位置のLiDARが通行人を静的マップの障害物と誤認したり、低い障害物を見逃すことがありました。">Low-mounted LiDAR sometimes misread a passing person as static map clutter, or missed low obstacles.</p>
-        <div class="sub-label" data-en="Solution" data-ja="解決策">Solution</div>
-        <p data-en="Adjusted costmap obstacle layers; added a proximity-based &quot;pause if close&quot; safety behavior independent of path planning." data-ja="コストマップの障害物レイヤーを調整し、経路計画とは独立した近接ベースの「近づいたら停止」安全動作を追加しました。">Adjusted costmap obstacle layers; added a proximity-based "pause if close" safety behavior independent of path planning.</p>
-      </div>
-    </div>
+    <div class="ros-architecture-box">
+      <div class="ros-grid">
+        <!-- Hardware / Actuator Layer -->
+        <div class="ros-layer">
+          <div class="ros-layer-title"><span class="status-dot"></span> Edge Hardware Nodes</div>
+          <div class="ros-node-card active" data-topic-key="auto_navi">
+            <div class="node-name">/auto_navi</div>
+            <div class="node-desc" data-en="Nav2 autonomous goal navigation and obstacle costmaps" data-ja="Nav2自律移動・ゴール追従・コストマップ障害物回避">Nav2 autonomous goal navigation and obstacle costmaps</div>
+            <span class="topic-chip">nav2_msgs/NavigateToPose</span>
+          </div>
+          <div class="ros-node-card" data-topic-key="servo">
+            <div class="node-name">/servo</div>
+            <div class="node-desc" data-en="Arduino bridge driving dual SG90 servos for mail capsule" data-ja="Arduinoブリッジ経由でカプセル開閉サーボを制御">Arduino bridge driving dual SG90 servos for mail capsule</div>
+            <span class="topic-chip">penpal_interfaces/ServoCmd</span>
+          </div>
+          <div class="ros-node-card" data-topic-key="audio_mic">
+            <div class="node-name">/audio_mic</div>
+            <div class="node-desc" data-en="Captures voice postcard stream via USB microphone" data-ja="USBマイクから音声ポストカードをバッファリング録音">Captures voice postcard stream via USB microphone</div>
+            <span class="topic-chip">penpal_interfaces/AudioBuffer</span>
+          </div>
+        </div>
 
-    <h3 class="section-h" data-en="Limitations and barriers" data-ja="制限と障壁">Limitations and barriers</h3>
-    <div class="grid c2" style="margin-top:20px;">
-      <div class="card">
-        <h3 data-en="Legal and infrastructure considerations" data-ja="法的・インフラ面">Legal / infrastructure</h3>
-        <p data-en="The primary issue would involve facility liability for autonomous movement near residents. Additionally in Japan, procurement may route through the public Kaigo Hoken system rather than discretionary budget in private facilities." data-ja="入居者の近くでの自律移動に関する施設の責任問題。日本では、私設施設の裁量予算ではなく、公的な介護保険制度を通じて調達が行われる可能性があります。">Facility liability for autonomous movement near residents. In Japan, procurement may route through the public Kaigo Hoken system rather than discretionary budget in private facilities.</p>
+        <!-- Central ROS2 Topic Bus -->
+        <div class="ros-bus-col">
+          <div class="ros-bus-tag">DDS Middleware (ROS2)</div>
+          <div class="ros-bus-line"></div>
+          <div class="ros-bus-tag">Pub / Sub Network</div>
+        </div>
+
+        <!-- UI & Audio Interaction Layer -->
+        <div class="ros-layer">
+          <div class="ros-layer-title"><span class="status-dot"></span> Interaction & Audio Nodes</div>
+          <div class="ros-node-card" data-topic-key="ui">
+            <div class="node-name">/ui</div>
+            <div class="node-desc" data-en="TurtleBot touch display interface and facial expression state" data-ja="TurtleBotの画面タッチUIおよび表情・状態表示">TurtleBot touch display interface and facial expression state</div>
+            <span class="topic-chip">penpal_interfaces/UiState</span>
+          </div>
+          <div class="ros-node-card" data-topic-key="audio_speaker">
+            <div class="node-name">/audio_speaker</div>
+            <div class="node-desc" data-en="Plays arrival announcement chimes and recipient voice greetings" data-ja="到着通知チャイムおよび音声メッセージの再生">Plays arrival announcement chimes and recipient voice greetings</div>
+            <span class="topic-chip">penpal_interfaces/AudioPlay</span>
+          </div>
+          <div class="ros-node-card" data-topic-key="topic_prompts">
+            <div class="node-name">/topic_prompts</div>
+            <div class="node-desc" data-en="Pre-recorded TTS audio prompts (.wav) for conversation starter playback" data-ja="会話促進のための収録済みTTS音声プロンプト(.wav)再生ノード">Pre-recorded TTS audio prompts (.wav) for conversation starter playback</div>
+            <span class="topic-chip">penpal_interfaces/TopicAudio</span>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3 data-en="Deployment barriers" data-ja="導入上の障壁">Deployment barriers</h3>
-        <p data-en="Anticipated issues include staff workload cost of loading or troubleshooting, recipient-not-present edge cases, unauthorized cargo access, unsolicited deliveries, and non-reciprocity between residents." data-ja="積み込みとトラブルシューティングにかかるスタッフの作業負荷。受取人不在のエッジケース。コンパートメントへの不正アクセス。入居者間の返信の非対称性。">Staff workload cost of loading/troubleshooting; recipient-not-present edge cases; unauthorized cargo access; non-reciprocity between residents.</p>
+
+      <!-- Realtime Topic Payload Inspector -->
+      <div class="ros-inspector">
+        <div class="ros-inspector-header">
+          <span>// ROS2 Message Payload & Telemetry Inspector</span>
+          <span style="color:#329387;">STATUS: 200 OK (Active Telemetry)</span>
+        </div>
+        <pre id="ros-inspector-code" style="margin:0;white-space:pre-wrap;font-family:monospace;">// ROS2 Node: turtlebot3_navigation_node (Nav2 Stack + LiDAR SLAM)
+// Topic: /auto_navi [nav2_msgs/action/NavigateToPose]
+
+{
+  "goal_pose": {
+    "header": { "frame_id": "map" },
+    "pose": { "position": { "x": 8.52, "y": 0.84, "z": 0.0 }, "orientation": { "z": 0.707, "w": 0.707 } }
+  },
+  "planner_id": "GridBased",
+  "controller_id": "DWBLocalPlanner",
+  "current_velocity_m_s": 0.22
+}</pre>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Deployment Considerations & Real-World Barriers -->
+<section id="deployment">
+  <div class="inner">
+    <span class="topic-pill" data-en="Real-World Deployment" data-ja="社会実装と運用">Real-World Deployment</span>
+    <h2 data-en="Deployment Considerations & Real-World Barriers" data-ja="社会実装における法的・運用上の課題">Deployment Considerations & Real-World Barriers</h2>
+    <p class="lead" data-en="Essential institutional safety standards and caregiver usability requirements for assisted living facilities." data-ja="介護施設への円滑な導入に不可欠な安全基準とスタッフの運用性向上への配慮事項です。">Essential institutional safety standards and caregiver usability requirements for assisted living facilities.</p>
+    <div class="grid c2" style="margin-top:28px;">
+      <div class="card">
+        <h3 data-en="Legal & Institutional Safety" data-ja="安全性と施設賠償責任">Legal & Institutional Safety</h3>
+        <p data-en="Primary institutional concern is facility liability for autonomous mobile machines operating in shared senior spaces. TurtleBot's 0.22 m/s speed limit, physical bumpers, and clear audio indicators provide multiple defensive safety layers." data-ja="共用部での自律ロボット稼働に伴う施設側の責任問題に対し、0.22m/sの低速制御、物理バンパー、明瞭な接近音により多重の安全性を確保しています。">Primary concern is facility liability. TurtleBot's 0.22 m/s speed cap, soft styling, and audio cues ensure safety.</p>
+      </div>
+      <div class="card">
+        <h3 data-en="Staff Workload & Procurement Systems" data-ja="スタッフ負荷と介護保険制度">Staff Workload & Procurement</h3>
+        <p data-en="To ensure staff embrace the system, loading and troubleshooting must require zero technical knowledge. In Japan, commercial rollouts must align with Kaigo Hoken assistive robotics subsidy standards." data-ja="スタッフに負担をかけないワンタップ操作を追求。日本市場では公的介護保険のロボット等導入支援事業の基準に適合させる設計が不可欠です。">Requires zero-learning curve for care staff, and alignment with Japan's Kaigo Hoken subsidy pathways.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3</div>
+  <div class="fine-print" data-en="UW x SIT HRI Basic Robot Development PBL, August 2026 · Built on TurtleBot3 Burger" data-ja="UW x SIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 Burger 使用">UW x SIT HRI Basic Robot Development PBL, August 2026 · Built on TurtleBot3 Burger</div>
 </footer>
 
-
+<script src="presentation-core.js"></script>
 <script>
 function applyLang(lang){
   document.querySelectorAll('[data-en]').forEach(el=>{
@@ -265,8 +267,11 @@ function applyLang(lang){
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
 });
-// Restore saved preference on load
 applyLang(localStorage.getItem('preferredLang')||'en');
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.initRosInspector();
+});
 </script>
 <button id="back-top" aria-label="Back to top">↑</button>
 <script>

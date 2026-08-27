@@ -6,49 +6,44 @@
 <title>Team: Community Courier</title>
 <link rel="icon" type="image/svg+xml" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="presentation.css">
 <style>
   :root{
-    --paper:#FBF4EA; --blush:#F3DFCC; --blush-2:#EFD3C3;
-    --rose:#BE5A3E; --rose-deep:#9E4530; --moss:#5C6E4E; --plum:#5B3F42;
-    --gold:#CE9E52; --card:#FFFBF2; --line:rgba(91,63,66,0.15);
+    --paper:var(--bg-base); --blush:#e3d9cb; --blush-2:#d6cab8;
+    --rose:var(--coral); --rose-deep:var(--coral-deep); --moss:#556b46; --plum:#3d3032;
+    --gold:#c7923e; --card:#f8f4ec; --line:rgba(61,48,50,0.11);
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--plum);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65;}
-  h1,h2,h3{font-family:'Fraunces',serif;margin:0;color:var(--plum);}
+  html{scroll-behavior:smooth;background:var(--bg-base);}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+  body{margin:0;background:var(--bg-base);color:var(--plum);font-family:var(--font-sans);font-size:17px;line-height:1.65;}
+  h1,h2,h3,h4{font-family:var(--font-serif);margin:0;color:var(--plum);}
   a{color:inherit;text-decoration:none;}
 
-  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:#ffffff;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;}
-  .brand .dot-pair{display:flex;gap:3px;}
-  .brand .dot-pair span{width:9px;height:9px;border-radius:50%;background:var(--rose);}
-  .brand .dot-pair span:last-child{background:var(--moss);}
-  #topnav .links{display:flex;gap:26px;font-size:0.85rem;font-weight:500;}
-  #topnav .links a{opacity:0.65;transition:opacity .15s;}
-  #topnav .links a:hover{opacity:1;color:var(--rose);}
-  #topnav .links a.current{opacity:1;color:var(--rose);font-weight:700;}
-  .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;display:inline-block;}
+  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:rgba(248,244,236,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-serif);font-weight:700;font-size:1.15rem;color:var(--plum);}
+  #topnav .links{display:flex;gap:26px;font-size:0.88rem;font-weight:600;}
+  #topnav .links a{opacity:0.7;transition:opacity .15s, color .15s;}
+  #topnav .links a:hover{opacity:1;color:var(--coral);}
+  #topnav .links a.current{opacity:1;color:var(--coral);font-weight:700;}
   @media (max-width:820px){ #topnav .links{display:none;} }
   .nav-right{display:flex;align-items:center;gap:12px;}
-  .lang-toggle{display:flex;gap:2px;background:rgba(91,63,66,0.09);border-radius:20px;padding:3px;}
-  .lang-btn{background:transparent;border:none;padding:5px 12px;border-radius:16px;font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.45;transition:all .15s;font-family:'Karla',sans-serif;line-height:1;}
-  .lang-btn.active{background:var(--card);opacity:1;box-shadow:0 1px 3px rgba(91,63,66,0.14);}
-  .lang-btn:hover:not(.active){opacity:0.7;}
+  .lang-toggle{display:flex;gap:2px;background:rgba(61,48,50,0.08);border-radius:var(--radius-pill);padding:3px;}
+  .lang-btn{background:transparent;border:none;padding:6px 14px;border-radius:var(--radius-pill);font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.55;transition:all .15s;font-family:var(--font-sans);line-height:1;min-height:30px;}
+  .lang-btn.active{background:var(--card);opacity:1;box-shadow:var(--shadow-sm);}
+  .lang-btn:hover:not(.active){opacity:0.85;}
 
-  .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blush);color:var(--rose-deep);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
-  .topic-pill::before{content:"✎";font-size:0.85rem;}
-
-  /* Base Section & Container Layout */
-  section{padding:56px 8vw 96px;}
+  section{padding:76px 8vw;position:relative;}
   .inner{max-width:1080px;margin:0 auto;}
-  h2{font-size:2.3rem;font-weight:700;margin-bottom:16px;}
-  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;margin-top:0;margin-bottom:0;}
+  h2{font-size:2.35rem;font-weight:700;margin-bottom:16px;letter-spacing:-0.015em;}
+  p.lead{font-size:1.15rem;color:var(--text-muted);max-width:1080px;}
 
   /* Team Grid & Cards */
   .team-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 24px;
     margin-top: 36px;
   }
 
@@ -67,29 +62,31 @@
   .team-card {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+    padding: 30px 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-md);
   }
 
   .team-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(91, 63, 66, 0.08);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
   }
 
   .team-avatar-wrap {
-    width: 96px;
-    height: 96px;
+    width: 108px;
+    height: 108px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid var(--blush);
-    margin-bottom: 14px;
+    border: 3.5px solid var(--blush-2);
+    margin-bottom: 18px;
     flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
   }
 
   .team-avatar-wrap img {
@@ -100,83 +97,129 @@
   }
 
   .team-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
     color: var(--plum);
   }
 
-  .team-role {
-    font-size: 0.76rem;
-    font-weight: 700;
-    color: var(--rose-deep);
+  .team-uni-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    background: var(--aqua-light);
+    color: var(--aqua-deep);
+    border-radius: var(--radius-pill);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
-    line-height: 1.45;
-    opacity: 0.9;
+    margin-bottom: 8px;
   }
 
-  footer{background:var(--plum);color:var(--paper);padding:24px 8vw;}
-    footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
+  .team-role {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--coral-deep);
+    line-height: 1.45;
+    opacity: 0.95;
+    margin-bottom: 8px;
+  }
 
-#back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:0 4px 14px rgba(91,63,66,0.28);font-family:'Karla',sans-serif;}
-#back-top.visible{opacity:1;pointer-events:auto;}
-#back-top:hover{transform:translateY(-3px);}
+  .team-focus {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-top: auto;
+  }
+
+  .collab-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    margin-top: 36px;
+    box-shadow: var(--shadow-md);
+  }
+
+  footer{background:var(--plum);color:#fff9f5;padding:28px 8vw;}
+  footer .fine-print{font-size:0.82rem;color:rgba(255,249,245,0.65);}
+
+  #back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:#ffffff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:var(--shadow-float);font-family:var(--font-sans);}
+  #back-top.visible{opacity:1;pointer-events:auto;}
+  #back-top:hover{transform:translateY(-3px);background:var(--coral);}
 </style>
 </head>
 <body>
 
 <nav id="topnav"></nav>
-<script src="nav.js?v=4"></script>
+<script src="nav.js?v=6"></script>
 
 <!-- Team members -->
 <section id="team-members">
   <div class="inner">
-    <span class="topic-pill" data-en="Team members" data-ja="チームメンバー">Team members</span>
-    <h2 data-en="Meet the team" data-ja="チームを紹介します">Meet the team</h2>
-    <p class="lead" data-en="Get to know the people behind the Community Courier." data-ja="コミュニティ・メッセージ・クーリエを作ったチームをご紹介します。">Get to know the people behind the Community Courier.</p>
+    <span class="topic-pill" data-en="Project Team" data-ja="開発チーム">Project Team</span>
+    <h2 data-en="Meet the Creators" data-ja="開発チームメンバー">Meet the Creators</h2>
+    <p class="lead" data-en="A cross-Pacific, multidisciplinary collaboration between the University of Washington (UW) and Shibaura Institute of Technology (SIT) for the Human-Robot Interaction (HRI) PBL Program, August 2026." data-ja="ワシントン大学（UW）と芝浦工業大学（SIT）による、2026年8月開催の人間・ロボット対話（HRI）PBLプログラム共同開発チームです。">Get to know the engineers and designers behind Community Courier.</p>
 
     <div class="team-grid">
+      <!-- Baitao Cui -->
       <div class="team-card">
         <div class="team-avatar-wrap">
           <img src="Baitao_Cui.png" alt="Baitao Cui">
         </div>
         <h3>Baitao Cui</h3>
-        <span class="team-role" data-en="Network Engineering, Shibaura Institute of Technology (MS)" data-ja="ネットワーク工学、芝浦工業大学（修士）">Network Engineering, Shibaura Institute of Technology (MS)</span>
+        <span class="team-uni-tag">SIT (Japan)</span>
+        <span class="team-role" data-en="Network Engineering (MS)" data-ja="ネットワーク工学（修士）">Network Engineering (MS)</span>
+        <p class="team-focus" data-en="Wireless ROS2 DDS communication, remote telemetry, and edge-to-cloud reliability." data-ja="ROS2無線DDS通信、遠隔テレメトリ、エッジ通信の安定化。">Wireless ROS2 communication and edge-to-cloud reliability.</p>
       </div>
 
+      <!-- Blake Robinson -->
       <div class="team-card">
         <div class="team-avatar-wrap">
           <img src="Blake_Robinson.png" alt="Blake Robinson">
         </div>
         <h3>Blake Robinson</h3>
-        <span class="team-role" data-en="Computer Science, University of Washington (BS)" data-ja="コンピュータサイエンス、ワシントン大学（学士）">Computer Science, University of Washington (BS)</span>
+        <span class="team-uni-tag">UW (USA)</span>
+        <span class="team-role" data-en="Computer Science (BS)" data-ja="コンピュータサイエンス（学士）">Computer Science (BS)</span>
+        <p class="team-focus" data-en="Nav2 autonomous path planning, costmap tuning, and TurtleBot3 system architecture." data-ja="Nav2自律経路計画、コストマップ調整、TurtleBot3システム全体の統合。">Nav2 path planning, costmap tuning, and robot architecture.</p>
       </div>
 
+      <!-- Sara Choi -->
       <div class="team-card">
         <div class="team-avatar-wrap">
           <img src="Sara_Choi.png" alt="Sara Choi">
         </div>
         <h3>Sara Choi</h3>
-        <span class="team-role" data-en="HCDE, University of Washington (MS)" data-ja="人間中心デザイン工学、ワシントン大学（修士）">Human Centered Design and Engineering, University of Washington (MS)</span>
+        <span class="team-uni-tag">UW (USA)</span>
+        <span class="team-role" data-en="Human Centered Design & Eng. (MS)" data-ja="人間中心デザイン工学（修士）">Human Centered Design & Eng. (MS)</span>
+        <p class="team-focus" data-en="Elderly user journey mapping, emotional arc modeling, and low-barrier VUI/UI design." data-ja="高齢者ユーザージャーニー設計、感情変化モデリング、直感的UI/VUI設計。">Elderly journey mapping, emotional arcs, and low-barrier UI.</p>
       </div>
 
+      <!-- Yuji Ogawa -->
       <div class="team-card">
         <div class="team-avatar-wrap">
           <img src="Yuji_Ogawa.png" alt="Yuji Ogawa">
         </div>
         <h3>Yuji Ogawa</h3>
-        <span class="team-role" data-en="Computer Science, Shibaura Institute of Technology (BS)" data-ja="コンピュータサイエンス、芝浦工業大学（学士）">Computer Science, Shibaura Institute of Technology (BS)</span>
+        <span class="team-uni-tag">SIT (Japan)</span>
+        <span class="team-role" data-en="Computer Science (BS)" data-ja="コンピュータサイエンス（学士）">Computer Science (BS)</span>
+        <p class="team-focus" data-en="Arduino mechatronics, dual servo hatch integration, and USB audio signal processing." data-ja="Arduinoメカトロ制御、デュアルサーボ機構、USB音声処理の実装。">Arduino mechatronics, servo cargo hatch, and audio processing.</p>
       </div>
+    </div>
+
+    <!-- Collaboration Spotlight -->
+    <div class="collab-box">
+      <div class="eyebrow" data-en="International PBL Collaboration" data-ja="日米国際PBL共同開発">International PBL Collaboration</div>
+      <h3 style="font-size:1.4rem;margin:8px 0 12px;" data-en="Blending Human-Centered Design with Robotics Engineering" data-ja="人間中心デザインとロボティクス工学の融合">Blending Human-Centered Design with Robotics Engineering</h3>
+      <p style="margin:0;color:var(--text-muted);font-size:0.96rem;line-height:1.6;" data-en="Over the course of the intensive August 2026 PBL sprint, our team bridged software engineering, human-centered design, and mechatronics to solve the real-world social isolation crisis in assisted living facilities. By blending Western and Japanese eldercare insights, Community Courier demonstrates how compassionate robotics can spark meaningful human bonds." data-ja="2026年8月の集中PBLスプリントにおいて、私たちのチームはソフトウェア工学、人間中心デザイン、メカトロニクスを結集し、介護施設における社会的孤立の解決に取り組みました。日米の介護現場の知見を融合し、温かなロボティクスが人と人との心通う絆を育む未来を実証しています。">Over the course of the intensive August 2026 PBL sprint, our team bridged software engineering, human-centered design, and mechatronics to solve the real-world social isolation crisis in assisted living facilities.</p>
     </div>
   </div>
 </section>
 
-
 <footer>
-  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3</div>
+  <div class="fine-print" data-en="UW x SIT HRI Basic Robot Development PBL, August 2026 · Built on TurtleBot3 Burger" data-ja="UW x SIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 Burger 使用">UW x SIT HRI Basic Robot Development PBL, August 2026 · Built on TurtleBot3 Burger</div>
 </footer>
 
-
+<script src="presentation-core.js"></script>
 <script>
 function applyLang(lang){
   document.querySelectorAll('[data-en]').forEach(el=>{

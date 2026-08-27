@@ -6,237 +6,354 @@
 <title>Community Courier: a note from your neighbor</title>
 <link rel="icon" type="image/svg+xml" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="presentation.css">
 <style>
   :root{
-    --paper:#FBF4EA; --blush:#F3DFCC; --blush-2:#EFD3C3;
-    --rose:#BE5A3E; --rose-deep:#9E4530; --moss:#5C6E4E; --plum:#5B3F42;
-    --gold:#CE9E52; --card:#FFFBF2; --line:rgba(91,63,66,0.15);
+    --paper:var(--bg-base); --blush:#e3d9cb; --blush-2:#d6cab8;
+    --rose:var(--coral); --rose-deep:var(--coral-deep); --moss:#556b46; --plum:#3d3032;
+    --gold:#c7923e; --card:#f8f4ec; --line:rgba(61,48,50,0.11);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;background:var(--bg-base);}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none!important;transition:none!important;} }
-  body{margin:0;background:var(--paper);color:var(--plum);font-family:'Karla',sans-serif;font-size:17px;line-height:1.65;}
-  h1,h2,h3{font-family:'Fraunces',serif;margin:0;color:var(--plum);}
+  body{margin:0;background:var(--bg-base);color:var(--plum);font-family:var(--font-sans);font-size:17px;line-height:1.65;}
+  h1,h2,h3,h4{font-family:var(--font-serif);margin:0;color:var(--plum);}
   a{color:inherit;text-decoration:none;}
-  .script{font-family:'Caveat',cursive;}
+  .script{font-family:var(--font-script);}
 
-  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:#ffffff;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;}
-  .brand .dot-pair{display:flex;gap:3px;}
-  .brand .dot-pair span{width:9px;height:9px;border-radius:50%;background:var(--rose);}
-  .brand .dot-pair span:last-child{background:var(--moss);}
-  #topnav .links{display:flex;gap:26px;font-size:0.85rem;font-weight:500;}
-  #topnav .links a{opacity:0.65;transition:opacity .15s;}
-  #topnav .links a:hover{opacity:1;color:var(--rose);}
-  #topnav .links a.current{opacity:1;color:var(--rose);font-weight:700;}
-  .cta-btn{background:var(--rose);color:var(--paper);padding:11px 22px;border-radius:24px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer;transition:background .15s, transform .15s;display:inline-block;}
-  .cta-btn:hover{background:var(--rose-deep);transform:translateY(-1px);}
-  .cta-btn.ghost{background:transparent;border:1.5px solid var(--plum);color:var(--plum);}
-  .cta-btn.ghost:hover{background:rgba(91,63,66,0.06);}
+  #topnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:rgba(248,244,236,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm);}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-serif);font-weight:700;font-size:1.15rem;color:var(--plum);}
+  #topnav .links{display:flex;gap:26px;font-size:0.88rem;font-weight:600;}
+  #topnav .links a{opacity:0.7;transition:opacity .15s, color .15s;}
+  #topnav .links a:hover{opacity:1;color:var(--coral);}
+  #topnav .links a.current{opacity:1;color:var(--coral);font-weight:700;}
   @media (max-width:820px){ #topnav .links{display:none;} }
   .nav-right{display:flex;align-items:center;gap:12px;}
-  .lang-toggle{display:flex;gap:2px;background:rgba(91,63,66,0.09);border-radius:20px;padding:3px;}
-  .lang-btn{background:transparent;border:none;padding:5px 12px;border-radius:16px;font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.45;transition:all .15s;font-family:'Karla',sans-serif;line-height:1;}
-  .lang-btn.active{background:var(--card);opacity:1;box-shadow:0 1px 3px rgba(91,63,66,0.14);}
-  .lang-btn:hover:not(.active){opacity:0.7;}
+  .lang-toggle{display:flex;gap:2px;background:rgba(61,48,50,0.08);border-radius:var(--radius-pill);padding:3px;}
+  .lang-btn{background:transparent;border:none;padding:6px 14px;border-radius:var(--radius-pill);font-size:0.78rem;font-weight:700;cursor:pointer;color:var(--plum);opacity:0.55;transition:all .15s;font-family:var(--font-sans);line-height:1;min-height:30px;}
+  .lang-btn.active{background:var(--card);opacity:1;box-shadow:var(--shadow-sm);}
+  .lang-btn:hover:not(.active){opacity:0.85;}
 
-  .topic-pill{display:inline-flex;align-items:center;gap:8px;background:var(--rose-deep);color:var(--blush);padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;margin-bottom:18px;}
-  .topic-pill::before{content:"✎";font-size:0.85rem;}
-
-  section{padding:96px 8vw;}
+  section{padding:88px 8vw;position:relative;}
   .inner{max-width:1080px;margin:0 auto;}
   .inner.narrow{max-width:720px;}
   section:nth-of-type(even):not(#hero){background:var(--blush);}
-  .eyebrow{font-size:0.95rem;font-weight:700;color:var(--moss);margin-bottom:6px;display:block;}
-  h2{font-size:2.3rem;font-weight:700;margin-bottom:20px;}
-  p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
+  .eyebrow{font-size:0.95rem;font-weight:700;color:var(--aqua-deep);margin-bottom:6px;display:block;}
+  h2{font-size:2.35rem;font-weight:700;margin-bottom:20px;letter-spacing:-0.015em;}
+  p.lead{font-size:1.15rem;color:var(--text-muted);max-width:1080px;}
 
-  #hero{padding:80px 8vw 60px;background:radial-gradient(circle at 15% 25%, rgba(190,90,62,0.10), transparent 45%),radial-gradient(circle at 85% 70%, rgba(92,110,78,0.12), transparent 45%),var(--paper);text-align:center;}
-  #hero .topic-pill{background:var(--rose-deep);}
-  #hero h1{font-size:clamp(2.5rem,5.2vw,4.1rem);font-weight:700;max-width:820px;margin:14px auto 20px;line-height:1.1;}
-  #hero h1 .script{color:var(--rose);font-weight:600;}
-  #hero .sub{font-size:1.18rem;color:var(--plum);opacity:0.78;max-width:560px;margin:0 auto 36px;}
+  #hero{padding:84px 8vw 64px;background:radial-gradient(circle at 15% 25%, rgba(217,93,57,0.08), transparent 45%),radial-gradient(circle at 85% 70%, rgba(50,147,135,0.10), transparent 45%),var(--bg-base);text-align:center;}
+  #hero h1{font-size:clamp(2.5rem,5.2vw,4.2rem);font-weight:700;max-width:860px;margin:14px auto 20px;line-height:1.12;}
+  #hero h1 .script{color:var(--coral);font-weight:600;}
+  #hero .sub{font-size:1.2rem;color:var(--text-muted);max-width:640px;margin:0 auto 38px;line-height:1.6;}
   #hero .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:64px;}
 
   .connection-scene{display:flex;align-items:center;justify-content:center;gap:0;max-width:640px;margin:0 auto;position:relative;}
-  .postcard{width:160px;height:120px;background:var(--card);border-radius:14px;border:1.5px solid var(--line);box-shadow:0 6px 16px rgba(91,63,66,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;position:relative;z-index:2;}
+  .postcard{width:164px;height:124px;background:var(--card);border-radius:var(--radius-md);border:1px solid var(--line);box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;position:relative;z-index:2;transition:transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);}
+  .postcard:hover{transform:scale(1.05);}
   .postcard.left{transform:rotate(-4deg);}
   .postcard.right{transform:rotate(4deg);}
-  .postcard .avatar{width:44px;height:44px;border-radius:50%;background:var(--blush-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}.postcard .avatar svg{width:44px;height:44px;flex-shrink:0;}
-  .postcard .name{font-family:'Caveat',cursive;font-size:1.15rem;color:var(--plum);}
+  .postcard .avatar{width:48px;height:48px;border-radius:50%;background:var(--blush-2);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .postcard .avatar img{width:100%;height:100%;object-fit:cover;}
+  .postcard .name{font-family:var(--font-script);font-size:1.25rem;color:var(--plum);}
   .path-wrap{flex:1;position:relative;height:2px;margin:0 -10px;z-index:1;}
   .path-wrap svg{width:100%;height:60px;position:absolute;top:-30px;left:0;}
-  .courier-dot{width:46px;height:36px;border-radius:5px;background:var(--rose);position:absolute;top:-18px;left:0;animation:travel 3.2s ease-in-out infinite;display:flex;align-items:center;justify-content:center;font-size:2.8rem;line-height:1;overflow:hidden;color:var(--paper);box-shadow:0 3px 10px rgba(91,63,66,0.2);}
+  .courier-dot{width:46px;height:36px;border-radius:var(--radius-sm);background:var(--coral);position:absolute;top:-18px;left:0;animation:travel 3.2s ease-in-out infinite;display:flex;align-items:center;justify-content:center;font-size:1.6rem;line-height:1;overflow:hidden;color:#ffffff;box-shadow:var(--shadow-md);}
   @keyframes travel{0%{left:0%; top:-18px;}45%{left:calc(100% - 46px); top:-30px;}50%{left:calc(100% - 46px); top:-30px;}95%{left:0%; top:-18px;}100%{left:0%; top:-18px;}}
   @media (max-width:700px){.connection-scene{flex-direction:column;gap:28px;}.path-wrap{width:2px;height:70px;margin:0;}.path-wrap svg{display:none;}.courier-dot{animation:none; top:auto; left:50%; transform:translateX(-50%); position:relative;}}
-  .meta-row{margin-top:30px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-size:0.78rem;color:var(--plum);opacity:0.5;}
+  .meta-row{margin-top:32px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-size:0.82rem;color:var(--text-muted);font-weight:700;}
 
-  .grid{display:grid;gap:22px;}
+  .grid{display:grid;gap:24px;}
   .grid.c2{grid-template-columns:1fr 1fr;}
   .grid.c3{grid-template-columns:repeat(3,1fr);}
   @media (max-width:820px){ .grid.c2,.grid.c3{grid-template-columns:1fr;} }
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;}
-  .card h3{font-size:1.08rem;margin-bottom:10px;}
-  .card p{margin:0;color:var(--plum);opacity:0.8;font-size:0.95rem;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md);transition:transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+  .card h3{font-size:1.2rem;margin-bottom:10px;}
+  .card p{margin:0;color:var(--text-muted);font-size:0.96rem;}
 
-  .role-split{display:flex;gap:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:28px;}
-  .role{flex:1;padding:34px 30px;}
+  .role-split{display:flex;gap:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);margin-top:28px;box-shadow:var(--shadow-md);}
+  .role{flex:1;padding:38px 34px;}
   .role.buyer{background:var(--card);}
   .role.user{background:var(--blush-2);}
-  .role .script{font-size:1.4rem;color:var(--rose);display:block;margin-bottom:6px;}
-  .role h3{font-size:1.15rem;margin-bottom:10px;}
-  .role p{margin:0;opacity:0.82;font-size:0.94rem;}
+  .role .script{font-size:1.45rem;color:var(--coral);display:block;margin-bottom:6px;}
+  .role h3{font-size:1.25rem;margin-bottom:10px;}
+  .role p{margin:0;color:var(--text-muted);font-size:0.96rem;}
   @media (max-width:700px){ .role-split{flex-direction:column;} }
 
-  .video-slot{border:2px dashed var(--line);border-radius:18px;background:var(--card);min-height:340px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;color:var(--plum);text-align:left;padding:30px;}
-  .video-slot .play{width:60px;height:60px;border-radius:50%;background:var(--rose);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:6px;}
-  .video-slot code{background:var(--blush);padding:3px 8px;border-radius:6px;font-size:0.82rem;}
+  .video-slot{border:2px dashed var(--line);border-radius:var(--radius-lg);background:var(--card);min-height:340px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;color:var(--plum);text-align:left;padding:36px;box-shadow:var(--shadow-sm);cursor:pointer;transition:border-color 0.25s ease, background-color 0.25s ease;}
+  .video-slot:hover{border-color:var(--coral);background-color:#ffffff;}
+  .video-slot .play{width:64px;height:64px;border-radius:50%;background:var(--coral);color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:6px;box-shadow:var(--shadow-md);transition:transform 0.2s ease, background-color 0.2s ease;}
+  .video-slot .play:hover{transform:scale(1.08);background:var(--coral-deep);}
+  .video-slot code{background:var(--blush);padding:3px 8px;border-radius:6px;font-size:0.84rem;font-family:var(--font-mono);}
 
-  .explore-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:14px;transition:transform .15s, box-shadow .15s;}
-  .explore-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(91,63,66,0.1);}
-  .explore-card .tag{font-size:0.72rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:0.05em;}
-  .explore-card h3{font-size:1.3rem;}
-  .explore-card p{margin:0;opacity:0.8;font-size:0.94rem;flex:1;}
-  .explore-card .go{font-size:0.86rem;font-weight:700;color:var(--rose-deep);}
+  .explore-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow-md);transition:transform .2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .2s ease;}
+  .explore-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+  .explore-card .tag{font-size:0.72rem;font-weight:800;color:var(--coral);text-transform:uppercase;letter-spacing:0.06em;}
+  .explore-card h3{font-size:1.35rem;}
+  .explore-card p{margin:0;color:var(--text-muted);font-size:0.95rem;flex:1;}
+  .explore-card .go{font-size:0.9rem;font-weight:700;color:var(--coral-deep);display:flex;align-items:center;gap:6px;}
 
   .roadmap{display:flex;gap:0;margin-top:36px;position:relative;}
   .roadmap::before{content:"";position:absolute;top:11px;left:0;right:0;height:2px;background:var(--line);}
   .rm-stop{flex:1;position:relative;padding-top:34px;padding-right:24px;}
-  .rm-stop::before{content:"";position:absolute;top:0;left:0;width:24px;height:24px;border-radius:50%;background:var(--card);border:2px solid var(--rose);}
-  .rm-stop .rm-label{font-size:0.75rem;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;display:block;}
-  .rm-stop h3{font-size:1.02rem;margin-bottom:8px;}
-  .rm-stop p{color:var(--plum);opacity:0.82;font-size:0.9rem;margin:0;}
+  .rm-stop::before{content:"";position:absolute;top:0;left:0;width:24px;height:24px;border-radius:50%;background:var(--card);border:2.5px solid var(--coral);box-shadow:0 0 0 4px var(--bg-base);}
+  .rm-stop .rm-label{font-size:0.76rem;font-weight:800;color:var(--coral);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;display:block;}
+  .rm-stop h3{font-size:1.12rem;margin-bottom:8px;}
+  .rm-stop p{color:var(--text-muted);font-size:0.92rem;margin:0;}
   @media (max-width:820px){ .roadmap{flex-direction:column;gap:34px;} .roadmap::before{display:none;} .rm-stop{padding-right:0;} }
 
-  footer{background:var(--plum);color:var(--paper);padding:24px 8vw;}
-          footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
+  footer{background:var(--plum);color:#fff9f5;padding:28px 8vw;}
+  footer .fine-print{font-size:0.82rem;color:rgba(255,249,245,0.65);}
 
-#back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:0 4px 14px rgba(91,63,66,0.28);font-family:'Karla',sans-serif;}
-#back-top.visible{opacity:1;pointer-events:auto;}
-#back-top:hover{transform:translateY(-3px);}
+  #back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--plum);color:#ffffff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;box-shadow:var(--shadow-float);font-family:var(--font-sans);}
+  #back-top.visible{opacity:1;pointer-events:auto;}
+  #back-top:hover{transform:translateY(-3px);background:var(--coral);}
 </style>
 </head>
 <body>
 
 <nav id="topnav"></nav>
-<script src="nav.js?v=4"></script>
+<script src="nav.js?v=6"></script>
 
+<!-- Hero Section -->
 <section id="hero">
-  <span class="topic-pill" data-en="Overview" data-ja="概要">Overview</span>
+  <span class="topic-pill" data-en="Final Presentation (August 28, 2026)" data-ja="最終発表（2026年8月28日）">Final Presentation (August 28, 2026)</span>
   <h1 data-en='Crossing paths <span class="script">through kinder connection</span>' data-ja='やっぱり、<span class="script">手書き</span>が伝わる。'>Some things still mean more <span class="script">handwritten</span></h1>
-  <p class="sub" data-en="Community Courier carries notes and gifts between neighbors in assisted living so residents can focus on growing relationships." data-ja="コミュニティ・メッセージ・クーリエは、介護施設内の入居者同士の間で手紙や絵、音声ポストカードをお届けします。つながりは、廊下を歩く元気がある人だけのものではありません。">Community Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first.</p>
+  <p class="sub" data-en="Community Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first." data-ja="コミュニティ・メッセージ・クーリエは、介護施設内の入居者同士の間で手紙や絵、音声ポストカードをお届けします。つながりは、廊下を歩く元気がある人だけのものではありません。">Community Courier carries notes, drawings, and voice postcards between neighbors in assisted living, so connection doesn't depend on who has the energy to walk down the hall first.</p>
   <div class="cta-row">
-    <a href="#demo" class="cta-btn" data-en="Watch the demo ▸" data-ja="デモを見る ▸">Watch the demo ▸</a>
-    <a href="how-it-works.html" class="cta-btn ghost" data-en="See how it works" data-ja="仕組みを見る">See how it works</a>
+    <a href="#demo" class="cta-btn" data-en="▶ Watch Demo Video (2 min)" data-ja="▶ デモ動画を見る（2分）">▶ Watch Demo Video (2 min)</a>
+    <a href="how-it-works.html" class="cta-btn ghost" data-en="Interaction Flow →" data-ja="インタラクションフロー →">Interaction Flow →</a>
+    <button class="cta-btn ghost" onclick="window.openPresentationMode && window.openPresentationMode()" data-en="📽 Full Presentation Deck" data-ja="📽 プレゼンテーションスライド">📽 Full Presentation Deck</button>
   </div>
 
   <div class="connection-scene">
-    <div class="postcard left"><div class="avatar"><img src="grace.png" alt="Grace" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="name">Grace</div></div>
+    <div class="postcard left"><div class="avatar"><img src="grace.png" alt="Grace"></div><div class="name">Grace</div></div>
     <div class="path-wrap">
       <svg viewBox="0 0 300 60" preserveAspectRatio="none"><path d="M0,30 Q150,-10 300,30" stroke="var(--line)" stroke-width="2" fill="none" stroke-dasharray="6 8"/></svg>
       <div class="courier-dot">✉</div>
     </div>
-    <div class="postcard right"><div class="avatar"><img src="walter.png" alt="Walter" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="name">Walter</div></div>
+    <div class="postcard right"><div class="avatar"><img src="walter.png" alt="Walter"></div><div class="name">Walter</div></div>
   </div>
 
   <div class="meta-row">
-    <span data-en="UW x SIT 2026" data-ja="UWxSIT HRI サマープロジェクト">UW x SIT 2026</span><span>·</span><span data-en="TurtleBot3 platform" data-ja="TurtleBot3 プラットフォーム">TurtleBot3 platform</span><span>·</span><span data-en="PBL concept prototype" data-ja="コンセプトプロトタイプ、2026年">PBL concept prototype</span>
+    <span data-en="UW x SIT 2026" data-ja="UW x SIT HRI PBL 2026">UW x SIT 2026</span><span>·</span>
+    <span data-en="TurtleBot3 Platform" data-ja="TurtleBot3 プラットフォーム">TurtleBot3 Platform</span><span>·</span>
+    <span data-en="ROS2 Nav2 + LiDAR SLAM" data-ja="ROS2 Nav2 + LiDAR SLAM">ROS2 Nav2 + LiDAR SLAM</span><span>·</span>
+    <span data-en="TTS Audio Topic Prompts (.wav)" data-ja="TTS 音声トピック提案 (.wav)">TTS Audio Topic Prompts (.wav)</span>
   </div>
 </section>
 
+<!-- 1. Problem Definition -->
+<section id="problem">
+  <div class="inner">
+    <span class="topic-pill" data-en="1. Problem Define" data-ja="1. 課題の定義">1. Problem Define</span>
+    <h2 data-en="The Silent Crisis of Isolation in Senior Care" data-ja="高齢者施設における「見えない孤立」の課題">The Silent Crisis of Isolation in Senior Care</h2>
+    <p class="lead" data-en="More than 25% of seniors in assisted living experience severe social isolation. Despite living under the same roof, residents face significant physical and emotional barriers to spontaneous connection." data-ja="介護施設に入居する高齢者の4人に1人が深刻な社会的孤立を経験しています。同じ屋根の下に暮らしながらも、身体的・心理的なハードルが自然な交流を阻んでいます。">Despite living under the same roof, residents face significant barriers to reaching out.</p>
 
+    <div class="grid c3" style="margin-top:28px;">
+      <div class="card">
+        <h3 data-en="Physical Mobility Fatigue" data-ja="身体的移動の負担・転倒リスク">Physical Mobility Fatigue</h3>
+        <p data-en="Walking down long corridors with canes or walkers causes physical fatigue and fall anxiety, preventing residents from visiting neighbors down the hall." data-ja="長い廊下の歩行や杖・歩行器の使用は疲労と転倒リスクを伴い、隣の部屋へ気軽に声をかけに行くことを躊躇させます。">Corridor walks cause fatigue and fall risk, stopping residents from visiting peers.</p>
+      </div>
 
+      <div class="card">
+        <h3 data-en="Fear of Intruding & Social Anxiety" data-ja="遠慮と「白紙の不安」">Fear of Intruding & Social Anxiety</h3>
+        <p data-en="Residents worry about disturbing neighbors during rest, or experience 'blank page anxiety' where they struggle with what to say or write." data-ja="「休んでいるかもしれない」という遠慮や、「何を書けばいいか分からない」というプレッシャーが自発的な手紙を妨げます。">Uncertainty about availability and blank-page pressure prevents reaching out first.</p>
+      </div>
+
+      <div class="card">
+        <h3 data-en="Overburdened Care Staff" data-ja="多忙な介護スタッフの限界">Overburdened Care Staff</h3>
+        <p data-en="Caregivers are stretched thin with critical medical tasks and lack the bandwidth to act as manual message couriers between resident rooms." data-ja="日々の医療・介護ケアで手一杯のスタッフには、入居者同士の手紙や伝言を取り次ぐ余裕がありません。">Caregivers prioritize direct care and cannot serve as manual note couriers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Target Users -->
 <section id="users">
   <div class="inner">
-    <span class="topic-pill" data-en="Target users" data-ja="対象ユーザー">Target users</span>
+    <span class="topic-pill" data-en="2. Target Users" data-ja="2. 対象ユーザー">2. Target Users</span>
     <h2 data-en="Who is this for?" data-ja="これは誰のためのものか？">Who is this for?</h2>
-    <p class="lead" data-en="One in four adults 65+ is socially isolated. Staff, already stretched thin, rarely have bandwidth to facilitate connection between residents who'd otherwise never write to each other." data-ja="購入者と実際の利用者は異なるグループです。">Who pays for it and who actually uses it are different groups.</p>
+    <p class="lead" data-en="Our solution serves two distinct stakeholder groups: assisted living facilities looking for scalable engagement tools, and senior residents seeking effortless connection." data-ja="施設運営側（導入決定者）と入居者・スタッフ（実際の利用者）双方のニーズを満たす設計を行っています。">Who pays for it and who actually uses it are distinct groups with different needs.</p>
+    
     <div class="role-split">
       <div class="role buyer">
-        <span class="script" data-en="Buyers" data-ja="購入する">buys it</span>
-        <h3 data-en="Assisted living facilities" data-ja="介護施設">Assisted living facilities</h3>
-        <p data-en="Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations or activities level." data-ja="顧客は施設です。介護施設はすでにエンゲージメント技術やコンパニオン技術に投資しており、購入の意思決定は運営・活動担当レベルで行われます。">Our customers are facilities that already invest in engagement and companion technology, making this a purchase decision made at the operations/activities level.</p>
+        <span class="script" data-en="Buyers & Operators" data-ja="導入・運営者">buys & deploys</span>
+        <h3 data-en="Assisted living facilities & care managers" data-ja="介護施設・活動コーディネーター">Assisted living facilities & care managers</h3>
+        <p data-en="Facility leadership invests in resident happiness, cognitive vitality, and staff retention. Community Courier integrates seamlessly into existing activities programming without adding caregiver workload." data-ja="入居者の生活満足度向上や認知刺激、スタッフの負担軽減を重視する施設運営者が導入。スタッフの追加作業なしにアクティビティを活性化します。">Our customers are facilities that already invest in engagement technology to improve resident satisfaction and relieve staff strain.</p>
       </div>
       <div class="role user">
-        <span class="script" data-en="End users" data-ja="使う">uses it</span>
-        <h3 data-en="Residents" data-ja="入居者">Residents</h3>
-        <p data-en="Our end users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first." data-ja="直接の利用者は、廊下の向こうの隣人とつながりたいけれど、移動に制限があったり、気力がなかったり、自分から声をかけるきっかけがない入居者です。">Direct users are residents who want to connect with a neighbor down the hall but face mobility limits, low energy, or simply no natural occasion to reach out first.</p>
+        <span class="script" data-en="Direct End Users" data-ja="実際の利用者">uses & enjoys</span>
+        <h3 data-en="Senior residents & their hallway neighbors" data-ja="入居高齢者と隣人たち">Senior residents & their hallway neighbors</h3>
+        <p data-en="Residents who crave meaningful horizontal connection with peers but face hand tremors, mobility limits, or low energy. They receive delightful tangible mail and voice postcards right at their doorway." data-ja="隣人と心を通わせたいけれど、移動や手書きに不安がある入居者。ドアの前に届く温かい手紙や音声ポストカードで、自然につながりを深めます。">Direct users are residents who want to connect with a neighbor down the hall without physical strain or social awkwardness.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 3. Interaction Flow & Audio Prompt Sandbox -->
+<section id="ai-topic-sandbox">
+  <div class="inner">
+    <span class="topic-pill" data-en="3. Interaction Flow & Scaffolding" data-ja="3. 対話フローと会話支援">3. Interaction Flow & Scaffolding</span>
+    <h2 data-en="Conversational Scaffolding: Never Run Out of Things to Say" data-ja="言葉に詰まらない、音声トピック提案と対話支援">Conversational Scaffolding: Never Run Out of Things to Say</h2>
+    <p class="lead" data-en="To eliminate 'blank page anxiety', Community Courier features a curated library of audio conversation starters—pre-recorded .wav prompts generated via a local TTS server—ready to play at the touch of a button." data-ja="「何を書けばいいか分からない」という不安を解消するため、Community CourierはTTSサーバーで作成された収録済み.wav音声トピックライブラリを搭載し、ボタンひとつで再生・提案します。">Overcoming blank page anxiety with curated, empathetic audio topic suggestions.</p>
 
+    <div class="topic-sandbox">
+      <div class="eyebrow" data-en="TTS Audio Conversation Starter Sandbox" data-ja="TTS 音声会話スターター・サンドボックス">TTS Audio Conversation Starter Sandbox</div>
+      <div class="topic-bubble-box">
+        <p class="topic-text" id="sandbox-topic-text" data-en="“You could ask Walter about his heirloom tomatoes in the courtyard garden!”" data-ja="「中庭の花壇で育てているトマトの様子について聞いてみませんか？」">“You could ask Walter about his heirloom tomatoes in the courtyard garden!”</p>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;">
+        <button class="topic-gen-btn" id="gen-topic-btn" data-en="✨ Play Another Topic Suggestion" data-ja="✨ 次のトピック音声を再生">✨ Play Another Topic Suggestion</button>
+        <span class="topic-meta" id="sandbox-topic-meta" data-en="✓ Curated .wav Audio Prompt (TTS Audio Server)" data-ja="✓ 収録済み .wav 音声プロンプト (TTS音声サーバー作成)">✓ Curated .wav Audio Prompt (TTS Audio Server)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Demo Video (2 Minutes) -->
 <section id="demo">
   <div class="inner">
-    <span class="topic-pill" data-en="Demo (2 minutes)" data-ja="デモ（2分）">Demo (2 minutes)</span>
-    <h2 data-en="See it in action" data-ja="実際に動く様子を見る">See it in action</h2>
-    <div class="video-slot">
-      <div class="play">▶</div>
-      <p><strong data-en="Embed your demo video here." data-ja="デモ動画をここに埋め込む。">Embed your demo video here.</strong></p>
-      <p>Replace this block with an <code>&lt;iframe&gt;</code> (YouTube/Vimeo) or a local <code>&lt;video&gt;</code> tag pointing at your file.</p>
+    <span class="topic-pill" data-en="4. Demo Video (2 Minutes)" data-ja="4. デモ動画（2分）">4. Demo Video (2 Minutes)</span>
+    <h2 data-en="See Community Courier in Action" data-ja="実際の走行・配達デモンストレーション">See Community Courier in Action</h2>
+    <div class="video-container" style="margin-top:24px;border-radius:var(--radius-lg);overflow:hidden;background:#1a1415;box-shadow:var(--shadow-lg);border:1px solid var(--line);">
+      <video id="demo-video-player" src="video_demo.mp4" controls playsinline preload="metadata" style="width:100%;max-height:480px;display:block;background:#000000;outline:none;"></video>
+      <div style="padding:18px 24px;background:var(--card);border-top:1px solid var(--line);">
+        <p style="margin:0 0 4px;"><strong data-en="Live PBL Demonstration Video (2:00 Runtime)" data-ja="PBL実機デモ動画（再生時間 2分00秒）">Live PBL Demonstration Video (2:00 Runtime)</strong></p>
+        <p style="margin:0;font-size:0.92rem;color:var(--text-muted);" data-en="Demonstrates TurtleBot3 autonomous corridor navigation with 360° LiDAR SLAM, dual SG90 motorized servo hatch actuation, and voice postcard playback in our mock senior facility environment." data-ja="模擬介護環境におけるTurtleBot3のLiDAR SLAM自律走行、デュアルSG90電動サーボハッチの開閉、到着チャイム吹鳴、および音声ポストカードの録音・再生を実演しています。">Demonstrates TurtleBot3 autonomous corridor navigation with 360° LiDAR SLAM, dual SG90 motorized servo hatch actuation, audio arrival chimes, and voice postcard playback.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- 5. Technical Solution, Business Case, & Deep Dives -->
 <section id="explore">
   <div class="inner">
-    <span class="topic-pill" data-en="Go deeper" data-ja="さらに詳しく">Go deeper</span>
-    <h2 data-en="Learn about our process" data-ja="仕組み、市場、技術の詳細を探る">Explore how it works, the market, and what's under the hood</h2>
+    <span class="topic-pill" data-en="Deep Dive Modules" data-ja="詳細モジュール">Deep Dive Modules</span>
+    <h2 data-en="Comprehensive Technical Solution & Business Analysis" data-ja="技術的ソリューションとビジネスケースの詳細">Comprehensive Technical Solution & Business Analysis</h2>
     <div class="grid c3" style="margin-top:30px;">
       <a href="how-it-works.html" class="explore-card">
-        <span class="tag" data-en="How it works" data-ja="仕組み">How it works</span>
-        <h3 data-en="Interaction and feedback" data-ja="インタラクションとフィードバック">Interaction and feedback</h3>
-        <p data-en="Modalities we tested, why we chose them, and real feedback that changed the design." data-ja="テストした手法、その選定理由、そしてデザインを変えた実際のフィードバック。">Modalities we tested, why we chose them, and real feedback that changed the design.</p>
-        <span class="go" data-en="Read the interaction flow →" data-ja="インタラクションフローを見る →">Read the interaction flow →</span>
+        <span class="tag" data-en="3. Interaction Flow" data-ja="3. インタラクションフロー">3. Interaction Flow</span>
+        <h3 data-en="Task Flows & User Journey" data-ja="タスクフロー & ジャーニーマップ">Task Flows & User Journey</h3>
+        <p data-en="Step-by-step physical and voice note workflows, 6-stage emotional arc modeling, and multi-view hardware anatomy." data-ja="手書き・音声手紙のステップ別タスクフロー、6段階の感情変化モデル、ハードウェア構造詳細。">Step-by-step physical and voice note workflows, 6-stage emotional arc modeling, and multi-view hardware anatomy.</p>
+        <span class="go" data-en="Explore Interaction Flows →" data-ja="対話フローを見る →">Explore Interaction Flows →</span>
       </a>
-      <a href="business.html" class="explore-card">
-        <span class="tag" data-en="Business case" data-ja="ビジネスケース">Business case</span>
-        <h3 data-en="Market and validation" data-ja="市場と検証">Market and validation</h3>
-        <p data-en="Whether this already exists, whether there's a real market, and sizing the opportunity in the US and Japan." data-ja="類似製品の有無、実際の市場の有無、米国と日本における機会の規模。">Whether this already exists, whether there's a real market, and sizing the opportunity in the US and Japan.</p>
-        <span class="go" data-en="See the numbers →" data-ja="数字を見る →">See the numbers →</span>
-      </a>
+
       <a href="technical.html" class="explore-card">
-        <span class="tag" data-en="Tech specs" data-ja="技術仕様">Tech specs</span>
-        <h3 data-en="Platform and engineering" data-ja="プラットフォームとエンジニアリング">Platform and engineering</h3>
-        <p data-en="Why TurtleBot3, the sensors involved, navigation challenges we hit, and barriers ahead." data-ja="TurtleBot3を選んだ理由、使用センサー、直面したナビゲーション課題、今後の障壁。">Why TurtleBot3, the sensors involved, navigation challenges we hit, and barriers ahead.</p>
-        <span class="go" data-en="See how it's built →" data-ja="技術的な詳細を見る →">See how it's built →</span>
+        <span class="tag" data-en="4. Technical Solution" data-ja="4. 技術仕様">4. Technical Solution</span>
+        <h3 data-en="ROS2 & Mechatronics Stack" data-ja="ROS2 & メカトロニクス">ROS2 & Mechatronics Stack</h3>
+        <p data-en="ROS2 topic dataflow (/servo, /audio_mic, /auto_navi, /topic_prompts), LiDAR SLAM navigation, Arduino bridge, and real-world deployment safety." data-ja="ROS2トピック構成（/servo、/audio_mic、/auto_navi、/topic_prompts）、LiDAR SLAM、Arduino制御、施設安全設計。">ROS2 topic dataflow, LiDAR SLAM navigation, Arduino bridge, and real-world deployment safety.</p>
+        <span class="go" data-en="Inspect Tech Solution →" data-ja="技術詳細を見る →">Inspect Tech Solution →</span>
+      </a>
+
+      <a href="business.html" class="explore-card">
+        <span class="tag" data-en="5. Business Case (Optional)" data-ja="5. ビジネスケース（任意）">5. Business Case (Optional)</span>
+        <h3 data-en="Market Viability & TAM/SAM/SOM" data-ja="市場規模・TAM/SAM/SOM">Market Viability & TAM/SAM/SOM</h3>
+        <p data-en="Comparative market sizing between the US ($540M) and Japan ($1.26B), competitive positioning, and Kaigo Hoken subsidy pathways." data-ja="日米市場規模の比較（米国5.4億ドル vs 日本12.6億ドル）、競合優位性、日本の介護保険制度適合性。">Comparative market sizing between the US ($540M) and Japan ($1.26B), and Kaigo Hoken subsidy pathways.</p>
+        <span class="go" data-en="Review Business Case →" data-ja="ビジネスケースを見る →">Review Business Case →</span>
       </a>
     </div>
   </div>
 </section>
 
-<section id="roadmap">
+<!-- 6. Q&A (3 Minutes) -->
+<section id="qa">
   <div class="inner">
-    <span class="topic-pill" data-en="What's next" data-ja="今後の展開">What's next</span>
-    <h2 data-en="Next steps" data-ja="これからのルート">Where the route goes from here</h2>
-    <div class="roadmap">
-      <div class="rm-stop">
-        <span class="rm-label" data-en="Now" data-ja="現在">Now</span>
-        <h3 data-en="Talk to real users" data-ja="実際のユーザーと対話する">Talk to real users</h3>
-        <p data-en="Interviews and direct observation with assisted-living residents and staff, in both Japan and the US." data-ja="日米両国の介護施設入居者とスタッフへのインタビューおよび直接観察。">Interviews and direct observation with assisted-living residents and staff, in both Japan and the US</p>
+    <span class="topic-pill" data-en="6. Q&A (3 Minutes)" data-ja="6. 質疑応答（3分）">6. Q&A (3 Minutes)</span>
+    <h2 data-en="Anticipated Questions & Discussion Points" data-ja="想定質問と回答（Q&A）">Anticipated Questions & Discussion Points</h2>
+    <p class="lead" data-en="Key technical, operational, and clinical considerations prepared for the 3-minute jury and audience question period." data-ja="審査員および聴講者からの3分間の質疑応答に備えた主要な技術・運用・ケア観点の想定問答です。">Key technical, operational, and clinical considerations for the 3-minute question period.</p>
+
+    <div class="qa-grid">
+      <div class="qa-card">
+        <div class="qa-question">
+          <span class="qa-q-badge">Q1</span>
+          <h3 data-en="How does the robot ensure senior safety in narrow shared hallways?" data-ja="狭い共用廊下で高齢者の安全をどのように確保していますか？">How does the robot ensure senior safety in narrow shared hallways?</h3>
+        </div>
+        <div class="qa-answer" data-en="TurtleBot is speed-capped at a gentle <strong>0.22 m/s</strong> (slower than normal walking pace). Its 360° LiDAR and rolling inflation costmaps maintain a <strong>0.3m safety margin</strong>, coming to an immediate soft stop whenever a walker or cane is detected within proximity." data-ja="走行速度は歩行よりゆっくりな<strong>0.22 m/s</strong>に制限。360° LiDARとコストマップにより<strong>0.3mの安全マージン</strong>を維持し、杖や歩行器を検知すると即座に減速・停止します。">Speed-capped at 0.22 m/s with 360° LiDAR maintaining a 0.3m safety margin and proximity auto-stop.</div>
       </div>
-      <div class="rm-stop">
-        <span class="rm-label" data-en="Next" data-ja="次のステップ">Next</span>
-        <h3 data-en="New modalities" data-ja="新しいモダリティ">New modalities</h3>
-        <p data-en="Different content types, like small gifts or food, and scheduled deliveries tied to seasonal moments." data-ja="小さな贈り物や食べ物など異なるコンテンツ種別、および季節のイベントに合わせた配達スケジュール。">Different content types, like small gifts or food, and scheduled deliveries tied to seasonal moments</p>
+
+      <div class="qa-card">
+        <div class="qa-question">
+          <span class="qa-q-badge">Q2</span>
+          <h3 data-en="Why physical letters and voice notes instead of regular tablet video calls?" data-ja="タブレットでのビデオ通話ではなく、なぜ手紙や音声ポストカードなのですか？">Why physical letters and voice notes instead of regular tablet video calls?</h3>
+        </div>
+        <div class="qa-answer" data-en="Video calls require synchronous coordination and can induce performance anxiety. Tangible handwritten notes and asynchronous voice postcards provide a pressure-free, nostalgic keepsake that residents can cherish and revisit anytime." data-ja="ビデオ通話は双方の時間を合わせる必要があり心理的負担も伴います。非同期の手書き手紙や音声は負担がなく、形に残る思い出として何度も読み返せる温かみがあります。">Asynchronous notes remove scheduling pressure and provide lasting tangible keepsakes that seniors cherish.</div>
       </div>
-      <div class="rm-stop">
-        <span class="rm-label" data-en="Later" data-ja="将来">Later</span>
-        <h3 data-en="New cost models" data-ja="新しいコストモデル">New cost models</h3>
-        <p data-en="Expanded modalities as cost tiers within facility payments, possibly a non-monetary social currency or gamification system." data-ja="施設料金内のコスト段階としての機能拡張、あるいは非金銭的なソーシャルポイントやゲーミフィケーションの仕組み。">Expanded modalities as cost tiers within facility payments, possibly a non-monetary social currency or gamification system</p>
+
+      <div class="qa-card">
+        <div class="qa-question">
+          <span class="qa-q-badge">Q3</span>
+          <h3 data-en="How is privacy protected for audio postcards and topic suggestions?" data-ja="音声メッセージやトピック提案におけるプライバシーはどのように保護されますか？">How is privacy protected for audio postcards and topic suggestions?</h3>
+        </div>
+        <div class="qa-answer" data-en="Audio files are stored locally on the encrypted onboard storage and deleted once played or saved to the resident's personal token. Topic suggestions use pre-recorded <strong>.wav</strong> files created with a secure local TTS server, ensuring zero patient data is ever transmitted to external cloud services." data-ja="音声データは車載ストレージで暗号化管理され、再生後に自動消去可能。トピック提案もローカルTTSサーバーで作成された収録済み<strong>.wav</strong>ファイルを使用しているため、外部クラウドへの個人情報送信は一切ありません。">Audio is stored locally with pre-recorded .wav prompts, ensuring zero patient data leaks to external cloud services.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="qa-question">
+          <span class="qa-q-badge">Q4</span>
+          <h3 data-en="How does the robot handle multi-story facilities or navigating elevators?" data-ja="エレベーターの乗降や、複数階のフロア移動にはどのように対応しますか？">How does the robot handle multi-story facilities or navigating elevators?</h3>
+        </div>
+        <div class="qa-answer" data-en="The current prototype operates strictly on a single-floor layout. Scaling to multi-story facilities would require integrating with smart elevator APIs (such as Bluetooth/Wi-Fi building automation controllers) or establishing caregiver helper checkpoints where staff assist in transferring the bot." data-ja="現在のプロトタイプは単一階での稼働を想定しています。複数階への対応には、スマートビルディングのエレベーターAPI連携か、フロア移動時にスタッフが手伝うチェックポイント運用が必要です。">The current prototype operates strictly on a single-floor layout. Scaling to multi-story facilities would require elevator API integration or staff helper checkpoints.</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 7. For the Future & Roadmap -->
+<section id="future">
+  <div class="inner">
+    <span class="topic-pill" data-en="7. For the Future" data-ja="7. 今後の展望・課題と発展">7. For the Future</span>
+    <h2 data-en="Lessons Learned & Future Development" data-ja="プロトタイプの課題と今後の発展">Lessons Learned & Future Development</h2>
+    <p class="lead" data-en="Honest reflections on prototype technical gaps identified during testing, and structured milestones for our next development cycle." data-ja="実機開発・走行実験で得られた知見と改善課題、および次の開発サイクルに向けたロードマップです。">Honest reflections on prototype technical gaps identified during testing, and structured milestones for our next development cycle.</p>
+
+    <!-- Known Limitations / Development Gaps Cards -->
+    <div class="grid c2" style="margin-top:28px;">
+      <div class="card">
+        <span class="pulse-badge" style="margin-bottom:12px;" data-en="Audio Feedback Gap" data-ja="音声フィードバックの改善点">Audio Feedback Gap</span>
+        <h3 data-en="Arrival Audio Announcement Integration" data-ja="目的地到着時の自動音声アナウンス">Arrival Audio Announcement Integration</h3>
+        <p data-en="<strong>Current Prototype State:</strong> TurtleBot successfully gives audio feedback when departing toward a destination (publishing departure voice cues), but does not yet vocalize an automated arrival announcement upon reaching the room doorway.<br><br><strong>Next Step:</strong> Linking Nav2 goal-reached action callbacks to the USB speaker node to trigger automated arrival greetings and chimes outside the room." data-ja="<strong>現在の動作状況：</strong> 出発時に「目的地へ移動します」という音声案内は正常に作動していますが、受取人の部屋の前に到着した瞬間の自動音声案内が未実装です。<br><br><strong>次期開発目標：</strong> Nav2のゴール到達コールバックをUSBスピーカー再生ノードに連携し、到着時に温かいチャイムと音声案内を完全自動で吹鳴させる制御を実装します。"><strong>Current State:</strong> The bot speaks on departure but lacks an automated arrival voice prompt when reaching the doorway. <strong>Next Step:</strong> Complete closed-loop Nav2 arrival audio callbacks.</p>
+      </div>
+
+      <div class="card">
+        <span class="pulse-badge" style="margin-bottom:12px;" data-en="Algorithmic Matchmaking" data-ja="入居者マッチング機能">Algorithmic Matchmaking</span>
+        <h3 data-en="Data-Driven User Matching & Recommendations" data-ja="趣味データに基づく入居者マッチング構想">Data-Driven User Matching & Recommendations</h3>
+        <p data-en="<strong>Original Vision:</strong> We aimed to develop an intelligent matchmaking system that suggests neighbor connections based on resident profiles, shared hobbies (e.g. gardening, painting), and past interactions.<br><br><strong>Timeline Constraint:</strong> Due to hackathon project time limits, we prioritized SLAM navigation and mechatronics. Resident onboarding interest profiles and recommendation algorithms are scheduled for Phase 1 of future work." data-ja="<strong>当初の構想：</strong> 趣味（園芸、絵画等）や過去の交流データに基づき、気が合いそうな隣人を自動で提案・マッチングする機能を構想していました。<br><br><strong>開発期間の制約：</strong> 限られたPBL期間内ではSLAM自律走行とカプセル開閉機構の実装を最優先としたため未実装です。今後のフェーズで嗜好プロファイルと推薦エンジンの開発を進めます。"><strong>Original Vision:</strong> Match neighbors based on shared interests. <strong>Timeline Constraint:</strong> Prioritized navigation & mechatronics due to hackathon time limits; matchmaking will be built in the next cycle.</p>
+      </div>
+    </div>
+
+    <!-- Subsection: Where the route goes from here -->
+    <div class="future-roadmap-section" style="margin-top:44px;">
+      <h3 style="font-size:1.45rem;margin-bottom:8px;" data-en="Where the route goes from here" data-ja="これからの開発ルート">Where the route goes from here</h3>
+      <p style="color:var(--text-muted);font-size:0.96rem;margin-bottom:16px;" data-en="Three structured phases from physical prototype refinement to full assisted living facility ecosystem deployment." data-ja="実機プロトタイプの完成度向上から、介護施設全体への実用配備までの3段階のロードマップです。">Three structured phases from prototype refinement to full facility ecosystem deployment.</p>
+
+      <div class="roadmap">
+        <div class="rm-stop">
+          <span class="rm-label" data-en="Phase 1: Near-Term" data-ja="フェーズ 1：短期">Phase 1: Near-Term</span>
+          <h3 data-en="Arrival Audio & Matching Engine" data-ja="到着音声の完備 & マッチング開発">Arrival Audio & Matching Engine</h3>
+          <p data-en="Finalizing Nav2 arrival audio triggers and launching resident interest profiling to recommend neighbor penpals." data-ja="Nav2到着音声トリガーの完成と、共通の趣味を持つ隣人を推薦するプロファイル機能の開発。">Finalizing arrival audio triggers and resident interest matchmaking.</p>
+        </div>
+        <div class="rm-stop">
+          <span class="rm-label" data-en="Phase 2: Mid-Term" data-ja="フェーズ 2：中期">Phase 2: Mid-Term</span>
+          <h3 data-en="Physical Gifts & Scheduled Rounds" data-ja="小さな贈り物と定期配達">Physical Gifts & Scheduled Rounds</h3>
+          <p data-en="Expanding cargo capacity for small potted plants or crafts, combined with automated morning and afternoon delivery rounds." data-ja="小さな鉢植えやクラフト作品が入る容量拡張と、朝夕の自動定期配達ラウンドの導入。">Expanding cargo capacity for small gifts and scheduled seasonal delivery moments.</p>
+        </div>
+        <div class="rm-stop">
+          <span class="rm-label" data-en="Phase 3: Long-Term" data-ja="フェーズ 3：長期">Phase 3: Long-Term</span>
+          <h3 data-en="Facility Care Integration" data-ja="介護保険・施設管理連携">Facility Care Integration</h3>
+          <p data-en="Integration with Japanese Kaigo Hoken assistive robotics standards and US care management platforms with social connection logs." data-ja="日本の介護保険制度や米国のケア管理システムとの統合、非金銭的なソーシャルポイント機能の追加。">Integration with facility management systems and non-monetary social connection tokens.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="fine-print" data-en="UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3" data-ja="UWxSIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 使用">UWxSIT HRI basic robot development PBL, August 2026 · Built on TurtleBot3</div>
+  <div class="fine-print" data-en="UW x SIT HRI Basic Robot Development PBL, August 28, 2026 · Built on TurtleBot3 Burger" data-ja="UW x SIT HRI 基礎ロボット開発 PBL、2026年8月28日 · TurtleBot3 Burger 使用">UW x SIT HRI Basic Robot Development PBL, August 28, 2026 · Built on TurtleBot3 Burger</div>
 </footer>
 
-
+<script src="presentation-core.js"></script>
 <script>
 function applyLang(lang){
   document.querySelectorAll('[data-en]').forEach(el=>{
@@ -253,8 +370,12 @@ function applyLang(lang){
 document.querySelectorAll('.lang-btn').forEach(btn=>{
   btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
 });
-// Restore saved preference on load
 applyLang(localStorage.getItem('preferredLang')||'en');
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.initTopicSandbox && window.initTopicSandbox();
+  window.initQaAccordion && window.initQaAccordion();
+});
 </script>
 <button id="back-top" aria-label="Back to top">↑</button>
 <script>
