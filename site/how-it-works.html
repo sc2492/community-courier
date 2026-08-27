@@ -130,8 +130,8 @@ p.lead{font-size:1.12rem;color:var(--plum);opacity:0.82;max-width:1080px;}
 .fc-edge-title{font-size:0.64rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#8B6914;margin-bottom:10px;display:block;}
 
 /* Flow diagram images */
-.flow-img-wrap{margin:30px 0 0;overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:white;}
-.flow-img-wrap img{display:block;max-width:none;height:auto;}
+.flow-img-wrap{margin:30px 0 0;}
+.flow-img-wrap img{display:block;width:100%;height:auto;}
 
 /* ══════════════════════════════
    JOURNEY MAP
@@ -191,7 +191,7 @@ footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
   <div class="links">
     <a href="how-it-works.html" class="current" data-en="How it works" data-ja="仕組み">How it works</a>
     <a href="business.html" data-en="Business case" data-ja="ビジネスケース">Business case</a>
-    <a href="technical.html" data-en="Technical solution" data-ja="技術的ソリューション">Technical solution</a>
+    <a href="technical.html" data-en="Tech specs" data-ja="技術仕様">Tech specs</a>
     <a href="team.html" data-en="About" data-ja="チーム">About</a>
   </div>
   <div class="nav-right">
@@ -218,10 +218,7 @@ footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
     <span class="topic-pill" data-en="The robot" data-ja="ロボット">The robot</span>
     <h2 data-en="TurtleBot3, outfitted for delivery" data-ja="TurtleBot3、配達仕様">TurtleBot3, outfitted for delivery</h2>
     <p class="lead" data-en="A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals." data-ja="カスタムメールコンパートメント、RFIDリーダー、LEDインジケーター、到着信号用スピーカーを装備したTurtleBot3 Burgerです。">A TurtleBot3 Burger with a custom mail compartment, RFID reader, LED indicator, and speaker for arrival signals.</p>
-    <div class="photo-slot" role="img" aria-label="Placeholder — robot photo goes here">
-      <span class="slot-icon" aria-hidden="true">📷</span>
-      <p><strong data-en="Robot photo goes here" data-ja="ロボットの写真をここに挿入">Robot photo goes here</strong><span data-en="Replace with an image of TurtleBot3 with the mail compartment attached." data-ja="メールコンパートメントを装着したTurtleBot3の画像に差し替えてください。">Replace with an image of TurtleBot3 with the mail compartment attached.</span></p>
-    </div>
+    <img src="Birds_eye.webp" alt="Birds-eye view of TurtleBot3 robot in the mock corridor environment." style="display:block;width:100%;max-height:55vh;object-fit:cover;object-position:center;border-radius:16px;margin-top:28px;">
   </div>
 </section>
 
@@ -254,7 +251,7 @@ footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
     <p class="lead" data-en="From the moment a resident decides to write, to the moment the receiver holds the note." data-ja="入居者がメモを書こうと決めた瞬間から、受け取り手がそれを手にする瞬間まで。">From the moment a resident decides to write, to the moment the receiver holds the note.</p>
 
     <figure class="flow-img-wrap">
-      <img src="task-physical-note.png" alt="Task flow: Send and receive a physical note. Start → Sender writes a note → TurtleBot opens compartment → Sender places note inside → TurtleBot closes compartment → TurtleBot leaves sender's room and travels to receiver's room → TurtleBot makes a sound to announce arrival → Receiver opens compartment and reads note → Decision: send a reply? Yes: Would you like a topic suggestion? Yes: TurtleBot suggests a topic based on the note or VLM (loop: give me another topic, or confirm). No: write directly. No, not now: TurtleBot returns to home dock. Edge case — no response from receiver: TurtleBot waits up to 10 minutes, then returns to sender's room or home dock." width="1600">
+      <img src="task-physical-note.png" alt="Task flow: Send and receive a physical note. Start → Sender writes a note → TurtleBot opens compartment → Sender places note inside → TurtleBot closes compartment → TurtleBot leaves sender's room and travels to receiver's room → TurtleBot makes a sound to announce arrival → Receiver opens compartment and reads note → Decision: send a reply? Yes: Would you like a topic suggestion? Yes: TurtleBot suggests a topic based on the note or VLM (loop: give me another topic, or confirm). No: write directly. No, not now: TurtleBot returns to home dock. Edge case — no response from receiver: TurtleBot waits up to 10 minutes, then returns to sender's room or home dock.">
     </figure>
   </div>
 </section>
@@ -267,7 +264,7 @@ footer .fine-print{font-size:0.78rem;color:rgba(251,244,234,0.45);}
     <p class="lead" data-en="Record a short message, no writing required. The robot carries the audio and plays it on arrival." data-ja="短いメッセージを録音するだけで、書く必要はありません。ロボットが音声を運び、到着時に再生します。">Record a short message, no writing required. The robot carries the audio and plays it on arrival.</p>
 
     <figure class="flow-img-wrap">
-      <img src="task-voice-note.png" alt="Task flow: Send and receive a voice note. Start → Sender requests to record a voice message → TurtleBot displays audio recording interface → Sender presses Start, speaks, presses Stop → TurtleBot confirms message recorded, travels to receiver's room → TurtleBot makes a sound to announce arrival → Voice command: receiver says 'Play the message for me' or presses the Play button → Decision: send a reply? Yes: Would you like a topic suggestion? Yes: TurtleBot suggests a topic based on the message or VLM (loop: give me another topic, or confirm to record reply). No: record reply directly. No, not now: TurtleBot returns to sender's room or home dock. Edge case — no response: TurtleBot waits up to 10 minutes, then returns to sender's room or home dock." width="1600">
+      <img src="task-voice-note.png" alt="Task flow: Send and receive a voice note. Start → Sender requests to record a voice message → TurtleBot displays audio recording interface → Sender presses Start, speaks, presses Stop → TurtleBot confirms message recorded, travels to receiver's room → TurtleBot makes a sound to announce arrival → Voice command: receiver says 'Play the message for me' or presses the Play button → Decision: send a reply? Yes: Would you like a topic suggestion? Yes: TurtleBot suggests a topic based on the message or VLM (loop: give me another topic, or confirm to record reply). No: record reply directly. No, not now: TurtleBot returns to sender's room or home dock. Edge case — no response: TurtleBot waits up to 10 minutes, then returns to sender's room or home dock.">
     </figure>
   </div>
 </section>
