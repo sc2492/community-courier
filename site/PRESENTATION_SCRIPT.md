@@ -116,12 +116,13 @@
 ---
 
 ## Part 2: Video Demonstration (10:00 – 12:00)
-* **Action**: Transition to Slide 4 / `#demo` and play `video_demo.mp4`.
+* **Action**: Transition to Slide 5 / `#demo`. The physical mission video is on the left and the control UI screencast is on the right.
 * **Talking Points During Video**:
 > "Now let's watch Community Courier in action. In this video, you'll see:
 > 1. Grace creating her note and triggering the motorized capsule opening.
 > 2. TurtleBot3 autonomously navigating the mock corridor with 360° LiDAR obstacle avoidance.
-> 3. Arrival outside Room 3, capsule opening, and Walter receiving his note."
+> 3. Arrival outside Room 3, capsule opening, and Walter receiving his note.
+> 4. The server UI issuing room, compartment, recording, playback, and Topic Suggestion commands."
 
 ---
 

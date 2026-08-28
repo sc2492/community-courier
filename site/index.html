@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="presentation.css">
+<link rel="stylesheet" href="presentation.css?v=8">
 <style>
   :root{
     --paper:var(--bg-base); --blush:#e3d9cb; --blush-2:#d6cab8;
@@ -218,12 +218,30 @@
   <div class="inner">
     <span class="topic-pill" data-en="4. Demo Video (2 Minutes)" data-ja="4. デモ動画（2分）">4. Demo Video (2 Minutes)</span>
     <h2 data-en="See Community Courier in Action" data-ja="実際の走行・配達デモンストレーション">See Community Courier in Action</h2>
-    <div class="video-container" style="margin-top:24px;border-radius:var(--radius-lg);overflow:hidden;background:#1a1415;box-shadow:var(--shadow-lg);border:1px solid var(--line);">
-      <video id="demo-video-player" src="video_demo.mp4" controls playsinline preload="metadata" style="width:100%;max-height:480px;display:block;background:#000000;outline:none;"></video>
-      <div style="padding:18px 24px;background:var(--card);border-top:1px solid var(--line);">
-        <p style="margin:0 0 4px;"><strong data-en="Live PBL Demonstration Video (2:00 Runtime)" data-ja="PBL実機デモ動画（再生時間 2分00秒）">Live PBL Demonstration Video (2:00 Runtime)</strong></p>
-        <p style="margin:0;font-size:0.92rem;color:var(--text-muted);" data-en="Demonstrates TurtleBot3 autonomous corridor navigation with 360° LiDAR SLAM, dual SG90 motorized servo hatch actuation, and voice postcard playback in our mock senior facility environment." data-ja="模擬介護環境におけるTurtleBot3のLiDAR SLAM自律走行、デュアルSG90電動サーボハッチの開閉、到着チャイム吹鳴、および音声ポストカードの録音・再生を実演しています。">Demonstrates TurtleBot3 autonomous corridor navigation with 360° LiDAR SLAM, dual SG90 motorized servo hatch actuation, audio arrival chimes, and voice postcard playback.</p>
-      </div>
+    <div class="demo-video-grid">
+      <article class="video-container">
+        <div class="demo-video-frame">
+          <video id="demo-video-player" controls playsinline preload="metadata">
+            <source src="video_demo.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="demo-video-copy">
+          <p><strong data-en="Physical Robot Mission Demo" data-ja="実機ミッションデモ">Physical Robot Mission Demo</strong></p>
+          <p data-en="TurtleBot3 corridor navigation, dual-servo compartment actuation, arrival cues, and voice-postcard delivery in the mock facility." data-ja="模擬施設内でのTurtleBot3廊下走行、デュアルサーボ式コンパートメント、到着音、音声ポストカード配達を紹介します。">TurtleBot3 navigation, compartment actuation, arrival cues, and voice-postcard delivery.</p>
+        </div>
+      </article>
+
+      <article class="video-container">
+        <div class="demo-video-frame">
+          <video id="control-ui-screencast" controls playsinline preload="metadata">
+            <source src="control-ui-screencast.webm" type="video/webm">
+          </video>
+        </div>
+        <div class="demo-video-copy">
+          <p><strong data-en="Control UI Screencast" data-ja="操作UIスクリーンキャスト">Control UI Screencast</strong></p>
+          <p data-en="Room selection, navigation commands, compartment controls, voice recording, playback, and Topic Suggestion from the deployed server UI." data-ja="実装済みServer UIでの部屋選択、ナビゲーション、コンパートメント操作、録音・再生、Topic Suggestionを紹介します。">Room selection, navigation, compartment controls, voice recording, playback, and Topic Suggestion.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -353,7 +371,7 @@
   <div class="fine-print" data-en="UW x SIT HRI Basic Robot Development PBL, August 28, 2026 · Built on TurtleBot3 Burger" data-ja="UW x SIT HRI 基礎ロボット開発 PBL、2026年8月28日 · TurtleBot3 Burger 使用">UW x SIT HRI Basic Robot Development PBL, August 28, 2026 · Built on TurtleBot3 Burger</div>
 </footer>
 
-<script src="presentation-core.js"></script>
+<script src="presentation-core.js?v=8"></script>
 <script>
 function applyLang(lang){
   document.querySelectorAll('[data-en]').forEach(el=>{
