@@ -101,39 +101,45 @@
     const topicSchemas = {
       'servo': {
         topic: '/servo',
-        type: 'penpal_interfaces/msg/ServoCmd',
-        node: 'servo_actuator_node (Arduino Uno Bridge)',
-        payload: '{\n  "header": { "stamp": { "sec": 1787842773, "nanosec": 124000 } },\n  "compartment_id": 1,\n  "target_angle_deg": 90,\n  "servo_speed_deg_s": 45,\n  "latch_status": "UNLOCKED"\n}'
+        type: 'std_msgs/msg/String',
+        node: 'servo_bridge (Pi → Arduino/OpenCR actuator path)',
+        payload: 'data: "open"\n\n// Other implemented commands: "close", "flagup", "flagdown"\n// /servo_status: "opening" → "open"'
       },
       'audio_mic': {
         topic: '/audio_mic',
-        type: 'penpal_interfaces/msg/AudioBuffer',
-        node: 'voice_recorder_node (Raspberry Pi 4B)',
-        payload: '{\n  "audio_format": "pcm_16bit_16000hz_mono",\n  "recording_duration_sec": 8.45,\n  "rms_level_db": -18.2,\n  "saved_filepath": "/var/penpal/audio/msg_room1_to_room3.wav",\n  "status": "RECORDING_COMPLETE"\n}'
+        type: 'std_msgs/msg/String',
+        node: 'audio_bridge / capture state machine (Raspberry Pi)',
+        payload: 'data: "request:<id>:start_recording"\n\n// Stop uses the same idempotent envelope:\n// data: "request:<id>:stop_recording"'
       },
       'audio_speaker': {
         topic: '/audio_speaker',
-        type: 'penpal_interfaces/msg/AudioPlay',
-        node: 'arrival_announcer_node (Raspberry Pi 4B)',
-        payload: '{\n  "chime_type": "ARRIVAL_FRIENDLY_CHORD_A",\n  "volume_gain": 0.85,\n  "voice_playback_file": "/var/penpal/audio/msg_room1_to_room3.wav",\n  "is_looping": false\n}'
+        type: 'std_msgs/msg/String',
+        node: 'audio_bridge / playback state machine (Raspberry Pi)',
+        payload: 'data: "request:<id>:play_file:arrive_message.wav"\n\n// Also implemented: play_message, play_prerecorded, stop_playback'
       },
-      'auto_navi': {
-        topic: '/auto_navi',
-        type: 'nav2_msgs/action/NavigateToPose',
-        node: 'turtlebot3_navigation_node (Nav2 Stack + LiDAR SLAM)',
-        payload: '{\n  "goal_pose": {\n    "header": { "frame_id": "map" },\n    "pose": { "position": { "x": 8.52, "y": 0.84, "z": 0.0 }, "orientation": { "z": 0.707, "w": 0.707 } }\n  },\n  "planner_id": "GridBased",\n  "controller_id": "DWBLocalPlanner",\n  "current_velocity_m_s": 0.22\n}'
+      'nav': {
+        topic: '/nav',
+        type: 'std_msgs/msg/String',
+        node: 'nav_command_node → Nav2 NavigateToPose',
+        payload: 'data: "Room 1 Intermediate"\n\n// /nav_status reports: "reached" | "failed"\n// A reached intermediate waypoint advances to the final room goal.'
       },
-      'ui': {
-        topic: '/ui',
-        type: 'penpal_interfaces/msg/UiState',
-        node: 'touchscreen_ui_node (Touch LCD on TB3)',
-        payload: '{\n  "display_mode": "TOPIC_SUGGESTION_POPUP",\n  "recipient_selected": "Room 3 (Walter)",\n  "active_face_expression": "HAPPY_WARM",\n  "battery_percentage": 94,\n  "last_button_pressed": "BTN_SUGGEST_TOPIC"\n}'
+      'ui_server': {
+        topic: '/api/status',
+        type: 'HTTP application/json',
+        node: 'server.js (Server PC)',
+        payload: '{\n  "recording_status": "recording",\n  "playback_status": "playing: prompt_reply.wav",\n  "is_recording": true,\n  "is_playing_audio": true,\n  "audio_bridge_online": true,\n  "audio_state_updated_at": "<ISO timestamp>"\n}'
       },
-      'topic_prompts': {
-        topic: '/topic_prompts',
-        type: 'penpal_interfaces/msg/TopicAudio',
-        node: 'topic_audio_player_node (Raspberry Pi 4B)',
-        payload: '{\n  "header": { "stamp": { "sec": 1787842773, "nanosec": 124000 } },\n  "prompt_id": "topic_gardening_04",\n  "audio_file": "/var/penpal/audio/prompts/topic_tomatoes.wav",\n  "tts_engine": "Local TTS Server",\n  "text_transcript": "You could ask Walter about his tomato plants in the courtyard garden!",\n  "status": "PLAYBACK_READY"\n}'
+      'audio_status': {
+        topic: '/audio_status',
+        type: 'std_msgs/msg/String',
+        node: 'audio_bridge → server.js state reconciliation',
+        payload: 'data: \'state:{"recording":false,"playback":false,"playback_label":""}\'\n\n// Published every 1 second; event messages include:\n// recording, recorded, playing: <label>, playback_idle, *_error'
+      },
+      'topic_suggestion': {
+        topic: 'POST /api/suggest_topic → /audio_speaker',
+        type: 'HTTP JSON → std_msgs/msg/String',
+        node: 'server.js TOPIC_DICTIONARY → audio_bridge',
+        payload: '{ "category": "icebreakers" }\n\n// Server randomly selects a prompt and matching file, for example:\n// current_topic: "What was your very first job...?"\n// audioFile: "icebreakers_004.wav"\n// ROS data: "request:<id>:play_file:icebreakers_004.wav"\n\n// Categories: icebreakers, discussion_starters, team_chat, fun_debates'
       }
     };
 
@@ -141,8 +147,8 @@
       card.addEventListener('click', () => {
         cards.forEach(c => c.classList.remove('active'));
         card.classList.add('active');
-        const key = card.dataset.topicKey || 'auto_navi';
-        const data = topicSchemas[key] || topicSchemas['auto_navi'];
+        const key = card.dataset.topicKey || 'nav';
+        const data = topicSchemas[key] || topicSchemas['nav'];
         inspector.textContent = `// ROS2 Node: ${data.node}\n// Topic: ${data.topic} [${data.type}]\n\n${data.payload}`;
       });
     });

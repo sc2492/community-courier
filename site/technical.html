@@ -124,11 +124,11 @@
         </div>
         <div class="spec-item">
           <span class="spec-label" data-en="Navigation & SLAM" data-ja="ナビゲーション & SLAM">Navigation & SLAM</span>
-          <div class="spec-value">LiDAR SLAM (Nav2 Stack) <span class="spec-sub">ROS2 Humble Architecture</span></div>
+          <div class="spec-value">LiDAR SLAM + Nav2 <span class="spec-sub">ROS 2 Jazzy architecture</span></div>
         </div>
         <div class="spec-item">
           <span class="spec-label" data-en="Edge Compute Brain" data-ja="車載エッジコンピュータ">Edge Compute Brain</span>
-          <div class="spec-value">Raspberry Pi 4B (4GB) <span class="spec-sub">Linux Ubuntu 22.04 LTS</span></div>
+          <div class="spec-value">Raspberry Pi 4B (4GB) <span class="spec-sub">Ubuntu 24.04 LTS</span></div>
         </div>
         <div class="spec-item">
           <span class="spec-label" data-en="LiDAR Sensor" data-ja="LiDAR センサー">LiDAR Sensor</span>
@@ -136,7 +136,7 @@
         </div>
         <div class="spec-item">
           <span class="spec-label" data-en="Actuation & Sub-Controller" data-ja="アクチュエーション & マイコン">Actuation & Sub-Controller</span>
-          <div class="spec-value">Arduino Uno R3 <span class="spec-sub">Dual MicroServo SG90s</span></div>
+          <div class="spec-value">OpenCR + Arduino bridge <span class="spec-sub" data-en="Dual SG90s; actuator rail moved to OpenCR" data-ja="SG90 × 2、サーボ電源系をOpenCRへ移行">Dual SG90s; actuator rail moved to OpenCR</span></div>
         </div>
         <div class="spec-item">
           <span class="spec-label" data-en="Audio & Speech Suite" data-ja="音声・対話システム">Audio & Speech Suite</span>
@@ -152,27 +152,27 @@
   <div class="inner">
     <span class="topic-pill" data-en="Software Architecture" data-ja="ソフトウェア・アーキテクチャ">Software Architecture</span>
     <h2 data-en="ROS2 Node Graph & Topic Dataflow" data-ja="ROS2 ノードグラフとトピックデータフロー">ROS2 Node Graph & Topic Dataflow</h2>
-    <p class="lead" data-en="The system coordinates navigation, cargo actuation, audio recording, and pre-recorded TTS topic audio playback through a modular ROS2 topic architecture. Click any node below to inspect its schema and live payload." data-ja="ナビゲーション、カプセル開閉、音声録音、収録済みTTS音声トピック再生をモジュール化されたROS2トピック構成で連携。各ノードをクリックするとメッセージスキーマを確認できます。">The system coordinates navigation, cargo actuation, audio recording, and pre-recorded TTS topic audio playback through a modular ROS2 topic architecture.</p>
+    <p class="lead" data-en="The deployed prototype uses a Node.js control UI on the server PC, including its built-in Topic Suggestion library, and ROS 2 Jazzy String command/status topics across DDS. Click a card to inspect the implemented message path—not a conceptual future schema." data-ja="実機プロトタイプはServer PC上のNode.js操作UI（内蔵Topic Suggestionライブラリを含む）と、DDS経由のROS 2 Jazzy Stringコマンド／状態トピックを使用します。各カードから、構想ではなく実装済みのメッセージ経路を確認できます。">The deployed prototype uses a Node.js control UI with a built-in Topic Suggestion library and ROS 2 Jazzy String topics across DDS.</p>
 
     <div class="ros-architecture-box">
       <div class="ros-grid">
         <!-- Hardware / Actuator Layer -->
         <div class="ros-layer">
           <div class="ros-layer-title"><span class="status-dot"></span> Edge Hardware Nodes</div>
-          <div class="ros-node-card active" data-topic-key="auto_navi">
-            <div class="node-name">/auto_navi</div>
-            <div class="node-desc" data-en="Nav2 autonomous goal navigation and obstacle costmaps" data-ja="Nav2自律移動・ゴール追従・コストマップ障害物回避">Nav2 autonomous goal navigation and obstacle costmaps</div>
-            <span class="topic-chip">nav2_msgs/NavigateToPose</span>
+          <div class="ros-node-card active" data-topic-key="nav">
+            <div class="node-name">/nav → Nav2</div>
+            <div class="node-desc" data-en="Named room commands are resolved by nav_command_node, then sent to NavigateToPose" data-ja="部屋名コマンドをnav_command_nodeが座標へ変換し、NavigateToPoseへ送信">Named room commands are resolved by nav_command_node, then sent to NavigateToPose</div>
+            <span class="topic-chip">std_msgs/msg/String</span>
           </div>
           <div class="ros-node-card" data-topic-key="servo">
             <div class="node-name">/servo</div>
-            <div class="node-desc" data-en="Arduino bridge driving dual SG90 servos for mail capsule" data-ja="Arduinoブリッジ経由でカプセル開閉サーボを制御">Arduino bridge driving dual SG90 servos for mail capsule</div>
-            <span class="topic-chip">penpal_interfaces/ServoCmd</span>
+            <div class="node-desc" data-en="servo_bridge converts open/close and flag commands for the OpenCR-connected actuator hardware" data-ja="servo_bridgeがopen/close・フラグ命令をOpenCR接続のアクチュエータ系へ変換">servo_bridge converts commands for the OpenCR-connected actuator hardware</div>
+            <span class="topic-chip">std_msgs/msg/String</span>
           </div>
           <div class="ros-node-card" data-topic-key="audio_mic">
             <div class="node-name">/audio_mic</div>
-            <div class="node-desc" data-en="Captures voice postcard stream via USB microphone" data-ja="USBマイクから音声ポストカードをバッファリング録音">Captures voice postcard stream via USB microphone</div>
-            <span class="topic-chip">penpal_interfaces/AudioBuffer</span>
+            <div class="node-desc" data-en="start_recording / stop_recording commands control the Pi-side arecord process" data-ja="start_recording / stop_recording命令でPi側のarecordプロセスを制御">Commands control the Pi-side arecord process</div>
+            <span class="topic-chip">std_msgs/msg/String</span>
           </div>
         </div>
 
@@ -186,20 +186,25 @@
         <!-- UI & Audio Interaction Layer -->
         <div class="ros-layer">
           <div class="ros-layer-title"><span class="status-dot"></span> Interaction & Audio Nodes</div>
-          <div class="ros-node-card" data-topic-key="ui">
-            <div class="node-name">/ui</div>
-            <div class="node-desc" data-en="TurtleBot touch display interface and facial expression state" data-ja="TurtleBotの画面タッチUIおよび表情・状態表示">TurtleBot touch display interface and facial expression state</div>
-            <span class="topic-chip">penpal_interfaces/UiState</span>
+          <div class="ros-node-card" data-topic-key="ui_server">
+            <div class="node-name">server.js UI API</div>
+            <div class="node-desc" data-en="HTTP control API, independent audio state machines, and face-state mirroring" data-ja="HTTP操作API、独立した音声状態機械、表情状態のミラーリング">HTTP API, independent audio state machines, and face-state mirroring</div>
+            <span class="topic-chip">HTTP / JSON</span>
           </div>
           <div class="ros-node-card" data-topic-key="audio_speaker">
             <div class="node-name">/audio_speaker</div>
-            <div class="node-desc" data-en="Plays arrival announcement chimes and recipient voice greetings" data-ja="到着通知チャイムおよび音声メッセージの再生">Plays arrival announcement chimes and recipient voice greetings</div>
-            <span class="topic-chip">penpal_interfaces/AudioPlay</span>
+            <div class="node-desc" data-en="Plays saved messages, announcements, and named .wav cues through independent aplay" data-ja="保存メッセージ、アナウンス、指定.wav音声を独立したaplayで再生">Independent playback for messages, announcements, and .wav cues</div>
+            <span class="topic-chip">std_msgs/msg/String</span>
           </div>
-          <div class="ros-node-card" data-topic-key="topic_prompts">
-            <div class="node-name">/topic_prompts</div>
-            <div class="node-desc" data-en="Pre-recorded TTS audio prompts (.wav) for conversation starter playback" data-ja="会話促進のための収録済みTTS音声プロンプト(.wav)再生ノード">Pre-recorded TTS audio prompts (.wav) for conversation starter playback</div>
-            <span class="topic-chip">penpal_interfaces/TopicAudio</span>
+          <div class="ros-node-card" data-topic-key="audio_status">
+            <div class="node-name">/audio_status</div>
+            <div class="node-desc" data-en="Event feedback plus a 1-second authoritative recording/playback heartbeat" data-ja="イベント通知と、録音・再生の実状態を示す1秒周期ハートビート">Events plus a 1-second authoritative audio heartbeat</div>
+            <span class="topic-chip">std_msgs/msg/String</span>
+          </div>
+          <div class="ros-node-card" data-topic-key="topic_suggestion">
+            <div class="node-name">Topic Suggestion</div>
+            <div class="node-desc" data-en="Server-side prompt dictionary selects a category/item, then plays its matching .wav through /audio_speaker" data-ja="Server側のトピック辞書からカテゴリと項目を選択し、対応する.wavを/audio_speakerで再生">Server dictionary selects a prompt and plays its matching .wav through /audio_speaker</div>
+            <span class="topic-chip">HTTP API → ROS 2</span>
           </div>
         </div>
       </div>
@@ -207,21 +212,47 @@
       <!-- Realtime Topic Payload Inspector -->
       <div class="ros-inspector">
         <div class="ros-inspector-header">
-          <span>// ROS2 Message Payload & Telemetry Inspector</span>
-          <span style="color:#329387;">STATUS: 200 OK (Active Telemetry)</span>
+          <span>// Implemented Command & State Inspector</span>
+          <span style="color:#329387;">STATUS: DEPLOYED &amp; HARDWARE-TESTED</span>
         </div>
-        <pre id="ros-inspector-code" style="margin:0;white-space:pre-wrap;font-family:monospace;">// ROS2 Node: turtlebot3_navigation_node (Nav2 Stack + LiDAR SLAM)
-// Topic: /auto_navi [nav2_msgs/action/NavigateToPose]
+        <pre id="ros-inspector-code" style="margin:0;white-space:pre-wrap;font-family:monospace;">// ROS2 Node: nav_command_node → Nav2 NavigateToPose
+// Topic: /nav [std_msgs/msg/String]
 
-{
-  "goal_pose": {
-    "header": { "frame_id": "map" },
-    "pose": { "position": { "x": 8.52, "y": 0.84, "z": 0.0 }, "orientation": { "z": 0.707, "w": 0.707 } }
-  },
-  "planner_id": "GridBased",
-  "controller_id": "DWBLocalPlanner",
-  "current_velocity_m_s": 0.22
-}</pre>
+data: "Room 1 Intermediate"
+
+// /nav_status reports: "reached" | "failed"
+// Server then advances the two-stage room route.</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reliability work validated on the physical prototype -->
+<section id="reliability">
+  <div class="inner">
+    <span class="topic-pill" data-en="Validated Reliability Work" data-ja="実機で検証した信頼性改善">Validated Reliability Work</span>
+    <h2 data-en="What We Inspected and Implemented" data-ja="実機調査と実装内容">What We Inspected and Implemented</h2>
+    <p class="lead" data-en="These are implemented behaviors from the physical two-computer prototype, with candidate navigation tuning clearly separated from the currently tested default profile." data-ja="以下は2台構成の実機プロトタイプで実装・検証した内容です。ナビゲーション候補設定と、現在比較中のデフォルト設定を明確に区別しています。">Implemented and verified on the physical prototype; candidate navigation tuning is clearly separated from the active default comparison.</p>
+    <div class="grid c2" style="margin-top:28px;">
+      <div class="note-card">
+        <span class="flag" data-en="Navigation" data-ja="ナビゲーション">Navigation</span>
+        <h3 data-en="Narrow-space profile is a candidate, not the active baseline" data-ja="狭所用設定は候補版、現在の基準はデフォルト設定">Narrow-space profile is a candidate, not the active baseline</h3>
+        <p data-en="The saved-map analysis produced narrow_improved4.yaml with 0.18 m inflation and faster cost decay, versus the 0.50 m default. Because v3 could not navigate, current physical comparison runs use the default profile until v4 is explicitly launched and validated." data-ja="保存地図の解析から、デフォルト0.50mに対してinflation_radius 0.18m・高速減衰のnarrow_improved4.yamlを作成しました。v3では走行不能だったため、現在の実機比較はデフォルト設定を使用し、v4は明示的に起動して検証する候補版です。">Map analysis produced narrow_improved4.yaml with 0.18 m inflation versus the 0.50 m default. Current physical runs still use the default baseline.</p>
+      </div>
+      <div class="note-card">
+        <span class="flag" data-en="Audio Isolation" data-ja="音声の分離">Audio Isolation</span>
+        <h3 data-en="Recording no longer locks announcements" data-ja="録音とアナウンスを相互にブロックしない">Recording no longer locks announcements</h3>
+        <p data-en="arecord capture and aplay playback use independent process slots and independent UI state. A live Record + announcement + Stop test completed with no remaining child process." data-ja="arecord録音とaplay再生を独立プロセス・独立UI状態で管理。実機の「録音＋アナウンス＋停止」試験後に子プロセスが残らないことを確認しました。">arecord and aplay use independent process slots and UI state. Live concurrent recording and announcement playback passed.</p>
+      </div>
+      <div class="note-card">
+        <span class="flag" data-en="Self-Recovery" data-ja="自動復旧">Self-Recovery</span>
+        <h3 data-en="Bounded playback timeout and forced cleanup" data-ja="再生タイムアウトと強制クリーンアップ">Bounded playback timeout and forced cleanup</h3>
+        <p data-en="The bridge derives a timeout from WAV duration plus 5 seconds, bounded to 10–180 seconds. A wedged aplay is terminated, then killed if necessary; its slot is always released so the next clip can start." data-ja="WAV長＋5秒から10〜180秒の範囲でタイムアウトを算出。停止しないaplayは終了・必要なら強制終了し、必ず再生スロットを解放して次の音声を再生できます。">Timeout = WAV duration + 5 seconds, bounded to 10–180 seconds; wedged playback is forcibly cleaned up.</p>
+      </div>
+      <div class="note-card">
+        <span class="flag" data-en="State Reconciliation" data-ja="状態同期">State Reconciliation</span>
+        <h3 data-en="The robot is authoritative, not the browser" data-ja="ブラウザではなくロボット実状態を正とする">The robot is authoritative, not the browser</h3>
+        <p data-en="/audio_status publishes recording/playback state every second. The server reconciles the Voice tab from that heartbeat, releases stale locks after 6 seconds offline, and uses request-ID retries with bridge-side de-duplication to survive DDS discovery loss." data-ja="/audio_statusが録音・再生状態を1秒周期で送信。ServerはVoiceタブを実状態へ同期し、6秒の未受信で古いロックを解除。リクエストID付き再送とbridge側重複排除でDDS発見時の取りこぼしにも対応します。">A 1-second heartbeat corrects the UI; a 6-second watchdog releases stale locks; request-ID retries are de-duplicated on the bridge.</p>
       </div>
     </div>
   </div>
@@ -250,7 +281,7 @@
   <div class="fine-print" data-en="UW x SIT HRI Basic Robot Development PBL, August 2026 · Built on TurtleBot3 Burger" data-ja="UW x SIT HRI 基礎ロボット開発 PBL、2026年8月 · TurtleBot3 Burger 使用">UW x SIT HRI Basic Robot Development PBL, August 2026 · Built on TurtleBot3 Burger</div>
 </footer>
 
-<script src="presentation-core.js"></script>
+<script src="presentation-core.js?v=7"></script>
 <script>
 function applyLang(lang){
   document.querySelectorAll('[data-en]').forEach(el=>{
